@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/styles.css?v=4">
+  <link rel="stylesheet" href="css/styles.css?v=5">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -263,92 +263,97 @@
     </div>
 
     <!-- ============ VERTICALES ============ -->
-    <section class="verticals section" id="verticales" aria-labelledby="verticals-title">
-      <div class="container">
-        <header class="section-head">
-          <p class="eyebrow" data-reveal><svg class="eyebrow__sym" aria-hidden="true"><use href="#i-symbol"/></svg> Nuestras verticales</p>
-          <h2 class="section-title" id="verticals-title" data-split>Tres industrias, un mismo propósito</h2>
-          <p class="section-lead" data-reveal>Cada vertical opera con identidad propia y se potencia con el respaldo, la experiencia y la visión de largo plazo de Grupo Tinbet.</p>
-        </header>
+    <section class="verticals section" id="verticales" aria-labelledby="verticals-title" data-vsection>
+      <div class="verticals__track" data-vtrack>
+        <div class="verticals__sticky">
+          <div class="container">
+            <header class="section-head">
+              <p class="eyebrow" data-reveal><svg class="eyebrow__sym" aria-hidden="true"><use href="#i-symbol"/></svg> Nuestras verticales</p>
+              <h2 class="section-title" id="verticals-title" data-split>Tres industrias, un mismo propósito</h2>
+              <p class="section-lead" data-reveal>Cada vertical opera con identidad propia y se potencia con el respaldo, la experiencia y la visión de largo plazo de Grupo Tinbet.</p>
+            </header>
 
-        <div class="vstack" data-stack>
-          <article class="vcard vcard--ent" id="entretenimiento" style="--i: 0" aria-labelledby="v-ent-title">
-            <div class="vcard__content">
-              <div class="vcard__meta">
-                <span class="vcard__num">01</span>
-                <span class="vcard__chip"><svg aria-hidden="true"><use href="#i-symbol"/></svg> Vertical de negocio</span>
-              </div>
-              <h3 class="vcard__title" id="v-ent-title">Entretenimiento</h3>
-              <p class="vcard__kicker">Apuestas deportivas y juegos online</p>
-              <p class="vcard__text">A través de Tinbet.pe ofrecemos una experiencia de entretenimiento digital que combina tecnología, seguridad y cercanía, con un firme compromiso con el juego responsable.</p>
-              <ul class="vcard__tags">
-                <li>Apuestas deportivas</li>
-                <li>Juegos online</li>
-                <li>Juego responsable</li>
-              </ul>
-              <a class="btn vcard__btn" href="https://tinbet.pe" target="_blank" rel="noopener">Visitar Tinbet.pe <svg aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
-            </div>
-            <div class="vcard__media">
-              <img src="assets/img/vertical-entretenimiento.webp" alt="Aficionados al fútbol celebrando una apuesta desde el celular" width="1200" height="1267" loading="lazy">
-              <svg class="vcard__shapes" viewBox="180 80 1440 840" aria-hidden="true">
-                <use class="vs vs--1" href="#kite-2"/>
-                <use class="vs vs--2" href="#kite-1"/>
-                <use class="vs vs--3" href="#kite-0"/>
-              </svg>
-            </div>
-          </article>
+            <div class="vstack" data-stack>
+              <article class="vcard vcard--ent" id="entretenimiento" style="--i: 0" aria-labelledby="v-ent-title">
+                <div class="vcard__content">
+                  <div class="vcard__meta">
+                    <span class="vcard__num">01</span>
+                    <span class="vcard__chip"><svg aria-hidden="true"><use href="#i-symbol"/></svg> Vertical de negocio</span>
+                  </div>
+                  <h3 class="vcard__title" id="v-ent-title">Entretenimiento</h3>
+                  <p class="vcard__kicker">Apuestas deportivas y juegos online</p>
+                  <p class="vcard__text">A través de Tinbet.pe ofrecemos una experiencia de entretenimiento digital que combina tecnología, seguridad y cercanía, con un firme compromiso con el juego responsable.</p>
+                  <ul class="vcard__tags">
+                    <li>Apuestas deportivas</li>
+                    <li>Juegos online</li>
+                    <li>Juego responsable</li>
+                  </ul>
+                  <a class="btn vcard__btn" href="https://tinbet.pe" target="_blank" rel="noopener">Visitar Tinbet.pe <svg aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                </div>
+                <div class="vcard__media">
+                  <img src="assets/img/vertical-entretenimiento.webp" alt="Aficionados al fútbol celebrando una apuesta desde el celular" width="1200" height="1267" loading="lazy">
+                  <svg class="vcard__shapes" viewBox="180 80 1440 840" aria-hidden="true">
+                    <use class="vs vs--1" href="#kite-2"/>
+                    <use class="vs vs--2" href="#kite-1"/>
+                    <use class="vs vs--3" href="#kite-0"/>
+                  </svg>
+                </div>
+              </article>
 
-          <article class="vcard vcard--inv" id="inversiones" style="--i: 1" aria-labelledby="v-inv-title">
-            <div class="vcard__content">
-              <div class="vcard__meta">
-                <span class="vcard__num">02</span>
-                <span class="vcard__chip"><svg aria-hidden="true"><use href="#i-symbol"/></svg> Vertical de negocio</span>
-              </div>
-              <h3 class="vcard__title" id="v-inv-title">Inversiones</h3>
-              <p class="vcard__kicker">Obras por impuestos</p>
-              <p class="vcard__text">Canalizamos inversión privada hacia proyectos de infraestructura pública mediante el mecanismo de Obras por Impuestos, cerrando brechas y generando bienestar en las regiones del país.</p>
-              <ul class="vcard__tags">
-                <li>Obras por impuestos</li>
-                <li>Infraestructura pública</li>
-                <li>Desarrollo regional</li>
-              </ul>
-              <a class="btn vcard__btn" href="#contacto">Conoce más <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            </div>
-            <div class="vcard__media">
-              <img src="assets/img/vertical-inversiones.webp" alt="Trabajador de construcción cortando tubería en una obra" width="1500" height="1500" loading="lazy">
-              <svg class="vcard__shapes" viewBox="180 80 1440 840" aria-hidden="true">
-                <use class="vs vs--1" href="#kite-2"/>
-                <use class="vs vs--2" href="#kite-1"/>
-                <use class="vs vs--3" href="#kite-0"/>
-              </svg>
-            </div>
-          </article>
+              <article class="vcard vcard--inv" id="inversiones" style="--i: 1" aria-labelledby="v-inv-title">
+                <div class="vcard__content">
+                  <div class="vcard__meta">
+                    <span class="vcard__num">02</span>
+                    <span class="vcard__chip"><svg aria-hidden="true"><use href="#i-symbol"/></svg> Vertical de negocio</span>
+                  </div>
+                  <h3 class="vcard__title" id="v-inv-title">Inversiones</h3>
+                  <p class="vcard__kicker">Obras por impuestos</p>
+                  <p class="vcard__text">Canalizamos inversión privada hacia proyectos de infraestructura pública mediante el mecanismo de Obras por Impuestos, cerrando brechas y generando bienestar en las regiones del país.</p>
+                  <ul class="vcard__tags">
+                    <li>Obras por impuestos</li>
+                    <li>Infraestructura pública</li>
+                    <li>Desarrollo regional</li>
+                  </ul>
+                  <a class="btn vcard__btn" href="#contacto">Conoce más <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                </div>
+                <div class="vcard__media">
+                  <img src="assets/img/vertical-inversiones.webp" alt="Trabajador de construcción cortando tubería en una obra" width="1500" height="1500" loading="lazy">
+                  <svg class="vcard__shapes" viewBox="180 80 1440 840" aria-hidden="true">
+                    <use class="vs vs--1" href="#kite-2"/>
+                    <use class="vs vs--2" href="#kite-1"/>
+                    <use class="vs vs--3" href="#kite-0"/>
+                  </svg>
+                </div>
+              </article>
 
-          <article class="vcard vcard--seg" id="seguridad" style="--i: 2" aria-labelledby="v-seg-title">
-            <div class="vcard__content">
-              <div class="vcard__meta">
-                <span class="vcard__num">03</span>
-                <span class="vcard__chip"><svg aria-hidden="true"><use href="#i-symbol"/></svg> Vertical de negocio</span>
-              </div>
-              <h3 class="vcard__title" id="v-seg-title">Seguridad</h3>
-              <p class="vcard__kicker">Protección integral</p>
-              <p class="vcard__text">Brindamos soluciones de seguridad que protegen a personas, activos y operaciones, combinando personal especializado, tecnología de monitoreo y protocolos de prevención.</p>
-              <ul class="vcard__tags">
-                <li>Vigilancia</li>
-                <li>Monitoreo</li>
-                <li>Prevención de riesgos</li>
-              </ul>
-              <a class="btn vcard__btn" href="#contacto">Conoce más <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              <article class="vcard vcard--seg" id="seguridad" style="--i: 2" aria-labelledby="v-seg-title">
+                <div class="vcard__content">
+                  <div class="vcard__meta">
+                    <span class="vcard__num">03</span>
+                    <span class="vcard__chip"><svg aria-hidden="true"><use href="#i-symbol"/></svg> Vertical de negocio</span>
+                  </div>
+                  <h3 class="vcard__title" id="v-seg-title">Seguridad</h3>
+                  <p class="vcard__kicker">Protección integral</p>
+                  <p class="vcard__text">Brindamos soluciones de seguridad que protegen a personas, activos y operaciones, combinando personal especializado, tecnología de monitoreo y protocolos de prevención.</p>
+                  <ul class="vcard__tags">
+                    <li>Vigilancia</li>
+                    <li>Monitoreo</li>
+                    <li>Prevención de riesgos</li>
+                  </ul>
+                  <a class="btn vcard__btn" href="#contacto">Conoce más <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                </div>
+                <div class="vcard__media">
+                  <img src="assets/img/vertical-seguridad.webp" alt="Especialista supervisando sistemas en una pantalla de monitoreo" width="1500" height="1500" loading="lazy">
+                  <svg class="vcard__shapes" viewBox="180 80 1440 840" aria-hidden="true">
+                    <use class="vs vs--1" href="#kite-2"/>
+                    <use class="vs vs--2" href="#kite-1"/>
+                    <use class="vs vs--3" href="#kite-0"/>
+                  </svg>
+                </div>
+              </article>
             </div>
-            <div class="vcard__media">
-              <img src="assets/img/vertical-seguridad.webp" alt="Especialista supervisando sistemas en una pantalla de monitoreo" width="1500" height="1500" loading="lazy">
-              <svg class="vcard__shapes" viewBox="180 80 1440 840" aria-hidden="true">
-                <use class="vs vs--1" href="#kite-2"/>
-                <use class="vs vs--2" href="#kite-1"/>
-                <use class="vs vs--3" href="#kite-0"/>
-              </svg>
-            </div>
-          </article>
+            <div class="vstack-nav" data-vstack-nav></div>
+          </div>
         </div>
       </div>
     </section>
@@ -789,6 +794,6 @@
     <div class="video-modal__frame" data-video-frame></div>
   </dialog>
 
-  <script src="js/main.js?v=4" defer></script>
+  <script src="js/main.js?v=5" defer></script>
 </body>
 </html>

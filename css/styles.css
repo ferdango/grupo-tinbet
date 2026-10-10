@@ -773,6 +773,62 @@ svg { flex: none; }
 .vcard:hover .vs--2 { transform: translate(10%, -8%); }
 .vcard:hover .vs--3 { transform: translate(4%, -3%); }
 
+/* Indicadores del slider de verticales (solo en modo slider) */
+.vstack-nav { display: none; }
+.vstack-nav__dot {
+  width: 30px; height: 6px;
+  padding: 0; border: 0; border-radius: 6px;
+  background: #d6dbd8;
+  transition: width .4s var(--ease), background-color .4s var(--ease);
+}
+.vstack-nav__dot[aria-current="true"] { width: 56px; }
+.vstack-nav__dot--entretenimiento[aria-current="true"] { background: var(--c-ent); }
+.vstack-nav__dot--inversiones[aria-current="true"] { background: var(--c-inv); }
+.vstack-nav__dot--seguridad[aria-current="true"] { background: var(--c-seg); }
+
+/* Móvil: la sección queda fijada y las verticales pasan como slider con el scroll */
+.verticals.is-slider { padding-block: 0; }
+.verticals.is-slider .verticals__track { height: calc(var(--pin-h) + 180vh); }
+.verticals.is-slider .verticals__sticky {
+  position: sticky;
+  top: var(--header-h);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: var(--pin-h);
+  overflow: clip;
+}
+.verticals.is-slider .section-head { margin-bottom: clamp(14px, 2.4vh, 28px); }
+.verticals.is-slider .section-head .eyebrow { margin-bottom: 10px; }
+.verticals.is-slider .section-lead { display: none; }
+.verticals.is-slider .vstack {
+  --card-w: calc(100vw - var(--gutter) * 2 - 36px);
+  --gap: 14px;
+  display: flex;
+  gap: var(--gap);
+  padding-bottom: 0;
+}
+.verticals.is-slider .vcard {
+  flex: 0 0 var(--card-w);
+  grid-template-rows: clamp(100px, 16vh, 170px) auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transform: translateX(calc(var(--slide, 0) * (-100% - var(--gap)))) scale(calc(1 - var(--off, 0) * .06));
+  opacity: calc(1 - var(--off, 0) * .35);
+}
+.verticals.is-slider .vcard__media { aspect-ratio: auto; }
+.verticals.is-slider .vcard__content { padding: 20px 22px 24px; }
+.verticals.is-slider .vcard__num { font-size: 2.25rem; }
+.verticals.is-slider .vcard__chip { padding: 6px 12px; font-size: .75rem; }
+.verticals.is-slider .vcard__title { margin-top: 14px; font-size: clamp(2rem, 10cqi, 2.75rem); }
+.verticals.is-slider .vcard__kicker { margin-top: 8px; font-size: 1.0625rem; }
+.verticals.is-slider .vcard__text { margin-top: 10px; font-size: .9375rem; line-height: 1.5; }
+.verticals.is-slider .vcard__meta { gap: 10px; }
+.verticals.is-slider .vcard__tags { display: none; }
+.verticals.is-slider .vcard__btn { min-height: 46px; margin-top: 18px; padding-block: 10px; }
+.verticals.is-slider .vcard__shapes { left: -10%; bottom: -24%; width: 70%; }
+.verticals.is-slider .vstack-nav { display: flex; justify-content: center; gap: 8px; margin-top: clamp(14px, 2.4vh, 24px); }
+
 /* ---------- Principios (mazo de tarjetas) ---------- */
 .principles { position: relative; overflow-x: clip; background: var(--c-paper); }
 .principles__deco {
@@ -1612,7 +1668,33 @@ svg { flex: none; }
 }
 
 @media (max-width: 860px) {
-  .hero__verticals { grid-template-columns: 1fr; transform: none; margin-top: 32px; padding-bottom: 40px; }
+  /* Accesos a las verticales: lista minimalista sobre el fondo del hero */
+  .hero__verticals {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 36px;
+    padding-bottom: 28px;
+    border-top: 1px solid rgba(255, 255, 255, .14);
+    transform: none;
+  }
+  .vlink {
+    gap: 14px;
+    padding: 15px 2px;
+    border-bottom: 1px solid rgba(255, 255, 255, .14);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    color: var(--c-white);
+  }
+  .vlink::before { position: static; flex: none; width: 10px; height: 10px; border-radius: 3px; transform: rotate(45deg); }
+  .vlink--seg::before { box-shadow: 0 0 0 1.5px rgba(255, 255, 255, .75); }
+  .vlink__num,
+  .vlink__body small { display: none; }
+  .vlink__body strong { font-size: 1.0625rem; font-weight: 600; }
+  .vlink__arrow { width: 34px; height: 34px; background: rgba(255, 255, 255, .08); color: var(--c-white); }
+  .vlink:hover { translate: none; box-shadow: none; color: var(--c-white); }
+  .vlink:hover::before { width: 10px; }
+  .vlink:hover .vlink__arrow { background: var(--v); color: var(--v-ink); }
   .about { padding-top: var(--section-y); }
   .about__grid { grid-template-columns: 1fr; }
   .about__badge { left: 4%; }

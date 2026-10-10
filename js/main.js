@@ -193,10 +193,18 @@
     }
   }
 
-  /* ---------- Verticales: tarjetas apiladas al hacer scroll ---------- */
+  /* ---------- Verticales ---------- */
+  // Escritorio: tarjetas apiladas (sticky) que se reducen cuando llega la siguiente.
+  // Móvil: la sección queda fijada y las tarjetas pasan como slider horizontal con el scroll.
   const stack = $('[data-stack]');
+  const vSection = $('[data-vsection]');
+  const vTrack = $('[data-vtrack]');
+  const vNav = $('[data-vstack-nav]');
   if (stack) {
     const cards = $$('.vcard', stack);
+    const V_START = 0.08;
+    const V_SPAN = 0.8;
+    let vSlider = false;
     cards.forEach((card) => watchVisibility(card, () => card.classList.add('is-in'), null, { threshold: 0.3 }));
 
     const stacking = window.matchMedia('(min-width: 861px)');
@@ -211,6 +219,58 @@
           const p = Math.min(Math.max(1 - (nextTop - rect.top) / rect.height, 0), 1);
           card.style.setProperty('--stack-p', p.toFixed(3));
         });
+      });
+    }
+
+    if (vSection && vTrack) {
+      const goToCard = (index) => scrollToProgress(vTrack, V_START + V_SPAN * (index / (cards.length - 1)));
+
+      // Indicadores del slider (uno por vertical, con su color).
+      const dots = cards.map((card, i) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = `vstack-nav__dot vstack-nav__dot--${card.id}`;
+        dot.setAttribute('aria-label', `Vertical: ${$('.vcard__title', card).textContent.trim()}`);
+        dot.addEventListener('click', () => goToCard(i));
+        if (vNav) vNav.appendChild(dot);
+        return dot;
+      });
+
+      const setVSlider = (on) => {
+        vSlider = on;
+        vSection.classList.toggle('is-slider', on);
+        if (!on) {
+          stack.style.removeProperty('--slide');
+          cards.forEach((card) => { card.style.removeProperty('--off'); $('.vcard__content', card).inert = false; });
+        }
+      };
+
+      // Los enlaces a una vertical (hero, menú, footer) llevan a su tarjeta dentro del slider.
+      document.addEventListener('click', (e) => {
+        if (!vSlider) return;
+        const link = e.target.closest('a[href^="#"]');
+        const index = link ? cards.findIndex((card) => `#${card.id}` === link.getAttribute('href')) : -1;
+        if (index < 0) return;
+        e.preventDefault();
+        goToCard(index);
+      });
+
+      whenMatches('(max-width: 860px) and (min-height: 720px)', setVSlider);
+      onFrame(() => {
+        if (!vSlider) return;
+        const n = cards.length;
+        const p = clamp((trackProgress(vTrack) - V_START) / V_SPAN) * (n - 1);
+        // Suavizado por tramo: el slider se detiene un momento en cada tarjeta.
+        const base = Math.floor(p);
+        const f = p - base;
+        const slide = Math.min(n - 1, base + f * f * (3 - 2 * f));
+        stack.style.setProperty('--slide', slide.toFixed(4));
+        cards.forEach((card, i) => {
+          const off = clamp(Math.abs(i - slide));
+          card.style.setProperty('--off', off.toFixed(3));
+          $('.vcard__content', card).inert = off > 0.5;
+        });
+        dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === Math.round(slide))));
       });
     }
   }
