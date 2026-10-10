@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/styles.css?v=2">
+  <link rel="stylesheet" href="css/styles.css?v=3">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -54,7 +54,7 @@
     <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9.5 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m14.5 6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9.5 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.2v13.6a1 1 0 0 0 1.5.86l11-6.8a1 1 0 0 0 0-1.72l-11-6.8A1 1 0 0 0 8 5.2Z" fill="currentColor"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8.5 6.3v11.4a1.2 1.2 0 0 0 1.82 1.03l9.3-5.7a1.2 1.2 0 0 0 0-2.06l-9.3-5.7A1.2 1.2 0 0 0 8.5 6.3Z" fill="currentColor"/></symbol>
     <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
     <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
     <symbol id="i-growth" viewBox="0 0 24 24"><path d="M3 20h18M5 16l4.5-4.5 3.5 3.5L20 8m0 0h-5m5 0v5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -227,7 +227,11 @@
         <div class="about__media" data-reveal="media">
           <img src="assets/img/nosotros-equipo.webp" alt="Equipo de colaboradores de Grupo Tinbet al aire libre" width="1400" height="887" loading="lazy">
           <button class="play-btn about__play" type="button" data-video-open data-video="" aria-label="Reproducir video: conoce a nuestro equipo">
-            <svg aria-hidden="true"><use href="#i-play"/></svg>
+            <svg class="play-btn__ring" viewBox="0 0 200 200" aria-hidden="true">
+              <defs><path id="play-ring-path" d="M100 100m-80 0a80 80 0 1 1 160 0a80 80 0 1 1-160 0"/></defs>
+              <text><textPath href="#play-ring-path" textLength="498" lengthAdjust="spacing">Ver video · Conoce a nuestro equipo ·</textPath></text>
+            </svg>
+            <span class="play-btn__core" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
           </button>
           <svg class="about__shape about__shape--a" viewBox="188.4 354.7 182 295.1" aria-hidden="true"><use href="#kite-2"/></svg>
           <svg class="about__shape about__shape--b" viewBox="397.6 244 486.2 538.9" aria-hidden="true"><use href="#kite-1"/></svg>
@@ -350,7 +354,9 @@
     </section>
 
     <!-- ============ PRINCIPIOS ============ -->
-    <section class="principles section" id="principios" aria-labelledby="principles-title">
+    <section class="principles section" id="principios" aria-labelledby="principles-title" data-deck-section>
+      <div class="principles__track" data-deck-track>
+      <div class="principles__sticky">
       <svg class="principles__deco" viewBox="135 131.6 1534.9 720.2" aria-hidden="true">
         <use href="#x-0"/><use href="#x-1"/><use href="#x-2"/><use href="#x-3"/>
       </svg>
@@ -427,6 +433,8 @@
         </div>
         <div class="deck-nav" data-deck-nav></div>
       </div>
+      </div>
+      </div>
     </section>
 
     <!-- ============ VALORES ============ -->
@@ -483,6 +491,8 @@
 
     <!-- ============ TALENTO ============ -->
     <section class="talent" id="talento" aria-labelledby="talent-title">
+      <svg class="side-shape talent__shape talent__shape--l" viewBox="596.7 543.1 356.4 308.6" aria-hidden="true" data-scroll-shape><use href="#x-1"/></svg>
+      <svg class="side-shape talent__shape talent__shape--r" viewBox="609.5 85.5 1006.6 828.7" aria-hidden="true" data-scroll-shape><use href="#kite-0"/></svg>
       <div class="container talent__inner">
         <p class="eyebrow eyebrow--center" data-reveal><svg class="eyebrow__sym" aria-hidden="true"><use href="#i-symbol"/></svg> Personas y talento</p>
         <h2 class="section-title" id="talent-title" data-split>El talento que impulsa nuestra evolución</h2>
@@ -531,42 +541,58 @@
 
     <!-- ============ INNOVACIÓN ============ -->
     <section class="innovation" id="innovacion" aria-labelledby="innovation-title">
-      <div class="container innovation__head">
-        <p class="eyebrow eyebrow--light eyebrow--center" data-reveal><svg class="eyebrow__sym" aria-hidden="true"><use href="#i-symbol"/></svg> Innovación</p>
-        <h2 class="innovation__title" id="innovation-title" data-split>
-          Donde la innovación <span class="text-lime">conecta industrias y</span> genera oportunidades
-        </h2>
+      <div class="innovation__track innovation__track--words" data-words-track>
+        <div class="innovation__sticky innovation__sticky--words">
+          <svg class="innovation__shape innovation__shape--l" viewBox="397.6 244 486.2 538.9" aria-hidden="true"><use href="#kite-1"/></svg>
+          <svg class="innovation__shape innovation__shape--r" viewBox="873.5 39.8 775.9 605" aria-hidden="true"><use href="#chev-0"/></svg>
+          <svg class="innovation__shape innovation__shape--s" viewBox="188.4 354.7 182 295.1" aria-hidden="true"><use href="#kite-2"/></svg>
+          <div class="container innovation__head">
+            <p class="eyebrow eyebrow--light eyebrow--center"><svg class="eyebrow__sym" aria-hidden="true"><use href="#i-symbol"/></svg> Innovación</p>
+            <h2 class="innovation__title" id="innovation-title" data-words>
+              Donde la innovación <span class="text-lime">conecta industrias y</span> genera oportunidades
+            </h2>
+          </div>
+        </div>
       </div>
 
-      <div class="container innovation__body">
-        <div class="feature-list" data-feature-list>
-          <div class="feature is-active">
-            <h3 class="feature__heading">
-              <button class="feature__toggle" type="button" id="feature-1" aria-expanded="true" aria-controls="feature-panel-1">Tecnología al servicio de la experiencia</button>
-            </h3>
-            <div class="feature__panel" id="feature-panel-1" role="region" aria-labelledby="feature-1">
-              <p>Integramos innovación y conocimiento para desarrollar soluciones digitales que conectan con las necesidades de nuestros usuarios.</p>
+      <div class="innovation__track innovation__track--features" data-features-track>
+        <div class="innovation__sticky innovation__sticky--features">
+          <div class="container innovation__body">
+            <div class="feature-list" data-feature-list>
+              <div class="feature is-active">
+                <h3 class="feature__heading">
+                  <button class="feature__toggle" type="button" id="feature-1" aria-expanded="true" aria-controls="feature-panel-1">Tecnología al servicio de la experiencia</button>
+                </h3>
+                <div class="feature__panel" id="feature-panel-1" role="region" aria-labelledby="feature-1">
+                  <p>Integramos innovación y conocimiento para desarrollar soluciones digitales que conectan con las necesidades de nuestros usuarios.</p>
+                </div>
+              </div>
+              <div class="feature">
+                <h3 class="feature__heading">
+                  <button class="feature__toggle" type="button" id="feature-2" aria-expanded="false" aria-controls="feature-panel-2">Un ecosistema preparado para crecer</button>
+                </h3>
+                <div class="feature__panel" id="feature-panel-2" role="region" aria-labelledby="feature-2" hidden>
+                  <p>Construimos estructuras sólidas y escalables que permiten a cada empresa del grupo crecer con respaldo y visión de largo plazo.</p>
+                </div>
+              </div>
+              <div class="feature">
+                <h3 class="feature__heading">
+                  <button class="feature__toggle" type="button" id="feature-3" aria-expanded="false" aria-controls="feature-panel-3">Más que entretenimiento</button>
+                </h3>
+                <div class="feature__panel" id="feature-panel-3" role="region" aria-labelledby="feature-3" hidden>
+                  <p>Llevamos nuestras marcas más allá del juego, generando empleo, inversión y valor para el Perú.</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="feature">
-            <h3 class="feature__heading">
-              <button class="feature__toggle" type="button" id="feature-2" aria-expanded="false" aria-controls="feature-panel-2">Un ecosistema preparado para crecer</button>
-            </h3>
-            <div class="feature__panel" id="feature-panel-2" role="region" aria-labelledby="feature-2" hidden>
-              <p>Construimos estructuras sólidas y escalables que permiten a cada empresa del grupo crecer con respaldo y visión de largo plazo.</p>
-            </div>
-          </div>
-          <div class="feature">
-            <h3 class="feature__heading">
-              <button class="feature__toggle" type="button" id="feature-3" aria-expanded="false" aria-controls="feature-panel-3">Más que entretenimiento</button>
-            </h3>
-            <div class="feature__panel" id="feature-panel-3" role="region" aria-labelledby="feature-3" hidden>
-              <p>Llevamos nuestras marcas más allá del juego, generando empleo, inversión y valor para el Perú.</p>
+
+            <div class="innovation__visual" data-reveal>
+              <svg class="innovation__visual-shape innovation__visual-shape--a" viewBox="609.5 85.5 1006.6 828.7" aria-hidden="true"><use href="#kite-0"/></svg>
+              <svg class="innovation__visual-shape innovation__visual-shape--b" viewBox="135 434.2 721.1 417.6" aria-hidden="true"><use href="#x-0"/></svg>
+              <svg class="innovation__visual-shape innovation__visual-shape--c" viewBox="948.8 131.6 721.1 417.6" aria-hidden="true"><use href="#x-2"/></svg>
+              <img class="innovation__mockup" src="assets/img/app-mockup.webp" alt="Dos teléfonos mostrando la aplicación de Tinbet" width="1200" height="1047" loading="lazy">
             </div>
           </div>
         </div>
-
-        <img class="innovation__mockup" src="assets/img/app-mockup.webp" alt="Dos teléfonos mostrando la aplicación de Tinbet" width="1200" height="1047" loading="lazy" data-reveal>
       </div>
     </section>
 
@@ -763,6 +789,6 @@
     <div class="video-modal__frame" data-video-frame></div>
   </dialog>
 
-  <script src="js/main.js?v=2" defer></script>
+  <script src="js/main.js?v=3" defer></script>
 </body>
 </html>

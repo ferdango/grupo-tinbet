@@ -23,10 +23,10 @@ assets/img/           Fotografías y fondos optimizados en WebP
 4. Sobre Grupo Tinbet (contadores y video del equipo)
 5. Cinta animada con las verticales
 6. Verticales de negocio en tarjetas apiladas al hacer scroll
-7. Principios que nos guían (mazo de tarjetas interactivo)
+7. Principios que nos guían: la sección queda fijada y las tarjetas se apilan una por una con el scroll
 8. Valores (tarjetas con efecto 3D)
-9. Talento (+300 profesionales) y mosaico de fotografías con parallax
-10. Innovación (lista con avance automático)
+9. Talento (+300 profesionales, figuras laterales animadas con el scroll) y mosaico con parallax
+10. Innovación: el titular se pinta de verde palabra por palabra y la lista se abre ítem por ítem con el scroll
 11. Lo último (carrusel de notas y videos)
 12. Preguntas frecuentes
 13. Llamado a la acción y footer
@@ -44,6 +44,11 @@ assets/img/           Fotografías y fondos optimizados en WebP
   es **Aeonik**; su licencia (This Is Our Shop EULA) es comercial, así que no se incluye en este
   repositorio público. Si se cuenta con licencia web, basta con añadir los archivos `.woff2`
   y declarar el `@font-face` correspondiente: `--font` ya incluye `"Aeonik"` como alternativa.
+
+Las escenas fijadas (Principios y lista de Innovación) se activan en pantallas de al menos
+861 px y 1101 px de ancho respectivamente; en pantallas más pequeñas, o si el sistema pide
+reducir el movimiento, funcionan con clic. Su duración se ajusta con la altura de la pista en
+`css/styles.css` (`.principles__track`, `.innovation__track--words`, `.innovation__track--features`).
 
 ## Videos
 
