@@ -216,8 +216,10 @@
   }
 
   /* ---------- Principios: mazo de tarjetas ---------- */
-  // En escritorio la sección queda fijada y las tarjetas se apilan una por una con el scroll;
-  // en pantallas pequeñas funciona como mazo con clic y avance automático.
+  // La sección queda fijada y avanza con el scroll:
+  //  - escritorio ('stack'): las tarjetas se apilan una por una;
+  //  - móvil ('slider'): las tarjetas pasan como un slider horizontal.
+  // Con poca altura de pantalla o movimiento reducido funciona como mazo con clic ('click').
   const deck = $('[data-deck]');
   const deckNav = $('[data-deck-nav]');
   const deckSection = $('[data-deck-section]');
@@ -227,20 +229,23 @@
     let order = cards.slice();
     let busy = false;
     let timer = null;
-    let scrollMode = false;
+    let mode = 'click';
     // Tramo de la pista: pausa inicial, recorrido de las tarjetas y pausa final.
     const DECK_START = 0.06;
     const DECK_SPAN = 0.82;
+    const stackQuery = window.matchMedia('(min-width: 861px) and (min-height: 620px)');
+    const sliderQuery = window.matchMedia('(max-width: 860px) and (min-height: 560px)');
 
     const titleOf = (card) => $('.deck-card__title', card).textContent.trim();
     const peekOf = (card) => $('.deck-card__peek', card);
+    const bodyOf = (card) => $('.deck-card__body', card);
 
     function goTo(card) {
-      if (scrollMode) {
-        scrollToProgress(deckTrack, DECK_START + DECK_SPAN * (cards.indexOf(card) / (cards.length - 1)));
-      } else {
+      if (mode === 'click') {
         bringToFront(card);
         restart();
+      } else {
+        scrollToProgress(deckTrack, DECK_START + DECK_SPAN * (cards.indexOf(card) / (cards.length - 1)));
       }
     }
 
@@ -270,16 +275,35 @@
     function render() {
       order.forEach((card, i) => {
         card.dataset.depth = String(i);
-        $('.deck-card__body', card).inert = i !== 0;
+        bodyOf(card).inert = i !== 0;
         peekOf(card).hidden = i === 0;
       });
       setCurrent(cards.indexOf(order[0]));
     }
 
     function updateFromScroll() {
-      if (!scrollMode) return;
+      if (mode === 'click') return;
       const n = cards.length;
       const p = clamp((trackProgress(deckTrack) - DECK_START) / DECK_SPAN) * (n - 1);
+
+      if (mode === 'slider') {
+        // Suavizado por tramo: el slider se detiene un momento en cada tarjeta.
+        const base = Math.floor(p);
+        const f = p - base;
+        const s = Math.min(n - 1, base + f * f * (3 - 2 * f));
+        deck.style.setProperty('--slide', s.toFixed(4));
+        cards.forEach((card, i) => {
+          const off = clamp(Math.abs(i - s));
+          card.style.setProperty('--off', off.toFixed(3));
+          if (card.dataset.depth !== '0') card.dataset.depth = '0';
+          bodyOf(card).inert = off > 0.5;
+          peekOf(card).hidden = true;
+        });
+        setCurrent(Math.round(s));
+        deckSection.style.setProperty('--deck-p', (s / (n - 1)).toFixed(3));
+        return;
+      }
+
       cards.forEach((card, i) => {
         const d = p - i; // > 0: ya apilada (detrás), < 0: aún por entrar desde abajo
         const depth = d >= 0.5 ? Math.min(3, Math.max(1, Math.round(d))) : 0;
@@ -287,7 +311,7 @@
         card.style.setProperty('--enter', clamp(-d).toFixed(3));
         card.style.setProperty('--z', String(i + 1));
         if (card.dataset.depth !== String(depth)) card.dataset.depth = String(depth);
-        $('.deck-card__body', card).inert = depth !== 0 || d < -0.5;
+        bodyOf(card).inert = depth !== 0 || d < -0.5;
         peekOf(card).hidden = depth === 0;
       });
       setCurrent(Math.round(p));
@@ -313,26 +337,36 @@
 
     const next = () => bringToFront(order[1]);
     const stop = () => { window.clearInterval(timer); timer = null; };
-    const start = () => { if (!reducedMotion && !scrollMode && !timer) timer = window.setInterval(next, 6500); };
+    const start = () => { if (!reducedMotion && mode === 'click' && !timer) timer = window.setInterval(next, 6500); };
     const restart = () => { stop(); start(); };
 
-    function setMode(on) {
-      scrollMode = on;
-      deckSection.classList.toggle('is-scroll', on);
-      deck.classList.toggle('is-scrolly', on);
-      if (on) {
-        stop();
-        cards.forEach((c) => c.classList.remove('is-leaving', 'is-entering'));
-        updateFromScroll();
-      } else {
-        cards.forEach((c) => ['--dd', '--enter', '--z'].forEach((prop) => c.style.removeProperty(prop)));
-        deckSection.style.removeProperty('--deck-p');
+    function applyMode() {
+      const nextMode = reducedMotion ? 'click' : stackQuery.matches ? 'stack' : sliderQuery.matches ? 'slider' : 'click';
+      if (nextMode === mode && deckSection.dataset.mode) return;
+      mode = nextMode;
+      deckSection.dataset.mode = mode;
+      deckSection.classList.toggle('is-scroll', mode !== 'click');
+      deck.classList.toggle('is-scrolly', mode === 'stack');
+      deck.classList.toggle('is-slider', mode === 'slider');
+
+      cards.forEach((c) => {
+        c.classList.remove('is-leaving', 'is-entering');
+        ['--dd', '--enter', '--z', '--off'].forEach((prop) => c.style.removeProperty(prop));
+      });
+      deck.style.removeProperty('--slide');
+      deckSection.style.removeProperty('--deck-p');
+
+      if (mode === 'click') {
         order = cards.slice();
         render();
+      } else {
+        stop();
+        updateFromScroll();
       }
     }
 
-    whenMatches('(min-width: 861px) and (min-height: 620px)', setMode);
+    [stackQuery, sliderQuery].forEach((mq) => mq.addEventListener('change', () => { applyMode(); requestFrame(); }));
+    applyMode();
     onFrame(updateFromScroll);
     deck.addEventListener('mouseenter', stop);
     deck.addEventListener('mouseleave', start);
