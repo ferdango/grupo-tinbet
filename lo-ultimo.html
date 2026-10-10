@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lo último | Grupo Tinbet</title>
+  <meta name="description" content="Noticias, proyectos e historias de las empresas de Grupo Tinbet: entretenimiento, inversiones, seguridad y talento.">
+  <meta name="theme-color" content="#042b1e">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_PE">
+  <meta property="og:title" content="Lo último | Grupo Tinbet">
+  <meta property="og:description" content="Noticias, proyectos e historias de las empresas de Grupo Tinbet: entretenimiento, inversiones, seguridad y talento.">
+  <meta property="og:url" content="https://ferdango.github.io/grupo-tinbet/">
+  <meta property="og:image" content="https://ferdango.github.io/grupo-tinbet/assets/img/og-image.jpg">
+
+  <link rel="icon" href="assets/logos/simbolo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css?v=6">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <!-- Formas del manual de marca (Elementos gráficos) y símbolo, reutilizables con <use> -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <path id="x-0" d="M813.3 538.2L443.7 839.7C434.1 847.5 422.1 851.8 409.6 851.8L192 851.8C160 851.8 135 824.1 138.4 792.2L137.9 588C140.4 563.9 158.8 544.4 182.7 540.4L770.5 443.2C825 434.2 856.2 503.3 813.3 538.2Z"/>
+      <path id="x-1" d="M636.1 755.9L860.3 573.5C897.6 543.1 953.1 573.2 947.9 621.1L928.2 803.3C925.2 830.6 902.1 851.4 874.6 851.4L670.2 851.6C619.4 851.7 596.7 787.9 636.1 755.9Z"/>
+      <path id="x-2" d="M991.6 445.2L1361.2 143.8C1370.8 135.9 1382.9 131.6 1395.3 131.6L1612.9 131.6C1644.9 131.6 1669.9 159.4 1666.6 191.2L1667.1 395.4C1664.5 419.6 1646.2 439 1622.2 443L1034.5 540.2C979.9 549.2 948.8 480.2 991.6 445.2Z"/>
+      <path id="x-3" d="M1168.8 227.5L944.7 409.9C907.3 440.4 851.8 410.2 857 362.3L876.8 180.1C879.7 152.8 902.8 132.1 930.3 132L1134.7 131.8C1185.5 131.7 1208.2 195.5 1168.8 227.5Z"/>
+      <path id="kite-0" d="M658.9 760.9L1085.6 200.7C1096.7 186.1 1112.6 175.8 1130.4 171.5L1442.8 96.5C1488.7 85.5 1534.1 116.7 1540.3 163.6L1611.4 456.6C1616.1 492.1 1596.5 526.4 1563.4 540.3L753.2 882.5C678 914.2 609.5 825.8 658.9 760.9Z"/>
+      <path id="kite-1" d="M838.3 387.3L579.4 726.3C536.2 782.9 446.2 758.7 437.2 688.2L402.7 419.9C397.6 379.6 423.5 341.9 463 332.4L756.3 261.6C829.2 244 883.8 327.7 838.3 387.3Z"/>
+      <path id="kite-2" d="M339.6 398.9L366 595.4C370.4 628.2 332.9 649.8 306.7 629.6L207.2 552.7C192.3 541.2 188.4 520.3 198.2 504.1L271.4 384.5C289.6 354.7 335 364.3 339.6 398.9Z"/>
+      <path id="chev-0" d="M914.5 531.7L1356.5 63.5C1374.5 44.5 1403.1 39.8 1426.2 52.1L1609 175.8C1639.6 192.1 1649.4 231.2 1630 259.9L1498.6 454.9C1491.1 466.1 1480 474.3 1467.2 478.2L973.7 627.5C916.6 644.8 873.5 575.1 914.5 531.7Z"/>
+      <path id="chev-1" d="M1275.9 600.1L977.1 690.9C927.2 706 920.8 773.9 966.8 798.2L1142 890.5C1168.3 904.3 1200.9 896.2 1217.5 871.5L1341.1 688.5C1371.9 643 1328.4 584.1 1275.9 600.1Z"/>
+      <path id="chev-2" d="M842.1 826.9L400 1295.1C382 1314.2 353.5 1318.9 330.3 1306.6L147.5 1182.8C117 1166.6 107.2 1127.5 126.5 1098.8L257.9 903.7C265.4 892.5 276.5 884.3 289.4 880.5L782.8 731.1C840 713.8 883.1 783.5 842.1 826.9Z"/>
+      <path id="chev-3" d="M480.6 758.6L779.5 667.8C829.3 652.6 835.8 584.7 789.7 560.4L614.5 468.1C588.2 454.3 555.7 462.5 539 487.1L415.4 670.2C384.7 715.7 428.1 774.5 480.6 758.6Z"/>
+      <path id="sym-0" d="M777.2 532.2L318.5 608.1C304.6 610.4 294.8 623.1 296.3 637C308 746 376.3 838 471.3 883.1C480.5 887.5 491.4 886 499.3 879.6L817.1 620.4C856.9 588 827.9 523.8 777.2 532.2Z"/>
+      <path id="sym-1" d="M603.6 294.6C462.7 294.6 343.8 388.9 306.5 517.8C301.2 536.5 316.8 554.5 336.1 551.6L843.9 475.3C863.2 472.4 872.8 450.5 862.1 434.2C806.9 350.1 711.7 294.6 603.6 294.6Z"/>
+      <path id="sym-2" d="M860.7 653.3L652.4 822.7C626.2 844 629.6 880.3 650.9 899.3C657.2 904.9 666 906.6 674.2 904.7C786.1 878.5 874.5 791.6 903 680.7C909.2 656.4 880.7 637.3 861.1 652.9C861 653 860.8 653.1 860.7 653.3Z"/>
+      <filter id="f-gray"><feColorMatrix type="saturate" values="0"/></filter>
+    </defs>
+    <symbol id="i-symbol" viewBox="294.8 294.5 614.5 612.2">
+      <use href="#sym-1" style="fill: var(--sym-a, currentColor)"/>
+      <use href="#sym-0" style="fill: var(--sym-b, currentColor)"/>
+      <use href="#sym-2" style="fill: var(--sym-b, currentColor)"/>
+    </symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24"><path d="M12 2.5a9.4 9.4 0 0 0-8.1 14.2L2.6 21.5l4.9-1.3A9.4 9.4 0 1 0 12 2.5Zm0 17.2a7.8 7.8 0 0 1-4-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A7.8 7.8 0 1 1 12 19.7Zm4.3-5.8c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8.9-.3.2-.5.1a6.4 6.4 0 0 1-1.9-1.2 7.1 7.1 0 0 1-1.3-1.6c-.1-.2 0-.4.1-.5l.4-.4.2-.4a.4.4 0 0 0 0-.4l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.5 2.5 0 0 0 1.7-1.2 2 2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3Z" fill="currentColor"/></symbol>
+    <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.2-1.4 1.5-1.4h1.5V4.5a20 20 0 0 0-2.2-.1c-2.2 0-3.7 1.3-3.7 3.8v2.3H8v3h2.6V21Z" fill="currentColor"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M17.8 3.5h3l-6.6 7.5 7.8 9.5h-6.1l-4.8-6-5.4 6H2.6l7-8L2.2 3.5h6.2l4.3 5.5Zm-1 15.3h1.7L7.3 5.1H5.5Z" fill="currentColor"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9.5 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m14.5 6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9.5 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8.5 6.3v11.4a1.2 1.2 0 0 0 1.82 1.03l9.3-5.7a1.2 1.2 0 0 0 0-2.06l-9.3-5.7A1.2 1.2 0 0 0 8.5 6.3Z" fill="currentColor"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-growth" viewBox="0 0 24 24"><path d="M3 20h18M5 16l4.5-4.5 3.5 3.5L20 8m0 0h-5m5 0v5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.1 8.4 7.5 9.5 4.4-1.1 7.5-4.9 7.5-9.5V6L12 3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.8 12.2 2.2 2.2 4.4-4.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3.1-3.1a4 4 0 0 0-5.7-5.7l-1.2 1.2M14 10a4 4 0 0 0-5.7 0l-3.1 3.1a4 4 0 0 0 5.7 5.7l1.2-1.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8m0-4v4h4M4 13a8 8 0 0 0 14.3 4.9L20 16m0 4v-4h-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M6.5 9.5v9M6.5 6v.01M11 18.5v-5.2c0-2 1.3-3.3 3-3.3s2.9 1.3 2.9 3.3v5.2M11 9.5v9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m3.8 6.5 8.2 6.3 8.2-6.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+    <symbol id="i-tiktok" viewBox="0 0 24 24"><path d="M14.6 3h-3v11.7a2.75 2.75 0 1 1-2.2-2.7V9a5.75 5.75 0 1 0 5.2 5.7V8.8a7.2 7.2 0 0 0 4.2 1.4v-3a4.3 4.3 0 0 1-4.2-4.2Z" fill="currentColor"/></symbol>
+    <symbol id="i-youtube" viewBox="0 0 24 24"><path d="M22 8.2a3 3 0 0 0-2.1-2.1C18 5.6 12 5.6 12 5.6s-6 0-7.9.5A3 3 0 0 0 2 8.2 31 31 0 0 0 1.6 12 31 31 0 0 0 2 15.8a3 3 0 0 0 2.1 2.1c1.9.5 7.9.5 7.9.5s6 0 7.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .4-3.8 31 31 0 0 0-.4-3.8Z" fill="currentColor"/><path d="m10 15.1 5.2-3.1L10 8.9Z" fill="#1d1d1b"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header is-over-hero" data-header>
+    <div class="scroll-progress" data-progress aria-hidden="true"></div>
+    <div class="site-header__inner container">
+      <a class="site-header__logo" href="index.html" aria-label="Grupo Tinbet, ir al inicio">
+        <img class="logo-on-dark" src="assets/logos/logo-horizontal-negativo.svg" alt="Grupo Tinbet" width="152" height="44">
+        <img class="logo-on-light" src="assets/logos/logo-horizontal.svg" alt="" width="152" height="44">
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" data-menu-toggle>
+        <span class="menu-toggle__bars" aria-hidden="true"></span>
+        <span class="sr-only">Abrir menú</span>
+      </button>
+
+      <nav class="site-nav" id="menu-principal" aria-label="Principal" data-menu>
+        <ul class="site-nav__list">
+          <li><a href="index.html#nosotros">Sobre Grupo Tinbet</a></li>
+          <li class="has-sub">
+            <a href="index.html#verticales">Verticales <svg class="caret" aria-hidden="true"><use href="#i-chevron-down"/></svg></a>
+            <ul class="subnav">
+              <li><a href="index.html#entretenimiento" style="--v: var(--c-ent)"><span class="subnav__dot"></span><span><strong>Entretenimiento</strong><small>Apuestas deportivas y juegos online</small></span></a></li>
+              <li><a href="index.html#inversiones" style="--v: var(--c-inv)"><span class="subnav__dot"></span><span><strong>Inversiones</strong><small>Obras por impuestos</small></span></a></li>
+              <li><a href="index.html#seguridad" style="--v: var(--c-seg)"><span class="subnav__dot"></span><span><strong>Seguridad</strong><small>Protección integral</small></span></a></li>
+            </ul>
+          </li>
+          <li><a href="index.html#principios">Principios</a></li>
+          <li><a href="index.html#talento">Personas y talento</a></li>
+          <li><a href="lo-ultimo.html" class="is-current" aria-current="page">Lo último</a></li>
+        </ul>
+        <a class="btn btn--header site-nav__cta" href="index.html#contacto">Contáctanos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ============ CABECERA ============ -->
+    <section class="page-hero" aria-labelledby="page-title" data-hero>
+      <div class="page-hero__media" aria-hidden="true">
+        <img src="assets/img/lo-ultimo-hero.webp" alt="" width="2000" height="1130" fetchpriority="high">
+      </div>
+      <svg class="side-shape page-hero__shape page-hero__shape--a" viewBox="873.5 39.8 775.9 605" aria-hidden="true" data-scroll-shape><use href="#chev-0"/></svg>
+      <svg class="side-shape page-hero__shape page-hero__shape--b" viewBox="188.4 354.7 182 295.1" aria-hidden="true" data-scroll-shape><use href="#kite-2"/></svg>
+      <div class="container page-hero__inner">
+        <div>
+          <nav class="breadcrumb" aria-label="Ruta de navegación" data-reveal>
+            <a href="index.html">Inicio</a><span aria-hidden="true">/</span><span aria-current="page">Lo último</span>
+          </nav>
+          <h1 class="page-hero__title" id="page-title" data-split>Lo último</h1>
+          <p class="page-hero__lead" data-reveal>Noticias, proyectos e historias de las empresas de Grupo Tinbet: entretenimiento, inversiones, seguridad y el talento que impulsa nuestro crecimiento.</p>
+        </div>
+        <button class="play-btn page-hero__play" type="button" data-video-open data-video="" aria-label="Reproducir video: lo último de Grupo Tinbet" data-reveal>
+          <svg class="play-btn__ring" viewBox="0 0 200 200" aria-hidden="true">
+            <defs><path id="play-ring-path-hero" d="M100 100m-80 0a80 80 0 1 1 160 0a80 80 0 1 1-160 0"/></defs>
+            <text><textPath href="#play-ring-path-hero" textLength="498" lengthAdjust="spacing">Ver video · Lo último de Grupo Tinbet ·</textPath></text>
+          </svg>
+          <span class="play-btn__core" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ DESTACADOS ============ -->
+    <section class="featured" aria-label="Noticias destacadas">
+      <div class="container">
+        <div class="featured__slider" data-carousel-root data-autoplay="5000" data-reveal>
+          <div class="featured__track" data-carousel tabindex="0" aria-label="Noticias destacadas">
+            <article class="feature-slide">
+              <div class="feature-slide__body">
+                <span class="news-card__tag feature-slide__tag" style="--v: var(--c-inv)">Obras por impuestos</span>
+                <h3 class="feature-slide__title">Ejecución más rápida y eficiente</h3>
+                <p class="feature-slide__text">Reduce tiempos y agiliza la construcción de obras que normalmente tardarían años en desarrollarse.</p>
+                <a class="btn btn--outline" href="nota.html">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              </div>
+              <div class="feature-slide__media"><img src="assets/img/nota-paucartambo.webp" alt="Firma de convenio de obras por impuestos en Paucartambo, Cusco" width="1400" height="1050" loading="lazy"></div>
+            </article>
+            <article class="feature-slide">
+              <div class="feature-slide__body">
+                <span class="news-card__tag feature-slide__tag" style="--v: var(--c-lime)">Transformación digital</span>
+                <h3 class="feature-slide__title">Fraude financiero: qué es, tipos y cómo prevenirlo</h3>
+                <p class="feature-slide__text">Conoce cómo el fraude financiero impacta a personas y empresas, y cómo la tecnología ayuda a mitigar este riesgo.</p>
+                <a class="btn btn--outline" href="nota.html">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              </div>
+              <div class="feature-slide__media"><img src="assets/img/blog-cusco-calle.webp" alt="Calle tradicional del Cusco con comercios" width="1800" height="1197" loading="lazy"></div>
+            </article>
+            <article class="feature-slide">
+              <div class="feature-slide__body">
+                <span class="news-card__tag feature-slide__tag" style="--v: var(--c-seg)">Seguridad</span>
+                <h3 class="feature-slide__title">Seguridad integral para operaciones que no se detienen</h3>
+                <p class="feature-slide__text">Personal especializado, monitoreo y prevención para proteger a personas, activos y operaciones.</p>
+                <a class="btn btn--outline" href="nota.html">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              </div>
+              <div class="feature-slide__media"><img src="assets/img/vertical-seguridad.webp" alt="Especialista supervisando sistemas de monitoreo" width="1500" height="1500" loading="lazy"></div>
+            </article>
+          </div>
+          <div class="featured__bar">
+            <div class="slider-dots" data-carousel-dots></div>
+            <div class="featured__arrows">
+              <button class="circle-btn circle-btn--dark" type="button" data-carousel-prev aria-label="Anterior"><svg aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
+              <button class="circle-btn circle-btn--dark" type="button" data-carousel-next aria-label="Siguiente"><svg aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="highlights">
+          <article class="highlight-card" data-reveal="card">
+            <div class="highlight-card__media"><img src="assets/img/nota-alianza-1.webp" alt="Jugador de Alianza Lima celebrando un gol" width="1000" height="590" loading="lazy"></div>
+            <div class="highlight-card__body">
+              <span class="news-card__tag" style="--v: var(--c-sky)">Deportes</span>
+              <time class="news-card__date" datetime="2025-07-05">5 de julio, 2025</time>
+              <h3 class="highlight-card__title">¡Triunfo blanquiazul! Alianza Lima goleó 5 a 1 a Binacional por el Apertura</h3>
+              <a class="btn btn--outline" href="nota.html">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+          <article class="highlight-card" data-reveal="card">
+            <div class="highlight-card__media"><img src="assets/img/nota-alianza-2.webp" alt="Jugadores celebrando en el campo" width="736" height="417" loading="lazy"></div>
+            <div class="highlight-card__body">
+              <span class="news-card__tag" style="--v: var(--c-sky)">Deportes</span>
+              <time class="news-card__date" datetime="2025-07-05">5 de julio, 2025</time>
+              <h3 class="highlight-card__title">La pasión del fútbol peruano se vive con Tinbet</h3>
+              <a class="btn btn--outline" href="nota.html">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ÚLTIMAS NOTICIAS ============ -->
+    <section class="news-list section" aria-labelledby="news-list-title">
+      <div class="container">
+        <header class="news-list__head">
+          <p class="eyebrow eyebrow--center" data-reveal><svg class="eyebrow__sym" aria-hidden="true"><use href="#i-symbol"/></svg> Noticias</p>
+          <h2 class="section-title" id="news-list-title" data-split>Últimas noticias</h2>
+          <div class="filters" role="group" aria-label="Filtrar por categoría" data-reveal>
+            <button class="filter" type="button" data-filter="todo" aria-pressed="true">Todo</button>
+            <button class="filter" type="button" data-filter="obras" aria-pressed="false">Obras por impuestos</button>
+            <button class="filter" type="button" data-filter="entretenimiento" aria-pressed="false">Entretenimiento</button>
+            <button class="filter" type="button" data-filter="seguridad" aria-pressed="false">Seguridad</button>
+            <button class="filter" type="button" data-filter="impacto" aria-pressed="false">Impacto social</button>
+            <button class="filter" type="button" data-filter="deportes" aria-pressed="false">Deportes</button>
+            <button class="filter" type="button" data-filter="digital" aria-pressed="false">Transformación digital</button>
+          </div>
+        </header>
+
+        <div class="news-grid" data-news-grid>
+          <article class="news-card" data-category="obras">
+            <div class="news-card__media"><img class="news-card__img" src="assets/img/nota-paucartambo.webp" alt="Firma de convenio de obras por impuestos en Paucartambo, Cusco" width="1400" height="1050" loading="lazy"></div>
+            <span class="news-card__tag" style="--v: var(--c-inv)">Obras por impuestos</span>
+            <time class="news-card__date" datetime="2026-09-22">22 de septiembre, 2026</time>
+            <h3 class="news-card__title">Ejecución más rápida y eficiente en obras por impuestos</h3>
+            <a class="news-card__link" href="nota.html">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="news-card" data-category="deportes">
+            <div class="news-card__media"><img class="news-card__img" src="assets/img/nota-alianza-1.webp" alt="Jugador de Alianza Lima celebrando un gol" width="1000" height="590" loading="lazy"></div>
+            <span class="news-card__tag" style="--v: var(--c-sky)">Deportes</span>
+            <time class="news-card__date" datetime="2026-09-14">14 de septiembre, 2026</time>
+            <h3 class="news-card__title">¡Triunfo blanquiazul! Alianza Lima goleó 5 a 1 a Binacional por el Apertura</h3>
+            <a class="news-card__link" href="nota.html">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="news-card" data-category="seguridad">
+            <div class="news-card__media"><img class="news-card__img" src="assets/img/vertical-seguridad.webp" alt="Especialista supervisando sistemas de monitoreo" width="1500" height="1500" loading="lazy"></div>
+            <span class="news-card__tag" style="--v: var(--c-seg)">Seguridad</span>
+            <time class="news-card__date" datetime="2026-09-02">2 de septiembre, 2026</time>
+            <h3 class="news-card__title">Seguridad integral para operaciones que no se detienen</h3>
+            <a class="news-card__link" href="nota.html">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="news-card" data-category="entretenimiento">
+            <div class="news-card__media"><img class="news-card__img" src="assets/img/vertical-entretenimiento.webp" alt="Aficionados viendo un partido en el celular" width="1200" height="1267" loading="lazy"></div>
+            <span class="news-card__tag" style="--v: var(--c-ent)">Entretenimiento</span>
+            <time class="news-card__date" datetime="2026-08-26">26 de agosto, 2026</time>
+            <h3 class="news-card__title">Juego responsable: nuestro compromiso con los usuarios</h3>
+            <a class="news-card__link" href="nota.html">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="news-card" data-category="obras">
+            <div class="news-card__media"><img class="news-card__img" src="assets/img/mosaico-drone.webp" alt="Equipo de obra supervisando un proyecto con un dron" width="760" height="488" loading="lazy"></div>
+            <span class="news-card__tag" style="--v: var(--c-inv)">Obras por impuestos</span>
+            <time class="news-card__date" datetime="2026-08-18">18 de agosto, 2026</time>
+            <h3 class="news-card__title">Obras por impuestos: impacto en las regiones</h3>
+            <a class="news-card__link" href="nota.html">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="news-card" data-category="impacto">
+            <div class="news-card__media"><img class="news-card__img" src="assets/img/nosotros-equipo.webp" alt="Colaboradores de Grupo Tinbet en una actividad al aire libre" width="1400" height="887" loading="lazy"></div>
+            <span class="news-card__tag" style="--v: var(--c-green)">Impacto social</span>
+            <time class="news-card__date" datetime="2026-08-09">9 de agosto, 2026</time>
+            <h3 class="news-card__title">Voluntariado corporativo: personas que suman</h3>
+            <a class="news-card__link" href="nota.html">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="news-card" data-category="digital">
+            <div class="news-card__media"><img class="news-card__img" src="assets/img/blog-oficina.webp" alt="Equipo trabajando en una oficina colaborativa" width="900" height="675" loading="lazy"></div>
+            <span class="news-card__tag" style="--v: var(--c-lime)">Transformación digital</span>
+            <time class="news-card__date" datetime="2026-07-30">30 de julio, 2026</time>
+            <h3 class="news-card__title">Tecnología que conecta: nuevas soluciones digitales</h3>
+            <a class="news-card__link" href="nota.html">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="news-card" data-category="deportes">
+            <div class="news-card__media"><img class="news-card__img" src="assets/img/nota-alianza-2.webp" alt="Jugadores celebrando en el campo" width="736" height="417" loading="lazy"></div>
+            <span class="news-card__tag" style="--v: var(--c-sky)">Deportes</span>
+            <time class="news-card__date" datetime="2026-07-21">21 de julio, 2026</time>
+            <h3 class="news-card__title">La pasión del fútbol peruano se vive con Tinbet</h3>
+            <a class="news-card__link" href="nota.html">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="news-card" data-category="obras">
+            <div class="news-card__media"><img class="news-card__img" src="assets/img/mosaico-casco.webp" alt="Trabajador midiendo en una obra" width="760" height="507" loading="lazy"></div>
+            <span class="news-card__tag" style="--v: var(--c-inv)">Obras por impuestos</span>
+            <time class="news-card__date" datetime="2026-07-12">12 de julio, 2026</time>
+            <h3 class="news-card__title">Infraestructura que transforma comunidades</h3>
+            <a class="news-card__link" href="nota.html">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="news-card" data-category="seguridad">
+            <div class="news-card__media"><img class="news-card__img" src="assets/img/mosaico-corte.webp" alt="Operario con equipo de protección" width="760" height="507" loading="lazy"></div>
+            <span class="news-card__tag" style="--v: var(--c-seg)">Seguridad</span>
+            <time class="news-card__date" datetime="2026-07-03">3 de julio, 2026</time>
+            <h3 class="news-card__title">Cultura de prevención en cada una de nuestras operaciones</h3>
+            <a class="news-card__link" href="nota.html">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="news-card" data-category="impacto">
+            <div class="news-card__media"><img class="news-card__img" src="assets/img/valor-resultados.webp" alt="Colaboradores celebrando resultados" width="960" height="640" loading="lazy"></div>
+            <span class="news-card__tag" style="--v: var(--c-green)">Impacto social</span>
+            <time class="news-card__date" datetime="2026-06-24">24 de junio, 2026</time>
+            <h3 class="news-card__title">El talento que impulsa nuestra evolución</h3>
+            <a class="news-card__link" href="nota.html">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="news-card" data-category="entretenimiento">
+            <div class="news-card__media"><img class="news-card__img" src="assets/img/hero-entretenimiento.webp" alt="Jóvenes disfrutando de videojuegos" width="1000" height="667" loading="lazy"></div>
+            <span class="news-card__tag" style="--v: var(--c-ent)">Entretenimiento</span>
+            <time class="news-card__date" datetime="2026-06-15">15 de junio, 2026</time>
+            <h3 class="news-card__title">Experiencias digitales que emocionan</h3>
+            <a class="news-card__link" href="nota.html">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="news-card" data-category="digital">
+            <div class="news-card__media"><img class="news-card__img" src="assets/img/blog-cusco-calle.webp" alt="Calle tradicional del Cusco con comercios" width="1800" height="1197" loading="lazy"></div>
+            <span class="news-card__tag" style="--v: var(--c-lime)">Transformación digital</span>
+            <time class="news-card__date" datetime="2026-04-07">7 de abril, 2026</time>
+            <h3 class="news-card__title">Fraude financiero: qué es, tipos y cómo prevenirlo</h3>
+            <a class="news-card__link" href="nota.html">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </article>
+        </div>
+        <p class="news-empty" data-news-empty hidden>Pronto publicaremos noticias en esta categoría.</p>
+        <div class="news-more">
+          <button class="btn btn--outline" type="button" data-news-more>Ver más noticias <svg aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__top">
+        <div class="site-footer__brand">
+          <img src="assets/logos/logo-vertical-white.svg" alt="Grupo Tinbet" width="150" height="133" loading="lazy">
+          <p>Conectando industrias, creando valor.</p>
+          <ul class="social" aria-label="Redes sociales">
+            <li><a class="circle-btn" href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
+            <li><a class="circle-btn" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg aria-hidden="true"><use href="#i-instagram"/></svg></a></li>
+            <li><a class="circle-btn" href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><svg aria-hidden="true"><use href="#i-tiktok"/></svg></a></li>
+            <li><a class="circle-btn" href="mailto:contacto@grupotinbet.com" aria-label="Correo electrónico"><svg aria-hidden="true"><use href="#i-mail"/></svg></a></li>
+          </ul>
+        </div>
+
+        <nav class="site-footer__col" aria-label="Grupo">
+          <h2 class="site-footer__heading">Grupo</h2>
+          <ul>
+            <li><a href="index.html#nosotros">Sobre Grupo Tinbet</a></li>
+            <li><a href="index.html#principios">Principios</a></li>
+            <li><a href="index.html#valores">Valores</a></li>
+            <li><a href="index.html#talento">Personas y talento</a></li>
+            <li><a href="lo-ultimo.html" class="is-current" aria-current="page">Lo último</a></li>
+          </ul>
+        </nav>
+
+        <nav class="site-footer__col" aria-label="Verticales">
+          <h2 class="site-footer__heading">Verticales</h2>
+          <ul class="site-footer__verticals">
+            <li><a href="index.html#entretenimiento" style="--v: var(--c-ent)"><span class="dot"></span>Entretenimiento</a></li>
+            <li><a href="index.html#inversiones" style="--v: var(--c-inv)"><span class="dot"></span>Inversiones</a></li>
+            <li><a href="index.html#seguridad" style="--v: var(--c-seg)"><span class="dot dot--seg"></span>Seguridad</a></li>
+          </ul>
+        </nav>
+
+        <div class="site-footer__col">
+          <h2 class="site-footer__heading">Contacto</h2>
+          <ul>
+            <li><a href="mailto:contacto@grupotinbet.com">contacto@grupotinbet.com</a></li>
+            <li><a href="mailto:contacto@grupotinbet.com?subject=Quiero%20trabajar%20en%20Grupo%20Tinbet">Trabaja con nosotros</a></li>
+            <li><a href="index.html#faq">Preguntas frecuentes</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="site-footer__bottom" id="legales">
+        <p>Grupo Tinbet © <span data-year>2026</span> Todos los derechos reservados</p>
+        <ul class="site-footer__legal">
+          <li><a href="#legales">Términos y condiciones</a></li>
+          <li><a href="#legales">Privacidad</a></li>
+          <li><a href="#legales">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal de video -->
+  <dialog class="video-modal" data-video-modal aria-label="Reproductor de video">
+    <button class="video-modal__close circle-btn" type="button" data-video-close aria-label="Cerrar video">
+      <svg aria-hidden="true"><use href="#i-close"/></svg>
+    </button>
+    <div class="video-modal__frame" data-video-frame></div>
+  </dialog>
+
+  <div class="toast" data-toast role="status" aria-live="polite"></div>
+
+  <script src="js/main.js?v=6" defer></script>
+</body>
+</html>

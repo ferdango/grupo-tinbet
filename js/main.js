@@ -53,7 +53,7 @@
 
   /* ---------- Header: estado sobre el hero, sombra y progreso ---------- */
   const header = $('[data-header]');
-  const hero = $('.hero');
+  const hero = $('[data-hero]');
   const progress = $('[data-progress]');
 
   /** Progreso (0–1) de una pista cuyo contenido queda fijado bajo el header. */
@@ -703,49 +703,180 @@
     });
   }
 
-  /* ---------- Carrusel "Lo último" ---------- */
-  const carousel = $('[data-carousel]');
-  const controls = $('[data-carousel-controls]');
-  if (carousel && controls) {
-    const prev = $('[data-carousel-prev]', controls);
-    const nextBtn = $('[data-carousel-next]', controls);
-    const count = $('[data-carousel-count]', controls);
-    const cards = $$('.news-card', carousel);
+  /* ---------- Carruseles automáticos en bucle ---------- */
+  // Cada carrusel avanza solo y vuelve a empezar sin saltos (al final de la pista hay copias
+  // de los elementos). Se pausa mientras el usuario lo usa y fuera de pantalla.
+  $$('[data-carousel-root]').forEach((root) => {
+    const track = $('[data-carousel]', root);
+    if (!track) return;
+    const items = $$(':scope > *', track);
+    const n = items.length;
+    if (n < 2) return;
+    const prev = $('[data-carousel-prev]', root);
+    const nextBtn = $('[data-carousel-next]', root);
+    const count = $('[data-carousel-count]', root);
+    const dotsWrap = $('[data-carousel-dots]', root);
+    const interval = Number(root.dataset.autoplay) || 4000;
 
-    const metrics = () => {
-      const styles = getComputedStyle(carousel);
-      const gap = parseFloat(styles.columnGap) || 0;
-      const cardWidth = cards[0].getBoundingClientRect().width + gap;
-      const padStart = parseFloat(styles.paddingLeft) || 0;
-      const perPage = Math.max(1, Math.floor((carousel.clientWidth - padStart + gap) / cardWidth));
-      return { cardWidth, perPage, pages: Math.max(1, Math.ceil(cards.length / perPage)) };
+    // Copias solo visuales para el bucle continuo.
+    items.forEach((item) => {
+      const clone = item.cloneNode(true);
+      clone.classList.add('is-clone');
+      clone.setAttribute('aria-hidden', 'true');
+      clone.inert = true;
+      $$('[id]', clone).forEach((el) => el.removeAttribute('id'));
+      track.appendChild(clone);
+    });
+    const firstClone = $(':scope > .is-clone', track);
+
+    const step = () => items[1].offsetLeft - items[0].offsetLeft;
+    const setWidth = () => firstClone.offsetLeft - items[0].offsetLeft;
+    const current = () => ((Math.round(track.scrollLeft / step()) % n) + n) % n;
+    const jump = (left) => {
+      track.style.scrollBehavior = 'auto';
+      track.scrollLeft = left;
+      void track.offsetWidth;
+      track.style.scrollBehavior = '';
     };
+    // Si la vista quedó sobre las copias, vuelve a los originales equivalentes (mismo contenido).
+    const normalize = () => { if (track.scrollLeft >= setWidth() - 2) jump(track.scrollLeft - setWidth()); };
+
+    const dots = dotsWrap ? items.map((item, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Ir al elemento ${i + 1} de ${n}`);
+      dot.addEventListener('click', () => { goTo(i); restart(); });
+      dotsWrap.appendChild(dot);
+      return dot;
+    }) : [];
 
     const update = () => {
-      const { cardWidth, perPage, pages } = metrics();
-      const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-      let page = Math.round(carousel.scrollLeft / (cardWidth * perPage)) + 1;
-      if (carousel.scrollLeft >= maxScroll - 4) page = pages;
-      page = Math.min(Math.max(page, 1), pages);
-      count.textContent = `${page} de ${pages}`;
-      prev.disabled = carousel.scrollLeft <= 4;
-      nextBtn.disabled = carousel.scrollLeft >= maxScroll - 4;
+      const index = current();
+      if (count) count.textContent = `${index + 1} de ${n}`;
+      dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === index)));
     };
 
-    const go = (dir) => {
-      const { cardWidth, perPage } = metrics();
-      carousel.scrollBy({ left: dir * cardWidth * perPage, behavior: reducedMotion ? 'auto' : 'smooth' });
+    const scrollToLeft = (left) => track.scrollTo({ left, behavior: reducedMotion ? 'auto' : 'smooth' });
+    function go(dir) {
+      const s = step();
+      if (dir < 0 && track.scrollLeft < 2) jump(track.scrollLeft + setWidth());
+      if (dir > 0 && track.scrollLeft + s > track.scrollWidth - track.clientWidth + 2) jump(track.scrollLeft - setWidth());
+      scrollToLeft(Math.round(track.scrollLeft / s + dir) * s);
+    }
+    function goTo(index) {
+      normalize();
+      scrollToLeft(index * step());
+    }
+
+    let endTimer = null;
+    track.addEventListener('scroll', () => {
+      requestAnimationFrame(update);
+      window.clearTimeout(endTimer);
+      endTimer = window.setTimeout(() => { normalize(); update(); }, 150);
+    }, { passive: true });
+    window.addEventListener('resize', () => { normalize(); update(); });
+
+    // Avance automático
+    let timer = null;
+    let paused = false;
+    let visible = false;
+    let resumeTimer = null;
+    const tick = () => { if (!paused && visible && document.visibilityState === 'visible') go(1); };
+    const start = () => { if (!reducedMotion && !timer) timer = window.setInterval(tick, interval); };
+    const stop = () => { window.clearInterval(timer); timer = null; };
+    const restart = () => { stop(); if (visible) start(); };
+    const pause = () => { paused = true; window.clearTimeout(resumeTimer); };
+    const resumeLater = (ms = 2500) => {
+      window.clearTimeout(resumeTimer);
+      resumeTimer = window.setTimeout(() => { paused = false; restart(); }, ms);
     };
 
-    prev.addEventListener('click', () => go(-1));
-    nextBtn.addEventListener('click', () => go(1));
-    carousel.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
-    window.addEventListener('resize', update);
-    carousel.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
-      if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+    root.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') pause(); });
+    root.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') resumeLater(600); });
+    track.addEventListener('touchstart', pause, { passive: true });
+    track.addEventListener('touchend', () => resumeLater(4000), { passive: true });
+    root.addEventListener('focusin', pause);
+    root.addEventListener('focusout', (e) => { if (!root.contains(e.relatedTarget)) resumeLater(); });
+
+    if (prev) prev.addEventListener('click', () => { go(-1); restart(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { go(1); restart(); });
+    track.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(1); restart(); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); restart(); }
     });
+
+    watchVisibility(root, () => { visible = true; start(); }, () => { visible = false; stop(); }, { threshold: 0.3 });
     update();
+  });
+
+  /* ---------- Lo último: filtros por categoría y "Ver más noticias" ---------- */
+  const newsGrid = $('[data-news-grid]');
+  if (newsGrid) {
+    const cards = $$('[data-category]', newsGrid);
+    const filters = $$('[data-filter]');
+    const moreBtn = $('[data-news-more]');
+    const empty = $('[data-news-empty]');
+    const PAGE = 8;
+    let limit = PAGE;
+    let filter = 'todo';
+
+    const render = () => {
+      const matching = cards.filter((card) => filter === 'todo' || card.dataset.category === filter);
+      cards.forEach((card) => { card.hidden = true; card.classList.remove('is-shown'); });
+      matching.slice(0, limit).forEach((card, i) => {
+        card.hidden = false;
+        card.style.setProperty('--i', String(i % PAGE));
+        requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add('is-shown')));
+      });
+      if (moreBtn) moreBtn.hidden = matching.length <= limit;
+      if (empty) empty.hidden = matching.length > 0;
+    };
+
+    filters.forEach((btn) => btn.addEventListener('click', () => {
+      filter = btn.dataset.filter;
+      limit = PAGE;
+      filters.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+      render();
+    }));
+    if (moreBtn) moreBtn.addEventListener('click', () => { limit += PAGE; render(); });
+    render();
+  }
+
+  /* ---------- Aviso breve (toast) ---------- */
+  const toastEl = $('[data-toast]');
+  let toastTimer = null;
+  function toast(message) {
+    if (!toastEl) return;
+    toastEl.textContent = message;
+    toastEl.classList.add('is-visible');
+    window.clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(() => toastEl.classList.remove('is-visible'), 2200);
+  }
+
+  /* ---------- Compartir nota ---------- */
+  const share = $('[data-share]');
+  if (share) {
+    const pageUrl = window.location.href.split('#')[0];
+    const url = encodeURIComponent(pageUrl);
+    const title = encodeURIComponent(document.title);
+    const targets = {
+      whatsapp: `https://wa.me/?text=${title}%20${url}`,
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+      x: `https://twitter.com/intent/tweet?url=${url}&text=${title}`,
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`
+    };
+    $$('[data-share-to]', share).forEach((link) => { link.href = targets[link.dataset.shareTo]; });
+    const copyBtn = $('[data-share-copy]', share);
+    if (copyBtn) {
+      copyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(pageUrl);
+          toast('Enlace copiado');
+        } catch (err) {
+          toast('No se pudo copiar el enlace');
+        }
+      });
+    }
   }
 
   /* ---------- Modal de video ---------- */

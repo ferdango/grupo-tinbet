@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/styles.css?v=5">
+  <link rel="stylesheet" href="css/styles.css?v=6">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -97,7 +97,7 @@
           </li>
           <li><a href="#principios">Principios</a></li>
           <li><a href="#talento">Personas y talento</a></li>
-          <li><a href="#lo-ultimo">Lo último</a></li>
+          <li><a href="lo-ultimo.html">Lo último</a></li>
         </ul>
         <a class="btn btn--header site-nav__cta" href="#contacto">Contáctanos</a>
       </nav>
@@ -107,7 +107,7 @@
   <main id="contenido">
 
     <!-- ============ HERO ============ -->
-    <section class="hero" id="inicio" aria-labelledby="hero-title">
+    <section class="hero" id="inicio" aria-labelledby="hero-title" data-hero>
       <div class="hero__glow" aria-hidden="true"></div>
       <svg class="hero__watermark" aria-hidden="true"><use href="#i-symbol"/></svg>
 
@@ -602,7 +602,7 @@
     </section>
 
     <!-- ============ LO ÚLTIMO ============ -->
-    <section class="news" id="lo-ultimo" aria-labelledby="news-title">
+    <section class="news" id="lo-ultimo" aria-labelledby="news-title" data-carousel-root data-autoplay="4000">
       <div class="container">
         <header class="section-head section-head--split">
           <div>
@@ -613,7 +613,7 @@
             <button class="circle-btn" type="button" data-carousel-prev aria-label="Anterior">
               <svg aria-hidden="true"><use href="#i-chevron-left"/></svg>
             </button>
-            <span class="carousel-controls__count" data-carousel-count aria-live="polite">1 de 2</span>
+            <span class="carousel-controls__count" data-carousel-count aria-live="polite">1 de 6</span>
             <button class="circle-btn" type="button" data-carousel-next aria-label="Siguiente">
               <svg aria-hidden="true"><use href="#i-chevron-right"/></svg>
             </button>
@@ -627,7 +627,7 @@
           <span class="news-card__tag" style="--v: var(--c-green)">Grupo</span>
           <time class="news-card__date" datetime="2025-05-07">7 de mayo del 2025</time>
           <h3 class="news-card__title">Lo que necesitas saber para llegar más lejos</h3>
-          <a class="news-card__link" href="#lo-ultimo">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="news-card__link" href="nota.html">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </article>
         <article class="news-card news-card--video">
           <img class="news-card__img" src="assets/img/blog-podcast.webp" alt="Conversación en el set del podcast de Tinbet" width="900" height="511" loading="lazy">
@@ -643,7 +643,7 @@
           <span class="news-card__tag" style="--v: var(--c-inv)">Inversiones</span>
           <time class="news-card__date" datetime="2025-04-22">22 de abril del 2025</time>
           <h3 class="news-card__title">Obras por impuestos: impacto en las regiones</h3>
-          <a class="news-card__link" href="#lo-ultimo">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="news-card__link" href="nota.html">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </article>
         <article class="news-card news-card--video">
           <img class="news-card__img" src="assets/img/blog-podcast.webp" alt="Conversación en el set del podcast de Tinbet" width="900" height="511" loading="lazy">
@@ -659,7 +659,7 @@
           <span class="news-card__tag" style="--v: var(--c-ent)">Entretenimiento</span>
           <time class="news-card__date" datetime="2025-04-02">2 de abril del 2025</time>
           <h3 class="news-card__title">Juego responsable: nuestro compromiso con los usuarios</h3>
-          <a class="news-card__link" href="#lo-ultimo">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="news-card__link" href="nota.html">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </article>
         <article class="news-card news-card--video">
           <img class="news-card__img" src="assets/img/blog-podcast.webp" alt="Conversación en el set del podcast de Tinbet" width="900" height="511" loading="lazy">
@@ -670,6 +670,10 @@
             <time class="news-card__date" datetime="2025-03-25">25 de marzo del 2025</time>
           </div>
         </article>
+      </div>
+
+      <div class="container news__more">
+        <a class="btn btn--ghost-light" href="lo-ultimo.html">Ver todas las noticias <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
     </section>
 
@@ -752,7 +756,7 @@
             <li><a href="#principios">Principios</a></li>
             <li><a href="#valores">Valores</a></li>
             <li><a href="#talento">Personas y talento</a></li>
-            <li><a href="#lo-ultimo">Lo último</a></li>
+            <li><a href="lo-ultimo.html">Lo último</a></li>
           </ul>
         </nav>
 
@@ -794,6 +798,6 @@
     <div class="video-modal__frame" data-video-frame></div>
   </dialog>
 
-  <script src="js/main.js?v=5" defer></script>
+  <script src="js/main.js?v=6" defer></script>
 </body>
 </html>

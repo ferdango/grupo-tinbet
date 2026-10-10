@@ -8,7 +8,9 @@ a partir del frame *Home* del Figma del proyecto y del **Manual de marca 2026**.
 ## Estructura
 
 ```
-index.html            Marcado de la página Home
+index.html            Página Home
+lo-ultimo.html        Página "Lo último" (noticias con destacados, filtros y "Ver más")
+nota.html             Plantilla de nota individual (single blog)
 css/styles.css        Estilos (tokens de color y tipografía del manual de marca)
 js/main.js            Interacciones
 assets/logos/         Logotipos y símbolo en SVG (exportados del manual de marca)
@@ -49,6 +51,19 @@ Las escenas fijadas (Principios y lista de Innovación) se activan en pantallas 
 861 px y 1101 px de ancho respectivamente; en pantallas más pequeñas, o si el sistema pide
 reducir el movimiento, funcionan con clic. Su duración se ajusta con la altura de la pista en
 `css/styles.css` (`.principles__track`, `.innovation__track--words`, `.innovation__track--features`).
+
+## Carruseles
+
+Los carruseles (noticias del Home, destacados de Lo último y noticias relacionadas) avanzan solos
+en bucle infinito: se pausan al pasar el mouse, al tocarlos o fuera de pantalla. El intervalo se
+cambia con el atributo `data-autoplay` (en milisegundos) del contenedor `data-carousel-root`.
+
+## Lo último y notas
+
+- Cada tarjeta de `lo-ultimo.html` tiene `data-category` (`obras`, `entretenimiento`, `seguridad`,
+  `impacto`, `deportes`, `digital`) que usan los filtros; se muestran 8 y "Ver más noticias" carga 8 más.
+- `nota.html` es la plantilla de nota: cabecera, imagen o video, contenido (`.prose`), botones para
+  compartir y carrusel de noticias relacionadas. Para una nota nueva, duplica el archivo y cambia el contenido.
 
 ## Videos
 
