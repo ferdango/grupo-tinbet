@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Grupo Tinbet | Conectando industrias, creando valor</title>
-  <meta name="description" content="En Grupo Tinbet conectamos industrias, potenciamos capacidades y desarrollamos soluciones que generan valor a largo plazo en el Perú.">
+  <meta name="description" content="Grupo Tinbet es un grupo empresarial peruano que integra negocios de entretenimiento, inversiones en obras por impuestos y seguridad para impulsar el crecimiento del país.">
   <meta name="theme-color" content="#042b1e">
 
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_PE">
   <meta property="og:title" content="Grupo Tinbet | Conectando industrias, creando valor">
-  <meta property="og:description" content="Crecimiento peruano gracias a la integración de negocios.">
+  <meta property="og:description" content="Entretenimiento, Inversiones y Seguridad: un mismo ecosistema que impulsa el crecimiento del Perú.">
   <meta property="og:url" content="https://ferdango.github.io/grupo-tinbet/">
   <meta property="og:image" content="https://ferdango.github.io/grupo-tinbet/assets/img/og-image.jpg">
 
@@ -19,34 +19,64 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="preload" as="image" href="assets/img/hero-obras.webp" fetchpriority="high">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=2">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
-  <!-- Iconos reutilizables -->
+  <!-- Formas del manual de marca (Elementos gráficos) y símbolo, reutilizables con <use> -->
   <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <path id="x-0" d="M813.3 538.2L443.7 839.7C434.1 847.5 422.1 851.8 409.6 851.8L192 851.8C160 851.8 135 824.1 138.4 792.2L137.9 588C140.4 563.9 158.8 544.4 182.7 540.4L770.5 443.2C825 434.2 856.2 503.3 813.3 538.2Z"/>
+      <path id="x-1" d="M636.1 755.9L860.3 573.5C897.6 543.1 953.1 573.2 947.9 621.1L928.2 803.3C925.2 830.6 902.1 851.4 874.6 851.4L670.2 851.6C619.4 851.7 596.7 787.9 636.1 755.9Z"/>
+      <path id="x-2" d="M991.6 445.2L1361.2 143.8C1370.8 135.9 1382.9 131.6 1395.3 131.6L1612.9 131.6C1644.9 131.6 1669.9 159.4 1666.6 191.2L1667.1 395.4C1664.5 419.6 1646.2 439 1622.2 443L1034.5 540.2C979.9 549.2 948.8 480.2 991.6 445.2Z"/>
+      <path id="x-3" d="M1168.8 227.5L944.7 409.9C907.3 440.4 851.8 410.2 857 362.3L876.8 180.1C879.7 152.8 902.8 132.1 930.3 132L1134.7 131.8C1185.5 131.7 1208.2 195.5 1168.8 227.5Z"/>
+      <path id="kite-0" d="M658.9 760.9L1085.6 200.7C1096.7 186.1 1112.6 175.8 1130.4 171.5L1442.8 96.5C1488.7 85.5 1534.1 116.7 1540.3 163.6L1611.4 456.6C1616.1 492.1 1596.5 526.4 1563.4 540.3L753.2 882.5C678 914.2 609.5 825.8 658.9 760.9Z"/>
+      <path id="kite-1" d="M838.3 387.3L579.4 726.3C536.2 782.9 446.2 758.7 437.2 688.2L402.7 419.9C397.6 379.6 423.5 341.9 463 332.4L756.3 261.6C829.2 244 883.8 327.7 838.3 387.3Z"/>
+      <path id="kite-2" d="M339.6 398.9L366 595.4C370.4 628.2 332.9 649.8 306.7 629.6L207.2 552.7C192.3 541.2 188.4 520.3 198.2 504.1L271.4 384.5C289.6 354.7 335 364.3 339.6 398.9Z"/>
+      <path id="chev-0" d="M914.5 531.7L1356.5 63.5C1374.5 44.5 1403.1 39.8 1426.2 52.1L1609 175.8C1639.6 192.1 1649.4 231.2 1630 259.9L1498.6 454.9C1491.1 466.1 1480 474.3 1467.2 478.2L973.7 627.5C916.6 644.8 873.5 575.1 914.5 531.7Z"/>
+      <path id="chev-1" d="M1275.9 600.1L977.1 690.9C927.2 706 920.8 773.9 966.8 798.2L1142 890.5C1168.3 904.3 1200.9 896.2 1217.5 871.5L1341.1 688.5C1371.9 643 1328.4 584.1 1275.9 600.1Z"/>
+      <path id="chev-2" d="M842.1 826.9L400 1295.1C382 1314.2 353.5 1318.9 330.3 1306.6L147.5 1182.8C117 1166.6 107.2 1127.5 126.5 1098.8L257.9 903.7C265.4 892.5 276.5 884.3 289.4 880.5L782.8 731.1C840 713.8 883.1 783.5 842.1 826.9Z"/>
+      <path id="chev-3" d="M480.6 758.6L779.5 667.8C829.3 652.6 835.8 584.7 789.7 560.4L614.5 468.1C588.2 454.3 555.7 462.5 539 487.1L415.4 670.2C384.7 715.7 428.1 774.5 480.6 758.6Z"/>
+      <path id="sym-0" d="M777.2 532.2L318.5 608.1C304.6 610.4 294.8 623.1 296.3 637C308 746 376.3 838 471.3 883.1C480.5 887.5 491.4 886 499.3 879.6L817.1 620.4C856.9 588 827.9 523.8 777.2 532.2Z"/>
+      <path id="sym-1" d="M603.6 294.6C462.7 294.6 343.8 388.9 306.5 517.8C301.2 536.5 316.8 554.5 336.1 551.6L843.9 475.3C863.2 472.4 872.8 450.5 862.1 434.2C806.9 350.1 711.7 294.6 603.6 294.6Z"/>
+      <path id="sym-2" d="M860.7 653.3L652.4 822.7C626.2 844 629.6 880.3 650.9 899.3C657.2 904.9 666 906.6 674.2 904.7C786.1 878.5 874.5 791.6 903 680.7C909.2 656.4 880.7 637.3 861.1 652.9C861 653 860.8 653.1 860.7 653.3Z"/>
+      <filter id="f-gray"><feColorMatrix type="saturate" values="0"/></filter>
+    </defs>
+    <symbol id="i-symbol" viewBox="294.8 294.5 614.5 612.2">
+      <use href="#sym-1" style="fill: var(--sym-a, currentColor)"/>
+      <use href="#sym-0" style="fill: var(--sym-b, currentColor)"/>
+      <use href="#sym-2" style="fill: var(--sym-b, currentColor)"/>
+    </symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9.5 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m14.5 6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9.5 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.2v13.6a1 1 0 0 0 1.5.86l11-6.8a1 1 0 0 0 0-1.72l-11-6.8A1 1 0 0 0 8 5.2Z" fill="currentColor"/></symbol>
     <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
     <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-growth" viewBox="0 0 24 24"><path d="M3 20h18M5 16l4.5-4.5 3.5 3.5L20 8m0 0h-5m5 0v5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.1 8.4 7.5 9.5 4.4-1.1 7.5-4.9 7.5-9.5V6L12 3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m8.8 12.2 2.2 2.2 4.4-4.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3.1-3.1a4 4 0 0 0-5.7-5.7l-1.2 1.2M14 10a4 4 0 0 0-5.7 0l-3.1 3.1a4 4 0 0 0 5.7 5.7l1.2-1.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8m0-4v4h4M4 13a8 8 0 0 0 14.3 4.9L20 16m0 4v-4h-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M6.5 9.5v9M6.5 6v.01M11 18.5v-5.2c0-2 1.3-3.3 3-3.3s2.9 1.3 2.9 3.3v5.2M11 9.5v9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
     <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m3.8 6.5 8.2 6.3 8.2-6.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
     <symbol id="i-tiktok" viewBox="0 0 24 24"><path d="M14.6 3h-3v11.7a2.75 2.75 0 1 1-2.2-2.7V9a5.75 5.75 0 1 0 5.2 5.7V8.8a7.2 7.2 0 0 0 4.2 1.4v-3a4.3 4.3 0 0 1-4.2-4.2Z" fill="currentColor"/></symbol>
-    <symbol id="i-youtube" viewBox="0 0 24 24"><path d="M22 8.2a3 3 0 0 0-2.1-2.1C18 5.6 12 5.6 12 5.6s-6 0-7.9.5A3 3 0 0 0 2 8.2 31 31 0 0 0 1.6 12 31 31 0 0 0 2 15.8a3 3 0 0 0 2.1 2.1c1.9.5 7.9.5 7.9.5s6 0 7.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .4-3.8 31 31 0 0 0-.4-3.8Z" fill="currentColor"/><path d="m10 15.1 5.2-3.1L10 8.9Z" fill="#363636"/></symbol>
+    <symbol id="i-youtube" viewBox="0 0 24 24"><path d="M22 8.2a3 3 0 0 0-2.1-2.1C18 5.6 12 5.6 12 5.6s-6 0-7.9.5A3 3 0 0 0 2 8.2 31 31 0 0 0 1.6 12 31 31 0 0 0 2 15.8a3 3 0 0 0 2.1 2.1c1.9.5 7.9.5 7.9.5s6 0 7.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .4-3.8 31 31 0 0 0-.4-3.8Z" fill="currentColor"/><path d="m10 15.1 5.2-3.1L10 8.9Z" fill="#1d1d1b"/></symbol>
   </svg>
 
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
   <!-- ============ HEADER ============ -->
-  <header class="site-header" data-header>
+  <header class="site-header is-over-hero" data-header>
+    <div class="scroll-progress" data-progress aria-hidden="true"></div>
     <div class="site-header__inner container">
       <a class="site-header__logo" href="#inicio" aria-label="Grupo Tinbet, ir al inicio">
-        <img src="assets/logos/logo-horizontal.svg" alt="Grupo Tinbet" width="152" height="44">
+        <img class="logo-on-dark" src="assets/logos/logo-horizontal-negativo.svg" alt="Grupo Tinbet" width="152" height="44">
+        <img class="logo-on-light" src="assets/logos/logo-horizontal.svg" alt="" width="152" height="44">
       </a>
 
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" data-menu-toggle>
@@ -56,13 +86,20 @@
 
       <nav class="site-nav" id="menu-principal" aria-label="Principal" data-menu>
         <ul class="site-nav__list">
-          <li><a href="#principios">Sobre Grupo Tinbet</a></li>
-          <li><a href="#areas">Áreas de negocio</a></li>
-          <li><a href="#area-obras">Inversiones</a></li>
+          <li><a href="#nosotros">Sobre Grupo Tinbet</a></li>
+          <li class="has-sub">
+            <a href="#verticales">Verticales <svg class="caret" aria-hidden="true"><use href="#i-chevron-down"/></svg></a>
+            <ul class="subnav">
+              <li><a href="#entretenimiento" style="--v: var(--c-ent)"><span class="subnav__dot"></span><span><strong>Entretenimiento</strong><small>Apuestas deportivas y juegos online</small></span></a></li>
+              <li><a href="#inversiones" style="--v: var(--c-inv)"><span class="subnav__dot"></span><span><strong>Inversiones</strong><small>Obras por impuestos</small></span></a></li>
+              <li><a href="#seguridad" style="--v: var(--c-seg)"><span class="subnav__dot"></span><span><strong>Seguridad</strong><small>Protección integral</small></span></a></li>
+            </ul>
+          </li>
+          <li><a href="#principios">Principios</a></li>
           <li><a href="#talento">Personas y talento</a></li>
-          <li><a href="#equipo">Trabaja con nosotros</a></li>
           <li><a href="#lo-ultimo">Lo último</a></li>
         </ul>
+        <a class="btn btn--header site-nav__cta" href="#contacto">Contáctanos</a>
       </nav>
     </div>
   </header>
@@ -71,30 +108,268 @@
 
     <!-- ============ HERO ============ -->
     <section class="hero" id="inicio" aria-labelledby="hero-title">
-      <div class="hero__media">
-        <img src="assets/img/hero-obras.webp" alt="Excavadora trabajando en una obra de construcción" width="1708" height="1281" fetchpriority="high">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <svg class="hero__watermark" aria-hidden="true"><use href="#i-symbol"/></svg>
+
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow eyebrow--light" data-reveal>
+            <svg class="eyebrow__sym" aria-hidden="true"><use href="#i-symbol"/></svg>
+            Grupo empresarial peruano
+          </p>
+          <h1 class="hero__title" id="hero-title" data-split>Conectando industrias, <span class="text-lime">creando valor.</span></h1>
+          <p class="hero__lead" data-reveal>Integramos negocios de entretenimiento, inversión y seguridad en un mismo ecosistema para impulsar el crecimiento del Perú con visión de largo plazo.</p>
+          <div class="hero__actions" data-reveal>
+            <a class="btn btn--lime" href="#verticales">Conoce nuestras verticales <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <button class="btn btn--ghost-light" type="button" data-video-open data-video="">
+              <span class="btn__play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
+              Ver video institucional
+            </button>
+          </div>
+        </div>
+
+        <div class="hero__art" data-hero-art aria-hidden="true">
+          <svg class="art" viewBox="100 30 1560 1300">
+            <defs>
+              <clipPath id="clip-chev-0"><use href="#chev-0"/></clipPath>
+              <clipPath id="clip-chev-1"><use href="#chev-1"/></clipPath>
+              <clipPath id="clip-chev-2"><use href="#chev-2"/></clipPath>
+              <linearGradient id="tint-ent" x1="0" y1="1" x2="1" y2="0">
+                <stop offset="0" stop-color="#f741f3" stop-opacity=".75"/>
+                <stop offset=".55" stop-color="#f741f3" stop-opacity="0"/>
+              </linearGradient>
+              <linearGradient id="tint-inv" x1="1" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffb100" stop-opacity=".8"/>
+                <stop offset=".55" stop-color="#ffb100" stop-opacity="0"/>
+              </linearGradient>
+              <linearGradient id="tint-seg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#000" stop-opacity="0"/>
+                <stop offset="1" stop-color="#000" stop-opacity=".7"/>
+              </linearGradient>
+            </defs>
+            <g class="art-piece" style="--d: 0; --depth: 18">
+              <g class="art-par"><g class="art-float" style="--dur: 9s">
+                <g clip-path="url(#clip-chev-0)">
+                  <image href="assets/img/hero-entretenimiento.webp" x="873.5" y="39.8" width="775.9" height="605" preserveAspectRatio="xMidYMid slice"/>
+                  <rect x="873.5" y="39.8" width="775.9" height="605" fill="url(#tint-ent)"/>
+                </g>
+              </g></g>
+            </g>
+            <g class="art-piece" style="--d: 1; --depth: -12">
+              <g class="art-par"><g class="art-float" style="--dur: 7s; --delay: -2s">
+                <use href="#chev-3" class="fill-lime"/>
+              </g></g>
+            </g>
+            <g class="art-piece" style="--d: 2; --depth: 10">
+              <g class="art-par"><g class="art-float" style="--dur: 8s; --delay: -4s">
+                <g clip-path="url(#clip-chev-1)">
+                  <image href="assets/img/vertical-seguridad.webp" x="920.8" y="520" width="451.1" height="451.1" preserveAspectRatio="xMidYMid slice" filter="url(#f-gray)"/>
+                  <rect x="920.8" y="584.1" width="451.1" height="320.2" fill="url(#tint-seg)"/>
+                </g>
+              </g></g>
+            </g>
+            <g class="art-piece" style="--d: 3; --depth: 22">
+              <g class="art-par"><g class="art-float" style="--dur: 10s; --delay: -1s">
+                <g clip-path="url(#clip-chev-2)">
+                  <image href="assets/img/hero-inversiones.webp" x="107.2" y="713.8" width="775.9" height="605" preserveAspectRatio="xMidYMid slice"/>
+                  <rect x="107.2" y="713.8" width="775.9" height="605" fill="url(#tint-inv)"/>
+                </g>
+              </g></g>
+            </g>
+          </svg>
+        </div>
       </div>
-      <button class="play-btn hero__play" type="button" data-video-open data-video="" aria-label="Reproducir video institucional">
-        <svg aria-hidden="true"><use href="#i-play"/></svg>
-      </button>
-      <div class="hero__content container">
-        <h1 class="hero__title" id="hero-title">Crecimiento peruano gracias a la integración de negocios</h1>
-        <p class="hero__lead">En Grupo Tinbet conectamos industrias, potenciamos capacidades y desarrollamos soluciones que generan valor a largo plazo.</p>
+
+      <div class="container">
+        <nav class="hero__verticals" aria-label="Verticales de negocio">
+          <a class="vlink vlink--ent" href="#entretenimiento" data-reveal>
+            <span class="vlink__num">01</span>
+            <span class="vlink__body"><strong>Entretenimiento</strong><small>Apuestas deportivas y juegos online</small></span>
+            <span class="vlink__arrow" aria-hidden="true"><svg><use href="#i-arrow-up-right"/></svg></span>
+          </a>
+          <a class="vlink vlink--inv" href="#inversiones" data-reveal>
+            <span class="vlink__num">02</span>
+            <span class="vlink__body"><strong>Inversiones</strong><small>Obras por impuestos</small></span>
+            <span class="vlink__arrow" aria-hidden="true"><svg><use href="#i-arrow-up-right"/></svg></span>
+          </a>
+          <a class="vlink vlink--seg" href="#seguridad" data-reveal>
+            <span class="vlink__num">03</span>
+            <span class="vlink__body"><strong>Seguridad</strong><small>Protección integral</small></span>
+            <span class="vlink__arrow" aria-hidden="true"><svg><use href="#i-arrow-up-right"/></svg></span>
+          </a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ============ NOSOTROS ============ -->
+    <section class="about section" id="nosotros" aria-labelledby="about-title">
+      <div class="container about__grid">
+        <div class="about__copy">
+          <p class="eyebrow" data-reveal><svg class="eyebrow__sym" aria-hidden="true"><use href="#i-symbol"/></svg> Sobre Grupo Tinbet</p>
+          <h2 class="section-title section-title--left" id="about-title" data-split>Impulsamos el crecimiento a través de la integración de negocios</h2>
+          <p class="about__lead" data-reveal>Integramos distintos negocios, experiencias y oportunidades dentro de un mismo ecosistema. Más que operar empresas de forma independiente, generamos sinergias entre nuestras unidades para potenciar sus capacidades y crear nuevas posibilidades de crecimiento.</p>
+          <dl class="stats" data-reveal>
+            <div class="stat">
+              <dt><span data-count-to="3">3</span></dt>
+              <dd>Verticales de negocio</dd>
+            </div>
+            <div class="stat">
+              <dt><span class="stat__plus">+</span><span data-count-to="300">300</span></dt>
+              <dd>Profesionales comprometidos</dd>
+            </div>
+            <div class="stat">
+              <dt><span data-count-to="4">4</span></dt>
+              <dd>Pilares estratégicos</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="about__media" data-reveal="media">
+          <img src="assets/img/nosotros-equipo.webp" alt="Equipo de colaboradores de Grupo Tinbet al aire libre" width="1400" height="887" loading="lazy">
+          <button class="play-btn about__play" type="button" data-video-open data-video="" aria-label="Reproducir video: conoce a nuestro equipo">
+            <svg aria-hidden="true"><use href="#i-play"/></svg>
+          </button>
+          <svg class="about__shape about__shape--a" viewBox="188.4 354.7 182 295.1" aria-hidden="true"><use href="#kite-2"/></svg>
+          <svg class="about__shape about__shape--b" viewBox="397.6 244 486.2 538.9" aria-hidden="true"><use href="#kite-1"/></svg>
+          <svg class="about__shape about__shape--c" viewBox="851.8 131.7 356.4 308.6" aria-hidden="true"><use href="#x-3"/></svg>
+          <p class="about__badge">
+            <svg class="about__badge-sym" aria-hidden="true"><use href="#i-symbol"/></svg>
+            <span><strong>Conectando industrias,</strong> creando valor.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <div class="marquee__group">
+          <span>Entretenimiento</span><svg class="marquee__sym" style="--sym-a: var(--c-ent); --sym-b: var(--c-ent-dark)"><use href="#i-symbol"/></svg>
+          <span class="is-outline">Inversiones</span><svg class="marquee__sym" style="--sym-a: var(--c-inv); --sym-b: var(--c-inv-dark)"><use href="#i-symbol"/></svg>
+          <span>Seguridad</span><svg class="marquee__sym" style="--sym-a: #8a8a8a; --sym-b: var(--c-seg)"><use href="#i-symbol"/></svg>
+          <span class="is-outline">Conectando industrias</span><svg class="marquee__sym" style="--sym-a: var(--c-green); --sym-b: var(--c-forest)"><use href="#i-symbol"/></svg>
+        </div>
+        <div class="marquee__group">
+          <span>Entretenimiento</span><svg class="marquee__sym" style="--sym-a: var(--c-ent); --sym-b: var(--c-ent-dark)"><use href="#i-symbol"/></svg>
+          <span class="is-outline">Inversiones</span><svg class="marquee__sym" style="--sym-a: var(--c-inv); --sym-b: var(--c-inv-dark)"><use href="#i-symbol"/></svg>
+          <span>Seguridad</span><svg class="marquee__sym" style="--sym-a: #8a8a8a; --sym-b: var(--c-seg)"><use href="#i-symbol"/></svg>
+          <span class="is-outline">Conectando industrias</span><svg class="marquee__sym" style="--sym-a: var(--c-green); --sym-b: var(--c-forest)"><use href="#i-symbol"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ VERTICALES ============ -->
+    <section class="verticals section" id="verticales" aria-labelledby="verticals-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow" data-reveal><svg class="eyebrow__sym" aria-hidden="true"><use href="#i-symbol"/></svg> Nuestras verticales</p>
+          <h2 class="section-title" id="verticals-title" data-split>Tres industrias, un mismo propósito</h2>
+          <p class="section-lead" data-reveal>Cada vertical opera con identidad propia y se potencia con el respaldo, la experiencia y la visión de largo plazo de Grupo Tinbet.</p>
+        </header>
+
+        <div class="vstack" data-stack>
+          <article class="vcard vcard--ent" id="entretenimiento" style="--i: 0" aria-labelledby="v-ent-title">
+            <div class="vcard__content">
+              <div class="vcard__meta">
+                <span class="vcard__num">01</span>
+                <span class="vcard__chip"><svg aria-hidden="true"><use href="#i-symbol"/></svg> Vertical de negocio</span>
+              </div>
+              <h3 class="vcard__title" id="v-ent-title">Entretenimiento</h3>
+              <p class="vcard__kicker">Apuestas deportivas y juegos online</p>
+              <p class="vcard__text">A través de Tinbet.pe ofrecemos una experiencia de entretenimiento digital que combina tecnología, seguridad y cercanía, con un firme compromiso con el juego responsable.</p>
+              <ul class="vcard__tags">
+                <li>Apuestas deportivas</li>
+                <li>Juegos online</li>
+                <li>Juego responsable</li>
+              </ul>
+              <a class="btn vcard__btn" href="https://tinbet.pe" target="_blank" rel="noopener">Visitar Tinbet.pe <svg aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+            </div>
+            <div class="vcard__media">
+              <img src="assets/img/vertical-entretenimiento.webp" alt="Aficionados al fútbol celebrando una apuesta desde el celular" width="1200" height="1267" loading="lazy">
+              <svg class="vcard__shapes" viewBox="180 80 1440 840" aria-hidden="true">
+                <use class="vs vs--1" href="#kite-2"/>
+                <use class="vs vs--2" href="#kite-1"/>
+                <use class="vs vs--3" href="#kite-0"/>
+              </svg>
+            </div>
+          </article>
+
+          <article class="vcard vcard--inv" id="inversiones" style="--i: 1" aria-labelledby="v-inv-title">
+            <div class="vcard__content">
+              <div class="vcard__meta">
+                <span class="vcard__num">02</span>
+                <span class="vcard__chip"><svg aria-hidden="true"><use href="#i-symbol"/></svg> Vertical de negocio</span>
+              </div>
+              <h3 class="vcard__title" id="v-inv-title">Inversiones</h3>
+              <p class="vcard__kicker">Obras por impuestos</p>
+              <p class="vcard__text">Canalizamos inversión privada hacia proyectos de infraestructura pública mediante el mecanismo de Obras por Impuestos, cerrando brechas y generando bienestar en las regiones del país.</p>
+              <ul class="vcard__tags">
+                <li>Obras por impuestos</li>
+                <li>Infraestructura pública</li>
+                <li>Desarrollo regional</li>
+              </ul>
+              <a class="btn vcard__btn" href="#contacto">Conoce más <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+            <div class="vcard__media">
+              <img src="assets/img/vertical-inversiones.webp" alt="Trabajador de construcción cortando tubería en una obra" width="1500" height="1500" loading="lazy">
+              <svg class="vcard__shapes" viewBox="180 80 1440 840" aria-hidden="true">
+                <use class="vs vs--1" href="#kite-2"/>
+                <use class="vs vs--2" href="#kite-1"/>
+                <use class="vs vs--3" href="#kite-0"/>
+              </svg>
+            </div>
+          </article>
+
+          <article class="vcard vcard--seg" id="seguridad" style="--i: 2" aria-labelledby="v-seg-title">
+            <div class="vcard__content">
+              <div class="vcard__meta">
+                <span class="vcard__num">03</span>
+                <span class="vcard__chip"><svg aria-hidden="true"><use href="#i-symbol"/></svg> Vertical de negocio</span>
+              </div>
+              <h3 class="vcard__title" id="v-seg-title">Seguridad</h3>
+              <p class="vcard__kicker">Protección integral</p>
+              <p class="vcard__text">Brindamos soluciones de seguridad que protegen a personas, activos y operaciones, combinando personal especializado, tecnología de monitoreo y protocolos de prevención.</p>
+              <ul class="vcard__tags">
+                <li>Vigilancia</li>
+                <li>Monitoreo</li>
+                <li>Prevención de riesgos</li>
+              </ul>
+              <a class="btn vcard__btn" href="#contacto">Conoce más <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </div>
+            <div class="vcard__media">
+              <img src="assets/img/vertical-seguridad.webp" alt="Especialista supervisando sistemas en una pantalla de monitoreo" width="1500" height="1500" loading="lazy">
+              <svg class="vcard__shapes" viewBox="180 80 1440 840" aria-hidden="true">
+                <use class="vs vs--1" href="#kite-2"/>
+                <use class="vs vs--2" href="#kite-1"/>
+                <use class="vs vs--3" href="#kite-0"/>
+              </svg>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
     <!-- ============ PRINCIPIOS ============ -->
     <section class="principles section" id="principios" aria-labelledby="principles-title">
+      <svg class="principles__deco" viewBox="135 131.6 1534.9 720.2" aria-hidden="true">
+        <use href="#x-0"/><use href="#x-1"/><use href="#x-2"/><use href="#x-3"/>
+      </svg>
       <div class="container">
-        <h2 class="section-title" id="principles-title" data-reveal>Principios que nos guían</h2>
+        <header class="section-head">
+          <p class="eyebrow" data-reveal><svg class="eyebrow__sym" aria-hidden="true"><use href="#i-symbol"/></svg> Pilares estratégicos</p>
+          <h2 class="section-title" id="principles-title" data-split>Principios que nos guían</h2>
+        </header>
 
         <div class="deck" data-deck data-reveal>
           <article class="deck-card" data-depth="0" style="--accent: var(--c-green)">
             <div class="deck-card__body">
-              <h3 class="deck-card__title">Innovación que aporta valor</h3>
+              <div>
+                <span class="deck-card__index">01 / 04</span>
+                <h3 class="deck-card__title">Innovación que aporta valor</h3>
+              </div>
               <div class="deck-card__footer">
                 <p>La innovación no es decorativa: es una herramienta para competir, escalar y mantenerse vigente.</p>
-                <a class="btn btn--outline" href="#innovacion">Descubre más</a>
+                <a class="btn btn--outline" href="#innovacion">Descubre más <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
               </div>
             </div>
             <div class="deck-card__media">
@@ -102,12 +377,15 @@
             </div>
           </article>
 
-          <article class="deck-card" data-depth="1" style="--accent: var(--c-magenta)">
+          <article class="deck-card" data-depth="1" style="--accent: var(--c-ent)">
             <div class="deck-card__body">
-              <h3 class="deck-card__title">Respaldo y confianza</h3>
+              <div>
+                <span class="deck-card__index">02 / 04</span>
+                <h3 class="deck-card__title">Respaldo y confianza</h3>
+              </div>
               <div class="deck-card__footer">
                 <p>Operamos con transparencia y responsabilidad para construir relaciones de largo plazo con colaboradores, aliados y comunidades.</p>
-                <a class="btn btn--outline" href="#faq">Descubre más</a>
+                <a class="btn btn--outline" href="#faq">Descubre más <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
               </div>
             </div>
             <div class="deck-card__media">
@@ -115,12 +393,15 @@
             </div>
           </article>
 
-          <article class="deck-card" data-depth="2" style="--accent: var(--c-sun)">
+          <article class="deck-card" data-depth="2" style="--accent: var(--c-inv)">
             <div class="deck-card__body">
-              <h3 class="deck-card__title">Conexión de negocios</h3>
+              <div>
+                <span class="deck-card__index">03 / 04</span>
+                <h3 class="deck-card__title">Conexión de negocios</h3>
+              </div>
               <div class="deck-card__footer">
                 <p>Generamos sinergias entre nuestras unidades para potenciar capacidades y abrir nuevas oportunidades de crecimiento.</p>
-                <a class="btn btn--outline" href="#ecosistema">Descubre más</a>
+                <a class="btn btn--outline" href="#verticales">Descubre más <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
               </div>
             </div>
             <div class="deck-card__media">
@@ -130,10 +411,13 @@
 
           <article class="deck-card" data-depth="3" style="--accent: var(--c-sky)">
             <div class="deck-card__body">
-              <h3 class="deck-card__title">Diversificación estratégica</h3>
+              <div>
+                <span class="deck-card__index">04 / 04</span>
+                <h3 class="deck-card__title">Diversificación estratégica</h3>
+              </div>
               <div class="deck-card__footer">
                 <p>Integramos negocios de distintas industrias para construir un portafolio sólido, equilibrado y preparado para el futuro.</p>
-                <a class="btn btn--outline" href="#areas">Descubre más</a>
+                <a class="btn btn--outline" href="#verticales">Descubre más <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
               </div>
             </div>
             <div class="deck-card__media">
@@ -141,97 +425,67 @@
             </div>
           </article>
         </div>
+        <div class="deck-nav" data-deck-nav></div>
       </div>
     </section>
 
     <!-- ============ VALORES ============ -->
-    <section class="values section" aria-labelledby="values-title">
+    <section class="values section" id="valores" aria-labelledby="values-title">
       <div class="container">
-        <h2 class="section-title" id="values-title" data-reveal>Valores que impulsan nuestro crecimiento</h2>
+        <header class="section-head section-head--split">
+          <div>
+            <p class="eyebrow eyebrow--light" data-reveal><svg class="eyebrow__sym" aria-hidden="true"><use href="#i-symbol"/></svg> Nuestros valores</p>
+            <h2 class="section-title section-title--left" id="values-title" data-split>Valores que impulsan nuestro crecimiento</h2>
+          </div>
+          <p class="section-lead section-lead--left" data-reveal>Son la base de cómo trabajamos, decidimos y nos relacionamos en cada una de nuestras verticales.</p>
+        </header>
+
+        <div class="values__grid">
+          <div class="values__item" data-reveal="card">
+            <article class="value-card" data-tilt>
+              <span class="value-card__num">01</span>
+              <span class="value-card__icon"><svg aria-hidden="true"><use href="#i-growth"/></svg></span>
+              <h3 class="value-card__title">Construimos con visión de crecimiento</h3>
+              <p>Cada decisión responde a una estrategia de largo plazo que fortalece al grupo y genera valor para el país.</p>
+              <svg class="value-card__shape" viewBox="609.5 85.5 1006.6 828.7" aria-hidden="true"><use href="#kite-0"/></svg>
+            </article>
+          </div>
+          <div class="values__item" data-reveal="card">
+            <article class="value-card" data-tilt>
+              <span class="value-card__num">02</span>
+              <span class="value-card__icon"><svg aria-hidden="true"><use href="#i-shield"/></svg></span>
+              <h3 class="value-card__title">Operamos con transparencia y responsabilidad</h3>
+              <p>Actuamos con ética, cumplimiento normativo y rendición de cuentas en cada una de nuestras operaciones.</p>
+              <svg class="value-card__shape" viewBox="609.5 85.5 1006.6 828.7" aria-hidden="true"><use href="#kite-0"/></svg>
+            </article>
+          </div>
+          <div class="values__item" data-reveal="card">
+            <article class="value-card" data-tilt>
+              <span class="value-card__num">03</span>
+              <span class="value-card__icon"><svg aria-hidden="true"><use href="#i-link"/></svg></span>
+              <h3 class="value-card__title">Integramos para potenciar resultados</h3>
+              <p>Conectamos capacidades, talento y experiencia entre nuestras verticales para lograr más juntos.</p>
+              <svg class="value-card__shape" viewBox="609.5 85.5 1006.6 828.7" aria-hidden="true"><use href="#kite-0"/></svg>
+            </article>
+          </div>
+          <div class="values__item" data-reveal="card">
+            <article class="value-card" data-tilt>
+              <span class="value-card__num">04</span>
+              <span class="value-card__icon"><svg aria-hidden="true"><use href="#i-refresh"/></svg></span>
+              <h3 class="value-card__title">Nos adaptamos para evolucionar</h3>
+              <p>Escuchamos al mercado y transformamos nuestras operaciones para responder con agilidad a cada desafío.</p>
+              <svg class="value-card__shape" viewBox="609.5 85.5 1006.6 828.7" aria-hidden="true"><use href="#kite-0"/></svg>
+            </article>
+          </div>
+        </div>
       </div>
-      <div class="values__track" data-drag-scroll tabindex="0" aria-label="Valores de Grupo Tinbet">
-        <article class="value-card" data-reveal>
-          <img class="value-card__img" src="assets/img/valor-crecimiento.webp" alt="Figura sobre bloques con flechas ascendentes" width="960" height="640" loading="lazy">
-          <h3 class="value-card__title">Construimos con visión de crecimiento</h3>
-          <p>Una propuesta diseñada para el público peruano, combinando deporte, cercanía y una experiencia auténtica en cada interacción.</p>
-        </article>
-        <article class="value-card" data-reveal>
-          <img class="value-card__img" src="assets/img/valor-transparencia.webp" alt="Equipo uniendo sus manos sobre una mesa de trabajo" width="960" height="640" loading="lazy">
-          <h3 class="value-card__title">Operamos con transparencia y responsabilidad</h3>
-          <p>Interfaz simple, procesos guiados y una experiencia pensada para usuarios nuevos y avanzados por igual.</p>
-        </article>
-        <article class="value-card" data-reveal>
-          <img class="value-card__img" src="assets/img/valor-resultados.webp" alt="Colaboradores celebrando resultados en la oficina" width="960" height="640" loading="lazy">
-          <h3 class="value-card__title">Integramos para potenciar resultados</h3>
-          <p>Un equipo que entiende el mercado peruano y acompaña a cada cliente con soporte oportuno y humano.</p>
-        </article>
-        <article class="value-card" data-reveal>
-          <img class="value-card__img" src="assets/img/valor-evolucion.webp" alt="Ingeniero presentando planos en una pantalla digital" width="960" height="640" loading="lazy">
-          <h3 class="value-card__title">Nos adaptamos para evolucionar</h3>
-          <p>Escuchamos al mercado y ajustamos nuestras operaciones para responder con agilidad a cada nuevo desafío.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ============ VIDEO ============ -->
-    <section class="video-banner" aria-label="Video: nuestro equipo">
-      <img class="video-banner__img" src="assets/img/video-equipo.webp" alt="Grupo de colaboradores de Grupo Tinbet posando al aire libre" width="2000" height="1267" loading="lazy">
-      <button class="play-btn video-banner__play" type="button" data-video-open data-video="" aria-label="Reproducir video: nuestro equipo">
-        <svg aria-hidden="true"><use href="#i-play"/></svg>
-      </button>
-    </section>
-
-    <!-- ============ ÁREAS DE NEGOCIO ============ -->
-    <section class="areas" id="areas" aria-labelledby="areas-title">
-      <div class="container">
-        <h2 class="section-title areas__title" id="areas-title" data-reveal>Nuestras áreas de negocio</h2>
-      </div>
-
-      <article class="area" id="area-gaming" style="--area: var(--c-sky)">
-        <div class="area__media">
-          <img src="assets/img/area-gaming.webp" alt="Aficionados celebrando un partido frente a un celular" width="1200" height="1267" loading="lazy">
-          <button class="play-btn area__play" type="button" data-video-open data-video="" aria-label="Reproducir video: Gaming y Entretenimiento">
-            <svg aria-hidden="true"><use href="#i-play"/></svg>
-          </button>
-        </div>
-        <div class="area__panel">
-          <div class="area__intro" data-reveal>
-            <img class="area__logo" src="assets/logos/logo-horizontal-white.svg" alt="Tinbet" width="250" height="72" loading="lazy">
-            <p>Tinbet.pe es una marca de entretenimiento digital enfocada en apuestas deportivas y juegos online, que combina tecnología, seguridad y cercanía para ofrecer una experiencia simple, confiable y emocionante.</p>
-            <a class="btn btn--tint" href="#ecosistema">Conoce más</a>
-          </div>
-          <div class="area__sector" data-reveal>
-            <span class="area__label">Sector</span>
-            <h3 class="area__name">Gaming &amp; Entretenimiento</h3>
-          </div>
-        </div>
-      </article>
-
-      <article class="area" id="area-obras" style="--area: var(--c-sun)">
-        <div class="area__media">
-          <img src="assets/img/area-obras.webp" alt="Trabajador de construcción cortando material en obra" width="1200" height="1267" loading="lazy">
-          <button class="play-btn area__play" type="button" data-video-open data-video="" aria-label="Reproducir video: Obras por impuestos">
-            <svg aria-hidden="true"><use href="#i-play"/></svg>
-          </button>
-        </div>
-        <div class="area__panel">
-          <div class="area__intro" data-reveal>
-            <img class="area__logo" src="assets/logos/logo-horizontal-white.svg" alt="Tinbet" width="250" height="72" loading="lazy">
-            <p>Desarrollamos soluciones que mejoran la operación, modernizan el ecosistema y elevan la experiencia del usuario, impulsando obras que generan bienestar en las comunidades del país.</p>
-            <a class="btn btn--tint" href="#ecosistema">Conoce más</a>
-          </div>
-          <div class="area__sector" data-reveal>
-            <span class="area__label">Sector</span>
-            <h3 class="area__name">Obras por impuestos</h3>
-          </div>
-        </div>
-      </article>
     </section>
 
     <!-- ============ TALENTO ============ -->
     <section class="talent" id="talento" aria-labelledby="talent-title">
       <div class="container talent__inner">
-        <h2 class="section-title" id="talent-title" data-reveal>El talento que impulsa nuestra evolución</h2>
+        <p class="eyebrow eyebrow--center" data-reveal><svg class="eyebrow__sym" aria-hidden="true"><use href="#i-symbol"/></svg> Personas y talento</p>
+        <h2 class="section-title" id="talent-title" data-split>El talento que impulsa nuestra evolución</h2>
         <p class="talent__number" data-reveal><span class="talent__plus">+</span><span data-count-to="300">300</span></p>
         <p class="talent__caption" data-reveal>profesionales comprometidos en crear valor en cada proyecto</p>
         <p class="talent__rotator" data-reveal>
@@ -247,24 +501,30 @@
     <!-- ============ MOSAICO ============ -->
     <section class="mosaic" id="equipo" aria-label="Nuestro equipo en acción">
       <div class="mosaic__grid">
-        <div class="mosaic__col" data-parallax="0.04">
+        <div class="mosaic__col" data-parallax="0.05">
           <div class="mosaic__tile mosaic__tile--text">
-            <p>Junto a Nelson, brindamos bienestar a los peruanos dando acceso a productos de calidad todos los días.</p>
+            <svg class="mosaic__tile-shape" viewBox="873.5 39.8 775.9 605" aria-hidden="true"><use href="#chev-0"/></svg>
+            <p>Personas que construyen, innovan y conectan industrias todos los días.</p>
             <img src="assets/logos/logo-horizontal-white.svg" alt="Grupo Tinbet" width="170" height="49" loading="lazy">
           </div>
-          <img class="mosaic__tile" src="assets/img/mosaico-gaming.webp" alt="Jóvenes jugando videojuegos con audífonos" width="760" height="507" loading="lazy">
+          <figure class="mosaic__tile"><img src="assets/img/valor-resultados.webp" alt="Colaboradores celebrando resultados en la oficina" width="960" height="640" loading="lazy"></figure>
         </div>
         <div class="mosaic__col" data-parallax="-0.03">
-          <img class="mosaic__tile" src="assets/img/mosaico-drone.webp" alt="Equipo de obra supervisando con un dron" width="760" height="488" loading="lazy">
-          <img class="mosaic__tile" src="assets/img/mosaico-casco.webp" alt="Trabajador con casco rojo midiendo en obra" width="760" height="507" loading="lazy">
+          <figure class="mosaic__tile"><img src="assets/img/mosaico-drone.webp" alt="Equipo de obra supervisando con un dron" width="760" height="488" loading="lazy"></figure>
+          <figure class="mosaic__tile"><img src="assets/img/mosaico-casco.webp" alt="Trabajador con casco rojo midiendo en obra" width="760" height="507" loading="lazy"></figure>
         </div>
-        <div class="mosaic__col" data-parallax="0.06">
-          <img class="mosaic__tile" src="assets/img/mosaico-corte.webp" alt="Operario cortando bloques de concreto" width="760" height="507" loading="lazy">
-          <img class="mosaic__tile" src="assets/img/mosaico-planos.webp" alt="Ingeniero revisando planos en una pantalla" width="760" height="507" loading="lazy">
+        <div class="mosaic__col" data-parallax="0.07">
+          <figure class="mosaic__tile"><img src="assets/img/mosaico-corte.webp" alt="Operario cortando bloques de concreto" width="760" height="507" loading="lazy"></figure>
+          <figure class="mosaic__tile"><img src="assets/img/valor-transparencia.webp" alt="Equipo uniendo sus manos sobre una mesa de trabajo" width="960" height="640" loading="lazy"></figure>
         </div>
         <div class="mosaic__col" data-parallax="-0.02">
-          <img class="mosaic__tile" src="assets/img/mosaico-obrero.webp" alt="Trabajador con equipo de protección en obra" width="760" height="507" loading="lazy">
-          <img class="mosaic__tile" src="assets/img/mosaico-cargador.webp" alt="Cargador frontal trabajando en una cantera" width="760" height="507" loading="lazy">
+          <figure class="mosaic__tile"><img src="assets/img/mosaico-cargador.webp" alt="Cargador frontal trabajando en una cantera" width="760" height="507" loading="lazy"></figure>
+          <a class="mosaic__tile mosaic__tile--cta" href="mailto:contacto@grupotinbet.com?subject=Quiero%20trabajar%20en%20Grupo%20Tinbet">
+            <svg class="mosaic__tile-shape" viewBox="609.5 85.5 1006.6 828.7" aria-hidden="true"><use href="#kite-0"/></svg>
+            <span class="mosaic__cta-label">Trabaja con nosotros</span>
+            <span class="mosaic__cta-text">Súmate a un equipo que impulsa el crecimiento del Perú.</span>
+            <span class="mosaic__cta-arrow" aria-hidden="true"><svg><use href="#i-arrow-up-right"/></svg></span>
+          </a>
         </div>
       </div>
     </section>
@@ -272,7 +532,8 @@
     <!-- ============ INNOVACIÓN ============ -->
     <section class="innovation" id="innovacion" aria-labelledby="innovation-title">
       <div class="container innovation__head">
-        <h2 class="innovation__title" id="innovation-title" data-reveal>
+        <p class="eyebrow eyebrow--light eyebrow--center" data-reveal><svg class="eyebrow__sym" aria-hidden="true"><use href="#i-symbol"/></svg> Innovación</p>
+        <h2 class="innovation__title" id="innovation-title" data-split>
           Donde la innovación <span class="text-lime">conecta industrias y</span> genera oportunidades
         </h2>
       </div>
@@ -300,7 +561,7 @@
               <button class="feature__toggle" type="button" id="feature-3" aria-expanded="false" aria-controls="feature-panel-3">Más que entretenimiento</button>
             </h3>
             <div class="feature__panel" id="feature-panel-3" role="region" aria-labelledby="feature-3" hidden>
-              <p>Llevamos la experiencia de nuestras marcas más allá del juego, generando empleo, inversión y valor para el Perú.</p>
+              <p>Llevamos nuestras marcas más allá del juego, generando empleo, inversión y valor para el Perú.</p>
             </div>
           </div>
         </div>
@@ -309,63 +570,33 @@
       </div>
     </section>
 
-    <!-- ============ ECOSISTEMA ============ -->
-    <section class="ecosystem" id="ecosistema" aria-labelledby="ecosystem-title">
-      <div class="container ecosystem__inner">
-        <h2 class="section-title" id="ecosystem-title" data-reveal>Explora el ecosistema Grupo Tinbet</h2>
-        <p class="section-lead" data-reveal>Conoce nuestras líneas de negocio, marcas asociadas, oportunidades de inversión y el talento que impulsa nuestro crecimiento.</p>
-        <nav class="pill-list" aria-label="Ecosistema Grupo Tinbet" data-reveal>
-          <a class="pill" href="#area-gaming">Gaming y apuestas deportivas <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a class="pill" href="#area-obras">Inversiones públicas y privadas <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <span class="pill-list__break" aria-hidden="true"></span>
-          <a class="pill" href="#areas">Nuestras marcas asociadas <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a class="pill" href="#talento">Personas y Talento <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a class="pill" href="https://tinbet.pe" target="_blank" rel="noopener">Tinbet.pe <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        </nav>
-      </div>
-    </section>
-
-    <!-- ============ FAQ ============ -->
-    <section class="faq section" id="faq" aria-labelledby="faq-title">
-      <div class="container">
-        <h2 class="section-title" id="faq-title" data-reveal>¿Tienes dudas? Tenemos respuestas</h2>
-        <div class="faq__list" data-accordion data-reveal>
-          <details class="faq__item" name="faq" open>
-            <summary>¿Qué es Tinbet como grupo corporativo? <span class="faq__icon" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary>
-            <div class="faq__answer"><p>Tinbet es un ecosistema que integra marcas, operaciones, tecnología y servicios que hacen posible la experiencia de apuestas deportivas y entretenimiento en el Perú.</p></div>
-          </details>
-          <details class="faq__item" name="faq">
-            <summary>¿Cómo garantiza Tinbet una operación segura? <span class="faq__icon" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary>
-            <div class="faq__answer"><p>Operamos bajo la normativa peruana vigente, con procesos de control, protección de datos y prácticas de juego responsable en cada una de nuestras marcas.</p></div>
-          </details>
-          <details class="faq__item" name="faq">
-            <summary>¿Tinbet opera en todo el país? <span class="faq__icon" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary>
-            <div class="faq__answer"><p>Sí. A través de nuestros canales digitales y de nuestras empresas aliadas tenemos presencia a nivel nacional, con proyectos en distintas regiones del Perú.</p></div>
-          </details>
-          <details class="faq__item" name="faq">
-            <summary>¿Cómo puedo contactar al equipo corporativo? <span class="faq__icon" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary>
-            <div class="faq__answer"><p>Escríbenos a <a href="mailto:contacto@grupotinbet.com">contacto@grupotinbet.com</a> y nuestro equipo te responderá a la brevedad.</p></div>
-          </details>
-          <details class="faq__item" name="faq">
-            <summary>¿Cómo puedo trabajar en Grupo Tinbet? <span class="faq__icon" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary>
-            <div class="faq__answer"><p>Buscamos talento comprometido con el crecimiento del país. Envíanos tu CV a <a href="mailto:contacto@grupotinbet.com">contacto@grupotinbet.com</a> indicando el área de tu interés.</p></div>
-          </details>
-        </div>
-      </div>
-    </section>
-
     <!-- ============ LO ÚLTIMO ============ -->
     <section class="news" id="lo-ultimo" aria-labelledby="news-title">
       <div class="container">
-        <h2 class="section-title" id="news-title" data-reveal>Lo que necesitas saber para llegar más lejos</h2>
+        <header class="section-head section-head--split">
+          <div>
+            <p class="eyebrow eyebrow--light" data-reveal><svg class="eyebrow__sym" aria-hidden="true"><use href="#i-symbol"/></svg> Lo último</p>
+            <h2 class="section-title section-title--left" id="news-title" data-split>Lo que necesitas saber para llegar más lejos</h2>
+          </div>
+          <div class="carousel-controls" data-carousel-controls>
+            <button class="circle-btn" type="button" data-carousel-prev aria-label="Anterior">
+              <svg aria-hidden="true"><use href="#i-chevron-left"/></svg>
+            </button>
+            <span class="carousel-controls__count" data-carousel-count aria-live="polite">1 de 2</span>
+            <button class="circle-btn" type="button" data-carousel-next aria-label="Siguiente">
+              <svg aria-hidden="true"><use href="#i-chevron-right"/></svg>
+            </button>
+          </div>
+        </header>
       </div>
 
       <div class="news__track" data-carousel tabindex="0" aria-label="Últimas noticias y videos">
         <article class="news-card">
-          <img class="news-card__img" src="assets/img/blog-oficina.webp" alt="Equipo reunido en una oficina colaborativa" width="900" height="675" loading="lazy">
+          <div class="news-card__media"><img class="news-card__img" src="assets/img/blog-oficina.webp" alt="Equipo reunido en una oficina colaborativa" width="900" height="675" loading="lazy"></div>
+          <span class="news-card__tag" style="--v: var(--c-green)">Grupo</span>
           <time class="news-card__date" datetime="2025-05-07">7 de mayo del 2025</time>
           <h3 class="news-card__title">Lo que necesitas saber para llegar más lejos</h3>
-          <a class="btn btn--small" href="#lo-ultimo">Leer nota</a>
+          <a class="news-card__link" href="#lo-ultimo">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </article>
         <article class="news-card news-card--video">
           <img class="news-card__img" src="assets/img/blog-podcast.webp" alt="Conversación en el set del podcast de Tinbet" width="900" height="511" loading="lazy">
@@ -377,10 +608,11 @@
           </div>
         </article>
         <article class="news-card">
-          <img class="news-card__img" src="assets/img/blog-oficina.webp" alt="Equipo reunido en una oficina colaborativa" width="900" height="675" loading="lazy">
+          <div class="news-card__media"><img class="news-card__img" src="assets/img/mosaico-drone.webp" alt="Equipo de obra supervisando un proyecto con un dron" width="760" height="488" loading="lazy"></div>
+          <span class="news-card__tag" style="--v: var(--c-inv)">Inversiones</span>
           <time class="news-card__date" datetime="2025-04-22">22 de abril del 2025</time>
-          <h3 class="news-card__title">Cómo integramos industrias para crear valor</h3>
-          <a class="btn btn--small" href="#lo-ultimo">Leer nota</a>
+          <h3 class="news-card__title">Obras por impuestos: impacto en las regiones</h3>
+          <a class="news-card__link" href="#lo-ultimo">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </article>
         <article class="news-card news-card--video">
           <img class="news-card__img" src="assets/img/blog-podcast.webp" alt="Conversación en el set del podcast de Tinbet" width="900" height="511" loading="lazy">
@@ -392,10 +624,11 @@
           </div>
         </article>
         <article class="news-card">
-          <img class="news-card__img" src="assets/img/blog-oficina.webp" alt="Equipo reunido en una oficina colaborativa" width="900" height="675" loading="lazy">
+          <div class="news-card__media"><img class="news-card__img" src="assets/img/vertical-entretenimiento.webp" alt="Aficionados viendo un partido en el celular" width="1200" height="1267" loading="lazy"></div>
+          <span class="news-card__tag" style="--v: var(--c-ent)">Entretenimiento</span>
           <time class="news-card__date" datetime="2025-04-02">2 de abril del 2025</time>
-          <h3 class="news-card__title">Obras por impuestos: impacto en las regiones</h3>
-          <a class="btn btn--small" href="#lo-ultimo">Leer nota</a>
+          <h3 class="news-card__title">Juego responsable: nuestro compromiso con los usuarios</h3>
+          <a class="news-card__link" href="#lo-ultimo">Leer nota <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </article>
         <article class="news-card news-card--video">
           <img class="news-card__img" src="assets/img/blog-podcast.webp" alt="Conversación en el set del podcast de Tinbet" width="900" height="511" loading="lazy">
@@ -407,15 +640,61 @@
           </div>
         </article>
       </div>
+    </section>
 
-      <div class="carousel-controls" data-carousel-controls>
-        <button class="circle-btn" type="button" data-carousel-prev aria-label="Anterior">
-          <svg aria-hidden="true"><use href="#i-chevron-left"/></svg>
-        </button>
-        <span class="carousel-controls__count" data-carousel-count aria-live="polite">1 de 2</span>
-        <button class="circle-btn" type="button" data-carousel-next aria-label="Siguiente">
-          <svg aria-hidden="true"><use href="#i-chevron-right"/></svg>
-        </button>
+    <!-- ============ FAQ ============ -->
+    <section class="faq section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq__grid">
+        <header class="faq__head">
+          <p class="eyebrow" data-reveal><svg class="eyebrow__sym" aria-hidden="true"><use href="#i-symbol"/></svg> Preguntas frecuentes</p>
+          <h2 class="section-title section-title--left" id="faq-title" data-split>¿Tienes dudas? Tenemos respuestas</h2>
+          <p class="faq__note" data-reveal>¿No encuentras lo que buscas? Escríbenos a <a href="mailto:contacto@grupotinbet.com">contacto@grupotinbet.com</a></p>
+        </header>
+        <div class="faq__list" data-accordion data-reveal>
+          <details class="faq__item" name="faq" open>
+            <summary>¿Qué es Grupo Tinbet? <span class="faq__icon" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary>
+            <div class="faq__answer"><p>Grupo Tinbet es un grupo empresarial peruano que integra negocios de entretenimiento, inversión en infraestructura y seguridad dentro de un mismo ecosistema, con el propósito de impulsar el crecimiento a través de la integración de negocios.</p></div>
+          </details>
+          <details class="faq__item" name="faq">
+            <summary>¿Cuáles son las verticales de negocio del grupo? <span class="faq__icon" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary>
+            <div class="faq__answer"><p>Contamos con tres verticales: <strong>Entretenimiento</strong> (apuestas deportivas y juegos online a través de Tinbet.pe), <strong>Inversiones</strong> (Obras por impuestos) y <strong>Seguridad</strong> (protección integral de personas, activos y operaciones).</p></div>
+          </details>
+          <details class="faq__item" name="faq">
+            <summary>¿Qué son las Obras por impuestos? <span class="faq__icon" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary>
+            <div class="faq__answer"><p>Es un mecanismo que permite a las empresas privadas financiar y ejecutar proyectos de inversión pública, recuperando el monto invertido como pago a cuenta de su impuesto a la renta. Así se aceleran obras que benefician directamente a las comunidades.</p></div>
+          </details>
+          <details class="faq__item" name="faq">
+            <summary>¿Cómo garantiza Grupo Tinbet una operación segura y responsable? <span class="faq__icon" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary>
+            <div class="faq__answer"><p>Operamos bajo la normativa peruana vigente, con procesos de control, protección de datos y prácticas de juego responsable en cada una de nuestras marcas.</p></div>
+          </details>
+          <details class="faq__item" name="faq">
+            <summary>¿Cómo puedo trabajar en Grupo Tinbet? <span class="faq__icon" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary>
+            <div class="faq__answer"><p>Buscamos talento comprometido con el crecimiento del país. Envíanos tu CV a <a href="mailto:contacto@grupotinbet.com">contacto@grupotinbet.com</a> indicando la vertical de tu interés.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="cta" id="contacto" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta__box" data-reveal="clip">
+          <div class="cta__copy">
+            <p class="eyebrow eyebrow--light"><svg class="eyebrow__sym" aria-hidden="true"><use href="#i-symbol"/></svg> Hablemos</p>
+            <h2 class="cta__title" id="cta-title" data-split>Construyamos juntos el crecimiento del Perú</h2>
+            <p class="cta__text">Escríbenos para conocer oportunidades de inversión, alianzas estratégicas o para formar parte de nuestro equipo.</p>
+            <div class="cta__actions">
+              <a class="btn btn--lime" href="mailto:contacto@grupotinbet.com">Contáctanos <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              <a class="btn btn--ghost-light" href="mailto:contacto@grupotinbet.com?subject=Quiero%20trabajar%20en%20Grupo%20Tinbet">Trabaja con nosotros</a>
+            </div>
+          </div>
+          <svg class="cta__art" viewBox="120 120 1565 750" aria-hidden="true">
+            <g class="cta-piece" style="--d: 0"><use href="#x-0" class="fill-white"/></g>
+            <g class="cta-piece" style="--d: 1"><use href="#x-1" class="fill-green"/></g>
+            <g class="cta-piece" style="--d: 2"><use href="#x-2" class="fill-white"/></g>
+            <g class="cta-piece" style="--d: 3"><use href="#x-3" class="fill-lime"/></g>
+          </svg>
+        </div>
       </div>
     </section>
   </main>
@@ -426,34 +705,52 @@
       <div class="site-footer__top">
         <div class="site-footer__brand">
           <img src="assets/logos/logo-vertical-white.svg" alt="Grupo Tinbet" width="150" height="133" loading="lazy">
+          <p>Conectando industrias, creando valor.</p>
           <ul class="social" aria-label="Redes sociales">
+            <li><a class="circle-btn" href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
             <li><a class="circle-btn" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg aria-hidden="true"><use href="#i-instagram"/></svg></a></li>
-            <li><a class="circle-btn" href="mailto:contacto@grupotinbet.com" aria-label="Correo electrónico"><svg aria-hidden="true"><use href="#i-mail"/></svg></a></li>
             <li><a class="circle-btn" href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><svg aria-hidden="true"><use href="#i-tiktok"/></svg></a></li>
+            <li><a class="circle-btn" href="mailto:contacto@grupotinbet.com" aria-label="Correo electrónico"><svg aria-hidden="true"><use href="#i-mail"/></svg></a></li>
           </ul>
         </div>
-        <nav class="site-footer__nav" aria-label="Pie de página">
+
+        <nav class="site-footer__col" aria-label="Grupo">
+          <h2 class="site-footer__heading">Grupo</h2>
           <ul>
-            <li><a href="#principios">Sobre Grupo Tinbet</a></li>
-            <li><a href="#areas">Áreas de negocio</a></li>
-            <li><a href="mailto:contacto@grupotinbet.com">Contacto</a></li>
-            <li><a href="#legales">Legales</a></li>
-          </ul>
-          <ul>
-            <li><a href="#area-obras">Obras por impuestos</a></li>
-            <li><a href="#talento">Personas con talento</a></li>
-            <li><a href="#equipo">Trabaja con nosotros</a></li>
+            <li><a href="#nosotros">Sobre Grupo Tinbet</a></li>
+            <li><a href="#principios">Principios</a></li>
+            <li><a href="#valores">Valores</a></li>
+            <li><a href="#talento">Personas y talento</a></li>
             <li><a href="#lo-ultimo">Lo último</a></li>
           </ul>
         </nav>
+
+        <nav class="site-footer__col" aria-label="Verticales">
+          <h2 class="site-footer__heading">Verticales</h2>
+          <ul class="site-footer__verticals">
+            <li><a href="#entretenimiento" style="--v: var(--c-ent)"><span class="dot"></span>Entretenimiento</a></li>
+            <li><a href="#inversiones" style="--v: var(--c-inv)"><span class="dot"></span>Inversiones</a></li>
+            <li><a href="#seguridad" style="--v: var(--c-seg)"><span class="dot dot--seg"></span>Seguridad</a></li>
+          </ul>
+        </nav>
+
+        <div class="site-footer__col">
+          <h2 class="site-footer__heading">Contacto</h2>
+          <ul>
+            <li><a href="mailto:contacto@grupotinbet.com">contacto@grupotinbet.com</a></li>
+            <li><a href="mailto:contacto@grupotinbet.com?subject=Quiero%20trabajar%20en%20Grupo%20Tinbet">Trabaja con nosotros</a></li>
+            <li><a href="#faq">Preguntas frecuentes</a></li>
+          </ul>
+        </div>
       </div>
+
       <div class="site-footer__bottom" id="legales">
-        <ul class="site-footer__legal">
-          <li><a href="mailto:contacto@grupotinbet.com">contacto@grupotinbet.com</a></li>
-          <li><a href="#legales">Cookies</a></li>
-          <li><a href="#legales">Privacidad</a></li>
-        </ul>
         <p>Grupo Tinbet © <span data-year>2026</span> Todos los derechos reservados</p>
+        <ul class="site-footer__legal">
+          <li><a href="#legales">Términos y condiciones</a></li>
+          <li><a href="#legales">Privacidad</a></li>
+          <li><a href="#legales">Cookies</a></li>
+        </ul>
       </div>
     </div>
   </footer>
@@ -466,6 +763,6 @@
     <div class="video-modal__frame" data-video-frame></div>
   </dialog>
 
-  <script src="js/main.js" defer></script>
+  <script src="js/main.js?v=2" defer></script>
 </body>
 </html>

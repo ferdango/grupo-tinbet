@@ -1,8 +1,8 @@
 /* ==========================================================================
    Grupo Tinbet — Home
-   Interacciones: header, menú móvil, animaciones de entrada, mazo de
-   principios, carruseles, contador, rotador de palabras, parallax,
-   acordeones y modal de video.
+   Interacciones: header, menú, progreso de lectura, titulares animados,
+   arte del hero, tarjetas apiladas de verticales, mazo de principios,
+   tilt de tarjetas, carruseles, contadores, acordeones y modal de video.
    ========================================================================== */
 (function () {
   'use strict';
@@ -10,6 +10,7 @@
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const supportsIO = 'IntersectionObserver' in window;
 
   /** Ejecuta `onEnter` / `onLeave` cuando el elemento entra o sale del viewport. */
@@ -21,11 +22,37 @@
     }, options).observe(el);
   }
 
-  /* ---------- Header ---------- */
+  /** Agrupa callbacks de scroll/resize en un solo requestAnimationFrame. */
+  const frameTasks = new Set();
+  let frameQueued = false;
+  function onFrame(task) {
+    frameTasks.add(task);
+    task();
+  }
+  function requestFrame() {
+    if (frameQueued) return;
+    frameQueued = true;
+    requestAnimationFrame(() => {
+      frameQueued = false;
+      frameTasks.forEach((task) => task());
+    });
+  }
+  window.addEventListener('scroll', requestFrame, { passive: true });
+  window.addEventListener('resize', requestFrame);
+
+  /* ---------- Header: estado sobre el hero, sombra y progreso ---------- */
   const header = $('[data-header]');
-  const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
+  const hero = $('.hero');
+  const progress = $('[data-progress]');
+
+  onFrame(() => {
+    const y = window.scrollY;
+    const heroEnd = hero ? hero.offsetHeight - header.offsetHeight - 40 : 0;
+    header.classList.toggle('is-over-hero', y < heroEnd);
+    header.classList.toggle('is-scrolled', y > 8);
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.setProperty('--progress', max > 0 ? (y / max).toFixed(4) : '0');
+  });
 
   /* ---------- Menú móvil ---------- */
   const menuToggle = $('[data-menu-toggle]');
@@ -46,28 +73,55 @@
   window.matchMedia('(min-width: 1025px)').addEventListener('change', (e) => { if (e.matches) setMenu(false); });
 
   /* ---------- Enlace activo según la sección visible ---------- */
-  const navLinks = $$('.site-nav a[href^="#"]');
+  const navLinks = $$('.site-nav__list > li > a[href^="#"]');
   if (supportsIO) {
     const linkFor = new Map(navLinks.map((a) => [a.getAttribute('href').slice(1), a]));
     const spy = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         const link = linkFor.get(entry.target.id);
-        if (!link) return;
         navLinks.forEach((a) => a.classList.toggle('is-current', a === link));
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    linkFor.forEach((_, id) => { const section = document.getElementById(id); if (section) spy.observe(section); });
+    $$('main > section[id]').forEach((section) => spy.observe(section));
   }
+
+  /* ---------- Titulares palabra por palabra ---------- */
+  function splitWords(node, counter) {
+    Array.from(node.childNodes).forEach((child) => {
+      if (child.nodeType === Node.TEXT_NODE) {
+        const parts = child.textContent.split(/(\s+)/);
+        const frag = document.createDocumentFragment();
+        parts.forEach((part) => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+          const outer = document.createElement('span');
+          const inner = document.createElement('span');
+          outer.className = 'split-word';
+          inner.textContent = part;
+          inner.style.setProperty('--w', counter.i++);
+          outer.appendChild(inner);
+          frag.appendChild(outer);
+        });
+        child.replaceWith(frag);
+      } else if (child.nodeType === Node.ELEMENT_NODE) {
+        splitWords(child, counter);
+      }
+    });
+  }
+
+  const splitEls = $$('[data-split]');
+  if (!reducedMotion) splitEls.forEach((el) => splitWords(el, { i: 0 }));
 
   /* ---------- Animaciones de entrada ---------- */
   const revealEls = $$('[data-reveal]');
   revealEls.forEach((el) => {
     const siblings = $$(':scope > [data-reveal]', el.parentElement);
     const index = siblings.indexOf(el);
-    if (index > 0) el.style.transitionDelay = `${Math.min(index, 4) * 90}ms`;
+    if (index > 0) el.style.transitionDelay = `${Math.min(index, 5) * 100}ms`;
   });
 
+  const animated = revealEls.concat(splitEls);
   if (supportsIO && !reducedMotion) {
     const revealer = new IntersectionObserver((entries, obs) => {
       entries.forEach((entry) => {
@@ -76,27 +130,90 @@
         obs.unobserve(entry.target);
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
-    revealEls.forEach((el) => revealer.observe(el));
+    animated.forEach((el) => revealer.observe(el));
   } else {
-    revealEls.forEach((el) => el.classList.add('is-visible'));
+    animated.forEach((el) => el.classList.add('is-visible'));
+  }
+
+  // Una vez visibles, el retraso escalonado ya no debe afectar a los hovers.
+  revealEls.forEach((el) => {
+    const clearDelay = (e) => {
+      if (e.target !== el) return;
+      el.style.transitionDelay = '';
+      el.removeEventListener('transitionend', clearDelay);
+    };
+    el.addEventListener('transitionend', clearDelay);
+  });
+
+  /* ---------- Arte del hero: entrada y parallax con el puntero ---------- */
+  const heroArt = $('[data-hero-art]');
+  if (hero) {
+    requestAnimationFrame(() => hero.classList.add('is-ready'));
+    if (heroArt && finePointer && !reducedMotion) {
+      hero.addEventListener('pointermove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        heroArt.style.setProperty('--mx', (((e.clientX - rect.left) / rect.width) - 0.5).toFixed(3));
+        heroArt.style.setProperty('--my', (((e.clientY - rect.top) / rect.height) - 0.5).toFixed(3));
+      });
+      hero.addEventListener('pointerleave', () => {
+        heroArt.style.setProperty('--mx', '0');
+        heroArt.style.setProperty('--my', '0');
+      });
+    }
+  }
+
+  /* ---------- Verticales: tarjetas apiladas al hacer scroll ---------- */
+  const stack = $('[data-stack]');
+  if (stack) {
+    const cards = $$('.vcard', stack);
+    cards.forEach((card) => watchVisibility(card, () => card.classList.add('is-in'), null, { threshold: 0.3 }));
+
+    const stacking = window.matchMedia('(min-width: 861px)');
+    if (!reducedMotion) {
+      onFrame(() => {
+        cards.forEach((card, i) => {
+          const next = cards[i + 1];
+          if (!next || !stacking.matches) { card.style.setProperty('--stack-p', '0'); return; }
+          const rect = card.getBoundingClientRect();
+          const nextTop = next.getBoundingClientRect().top;
+          // 0 cuando la siguiente tarjeta aún está debajo, 1 cuando la cubre por completo.
+          const p = Math.min(Math.max(1 - (nextTop - rect.top) / rect.height, 0), 1);
+          card.style.setProperty('--stack-p', p.toFixed(3));
+        });
+      });
+    }
   }
 
   /* ---------- Principios: mazo de tarjetas ---------- */
   const deck = $('[data-deck]');
+  const deckNav = $('[data-deck-nav]');
   if (deck) {
     let order = $$('.deck-card', deck).sort((a, b) => a.dataset.depth - b.dataset.depth);
+    const cards = order.slice();
     let busy = false;
     let timer = null;
 
+    const titleOf = (card) => $('.deck-card__title', card).textContent.trim();
+
     // Botón invisible para traer al frente las tarjetas que asoman detrás.
-    order.forEach((card) => {
-      const title = $('.deck-card__title', card).textContent.trim();
+    cards.forEach((card) => {
       const peek = document.createElement('button');
       peek.type = 'button';
       peek.className = 'deck-card__peek';
-      peek.setAttribute('aria-label', `Ver principio: ${title}`);
+      peek.setAttribute('aria-label', `Ver principio: ${titleOf(card)}`);
       peek.addEventListener('click', () => { bringToFront(card); restart(); });
       card.appendChild(peek);
+    });
+
+    // Indicadores (uno por principio).
+    const dots = cards.map((card) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Principio: ${titleOf(card)}`);
+      dot.style.setProperty('--accent', card.style.getPropertyValue('--accent'));
+      dot.addEventListener('click', () => { bringToFront(card); restart(); });
+      if (deckNav) deckNav.appendChild(dot);
+      return dot;
     });
 
     function render() {
@@ -106,6 +223,7 @@
         $('.deck-card__body', card).inert = !isFront;
         $('.deck-card__peek', card).hidden = isFront;
       });
+      dots.forEach((dot, i) => dot.setAttribute('aria-current', String(cards[i] === order[0])));
     }
 
     function bringToFront(card) {
@@ -138,8 +256,25 @@
     watchVisibility(deck, start, stop);
   }
 
-  /* ---------- Arrastrar para desplazar (carruseles horizontales) ---------- */
-  $$('[data-drag-scroll], [data-carousel]').forEach((track) => {
+  /* ---------- Tilt 3D en tarjetas ---------- */
+  if (finePointer && !reducedMotion) {
+    $$('[data-tilt]').forEach((card) => {
+      card.addEventListener('pointermove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.setProperty('--ry', `${(x * 10).toFixed(2)}deg`);
+        card.style.setProperty('--rx', `${(-y * 10).toFixed(2)}deg`);
+      });
+      card.addEventListener('pointerleave', () => {
+        card.style.setProperty('--ry', '0deg');
+        card.style.setProperty('--rx', '0deg');
+      });
+    });
+  }
+
+  /* ---------- Arrastrar para desplazar (carrusel) ---------- */
+  $$('[data-carousel]').forEach((track) => {
     let startX = 0;
     let startScroll = 0;
     let dragging = false;
@@ -177,7 +312,7 @@
     track.addEventListener('dragstart', (e) => e.preventDefault());
   });
 
-  /* ---------- Contador +300 ---------- */
+  /* ---------- Contadores ---------- */
   $$('[data-count-to]').forEach((el) => {
     const target = Number(el.dataset.countTo);
     if (reducedMotion || !supportsIO) return;
@@ -186,12 +321,11 @@
     watchVisibility(el, () => {
       if (done) return;
       done = true;
-      const duration = 1600;
+      const duration = target > 10 ? 1800 : 1000;
       const t0 = performance.now();
       const tick = (now) => {
         const p = Math.min((now - t0) / duration, 1);
-        const eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = String(Math.round(target * eased));
+        el.textContent = String(Math.round(target * (1 - Math.pow(1 - p, 3))));
         if (p < 1) requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);
@@ -200,19 +334,19 @@
 
   /* ---------- Rotador de palabras (talento) ---------- */
   const swap = $('[data-word-swap]');
-  const progress = $('[data-word-progress]');
-  if (swap && progress) {
+  const progressBars = $('[data-word-progress]');
+  if (swap && progressBars) {
     const words = [
-      { text: 'diversas', bg: 'var(--c-sky)', fg: 'var(--c-white)' },
-      { text: 'innovadoras', bg: 'var(--c-sun)', fg: 'var(--c-forest)' },
-      { text: 'auténticas', bg: 'var(--c-magenta)', fg: 'var(--c-white)' },
-      { text: 'que suman', bg: 'var(--c-green)', fg: 'var(--c-white)' }
+      { text: 'diversas', bg: 'var(--c-ent)', fg: 'var(--c-ent-dark)' },
+      { text: 'innovadoras', bg: 'var(--c-inv)', fg: 'var(--c-inv-dark)' },
+      { text: 'auténticas', bg: 'var(--c-seg)', fg: 'var(--c-white)' },
+      { text: 'que suman', bg: 'var(--c-green)', fg: 'var(--c-forest)' }
     ];
-    const bars = $$('span', progress);
+    const bars = $$('span', progressBars);
     const interval = 2800;
     let current = 0;
     let timer = null;
-    progress.style.setProperty('--swap-ms', `${interval}ms`);
+    progressBars.style.setProperty('--swap-ms', `${interval}ms`);
 
     const paint = (i) => {
       swap.textContent = words[i].text;
@@ -222,7 +356,7 @@
         bar.classList.remove('is-active');
         bar.classList.toggle('is-done', b < i);
       });
-      void progress.offsetWidth; // reinicia la animación de la barra activa
+      void progressBars.offsetWidth; // reinicia la animación de la barra activa
       bars[i].classList.add('is-active');
     };
 
@@ -247,21 +381,15 @@
   const parallaxCols = $$('[data-parallax]');
   if (parallaxCols.length && !reducedMotion) {
     const desktop = window.matchMedia('(min-width: 861px)');
-    let ticking = false;
-
-    const update = () => {
-      ticking = false;
+    onFrame(() => {
       parallaxCols.forEach((col) => {
         if (!desktop.matches) { col.style.transform = ''; return; }
         const rect = col.getBoundingClientRect();
+        if (rect.bottom < -200 || rect.top > window.innerHeight + 200) return;
         const offset = rect.top + rect.height / 2 - window.innerHeight / 2;
         col.style.transform = `translate3d(0, ${(offset * Number(col.dataset.parallax)).toFixed(1)}px, 0)`;
       });
-    };
-    const request = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
-    window.addEventListener('scroll', request, { passive: true });
-    window.addEventListener('resize', request);
-    update();
+    });
   }
 
   /* ---------- Lista de innovación (acordeón con avance automático) ---------- */
@@ -319,12 +447,12 @@
     const cards = $$('.news-card', carousel);
 
     const metrics = () => {
-      const gap = parseFloat(getComputedStyle(carousel).columnGap) || 0;
+      const styles = getComputedStyle(carousel);
+      const gap = parseFloat(styles.columnGap) || 0;
       const cardWidth = cards[0].getBoundingClientRect().width + gap;
-      const padStart = parseFloat(getComputedStyle(carousel).paddingLeft) || 0;
+      const padStart = parseFloat(styles.paddingLeft) || 0;
       const perPage = Math.max(1, Math.floor((carousel.clientWidth - padStart + gap) / cardWidth));
-      const pages = Math.max(1, Math.ceil(cards.length / perPage));
-      return { cardWidth, perPage, pages };
+      return { cardWidth, perPage, pages: Math.max(1, Math.ceil(cards.length / perPage)) };
     };
 
     const update = () => {
@@ -345,7 +473,7 @@
 
     prev.addEventListener('click', () => go(-1));
     nextBtn.addEventListener('click', () => go(1));
-    carousel.addEventListener('scroll', () => window.requestAnimationFrame(update), { passive: true });
+    carousel.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
     window.addEventListener('resize', update);
     carousel.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
