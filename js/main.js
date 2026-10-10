@@ -4,6 +4,8 @@
    arte del hero, tarjetas apiladas de verticales, escenas fijadas con scroll
    (principios, titular y lista de innovación), figuras laterales, tilt de
    tarjetas, carruseles, contadores, acordeones y modal de video.
+   Obras por impuestos: franja de fotos, titular que se ilumina, sliders,
+   mapa con obra destacada y "Mostrar más".
    ========================================================================== */
 (function () {
   'use strict';
@@ -143,6 +145,24 @@
 
   const splitEls = $$('[data-split]');
   if (!reducedMotion) splitEls.forEach((el) => splitWords(el, { i: 0 }));
+
+  /** Envuelve cada palabra en <span class="word"> (titulares que se iluminan con el scroll). */
+  function wrapWords(node) {
+    Array.from(node.childNodes).forEach((child) => {
+      if (child.nodeType === Node.ELEMENT_NODE) { wrapWords(child); return; }
+      if (child.nodeType !== Node.TEXT_NODE) return;
+      const frag = document.createDocumentFragment();
+      child.textContent.split(/(\s+)/).forEach((part) => {
+        if (!part) return;
+        if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+        const word = document.createElement('span');
+        word.className = 'word';
+        word.textContent = part;
+        frag.appendChild(word);
+      });
+      child.replaceWith(frag);
+    });
+  }
 
   /* ---------- Animaciones de entrada ---------- */
   const revealEls = $$('[data-reveal]');
@@ -576,22 +596,7 @@
   const wordsTitle = $('[data-words]');
   const wordsTrack = $('[data-words-track]');
   if (innovation && wordsTitle && wordsTrack && !reducedMotion) {
-    (function wrap(node) {
-      Array.from(node.childNodes).forEach((child) => {
-        if (child.nodeType === Node.ELEMENT_NODE) { wrap(child); return; }
-        if (child.nodeType !== Node.TEXT_NODE) return;
-        const frag = document.createDocumentFragment();
-        child.textContent.split(/(\s+)/).forEach((part) => {
-          if (!part) return;
-          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
-          const word = document.createElement('span');
-          word.className = 'word';
-          word.textContent = part;
-          frag.appendChild(word);
-        });
-        child.replaceWith(frag);
-      });
-    })(wordsTitle);
+    wrapWords(wordsTitle);
 
     const words = $$('.word', wordsTitle);
     const sticky = $('.innovation__sticky--words', innovation);
@@ -676,6 +681,154 @@
     onFrame(updateFromScroll);
     watchVisibility(featureList, start, stop, { threshold: 0.4 });
   }
+
+  /* ---------- Titulares que se iluminan palabra por palabra con el scroll ---------- */
+  // A diferencia de Innovación, la sección no queda fijada: las palabras se encienden
+  // mientras el titular recorre la pantalla.
+  $$('[data-scroll-words]').forEach((title) => {
+    if (reducedMotion) return;
+    wrapWords(title);
+    const words = $$('.word', title);
+    (title.closest('section') || title).classList.add('is-scroll-words');
+    onFrame(() => {
+      const vh = window.innerHeight;
+      const rect = title.getBoundingClientRect();
+      if (rect.bottom < -vh || rect.top > vh * 2) return;
+      const p = clamp((vh * 0.85 - rect.top) / (vh * 0.4 + rect.height));
+      const lit = Math.round(p * words.length);
+      words.forEach((word, i) => word.classList.toggle('is-lit', i < lit));
+    });
+  });
+
+  /* ---------- Obras por impuestos: franja de fotos de la cabecera ---------- */
+  // Las fotos crecen desde abajo al cargar y, en escritorio, siguen un leve parallax.
+  const strip = $('[data-strip]');
+  if (strip) {
+    void strip.offsetWidth; // asegura el estado inicial antes de animar
+    requestAnimationFrame(() => strip.classList.add('is-ready'));
+    if (!reducedMotion) {
+      const desktop = window.matchMedia('(min-width: 861px)');
+      onFrame(() => {
+        if (!desktop.matches) return;
+        const vh = window.innerHeight;
+        const rect = strip.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > vh) return;
+        strip.style.setProperty('--strip-p', clamp((vh - rect.top) / (vh + rect.height)).toFixed(3));
+      });
+    }
+  }
+
+  /* ---------- Sliders simples (textos y galerías de fotos) ---------- */
+  $$('[data-slider]').forEach((root) => {
+    const slides = $$('[data-slide]', root);
+    if (slides.length < 2) return;
+    const count = $('[data-slider-count]', root);
+    const prev = $('[data-slider-prev]', root);
+    const next = $('[data-slider-next]', root);
+    let index = Math.max(0, slides.findIndex((slide) => slide.classList.contains('is-active')));
+
+    const show = (i) => {
+      index = (i + slides.length) % slides.length;
+      slides.forEach((slide, n) => {
+        const on = n === index;
+        slide.classList.toggle('is-active', on);
+        slide.inert = !on;
+        slide.setAttribute('aria-hidden', String(!on));
+      });
+      if (count) count.textContent = `${index + 1} de ${slides.length}`;
+    };
+
+    if (prev) prev.addEventListener('click', () => show(index - 1));
+    if (next) next.addEventListener('click', () => show(index + 1));
+
+    // Deslizar con el dedo
+    let x0 = null;
+    root.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    root.addEventListener('touchend', (e) => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      x0 = null;
+      if (Math.abs(dx) > 45) show(index + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+
+    show(index);
+  });
+
+  /* ---------- Obras por impuestos: mapa y obra destacada ---------- */
+  // Cada pin enlaza a la ficha de su proyecto. En escritorio, los pines y las flechas cambian
+  // la obra destacada del banner, que avanza sola mientras está visible; en móvil el banner
+  // se oculta y el pin lleva directo a la ficha.
+  const works = $('[data-works]');
+  if (works) {
+    const pins = $$('[data-work-pin]', works);
+    const projects = pins.map((pin) => document.getElementById(pin.getAttribute('href').slice(1)));
+    const banner = $('[data-works-banner]', works);
+    const caption = $('[data-works-caption]', works);
+    const titleLink = $('[data-works-title]', works);
+    const region = $('[data-works-region]', works);
+    const count = $('[data-works-count]', works);
+    const interval = Number(works.dataset.autoplay) || 6000;
+    let current = 0;
+    let swapTimer = null;
+
+    const bannerShown = () => Boolean(banner && banner.offsetParent);
+
+    function select(index) {
+      current = (index + pins.length) % pins.length;
+      pins.forEach((pin, i) => {
+        if (i === current) pin.setAttribute('aria-current', 'true');
+        else pin.removeAttribute('aria-current');
+      });
+      const project = projects[current];
+      const apply = () => {
+        titleLink.href = `#${project.id}`;
+        $('span', titleLink).textContent = $('.oxi-project__title', project).textContent.trim();
+        region.textContent = project.dataset.region;
+        count.textContent = `${current + 1} de ${pins.length}`;
+        caption.classList.remove('is-changing');
+      };
+      window.clearTimeout(swapTimer);
+      if (reducedMotion) { apply(); return; }
+      caption.classList.add('is-changing');
+      swapTimer = window.setTimeout(apply, 300);
+    }
+
+    let timer = null;
+    let paused = false;
+    let visible = false;
+    const tick = () => { if (!paused && document.visibilityState === 'visible' && bannerShown()) select(current + 1); };
+    const start = () => { if (!reducedMotion && visible && !timer) timer = window.setInterval(tick, interval); };
+    const stop = () => { window.clearInterval(timer); timer = null; };
+    const restart = () => { stop(); start(); };
+
+    pins.forEach((pin, i) => pin.addEventListener('click', (e) => {
+      if (!bannerShown()) return;
+      e.preventDefault();
+      select(i);
+      restart();
+    }));
+    const prev = $('[data-works-prev]', works);
+    const next = $('[data-works-next]', works);
+    if (prev) prev.addEventListener('click', () => { select(current - 1); restart(); });
+    if (next) next.addEventListener('click', () => { select(current + 1); restart(); });
+
+    works.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') paused = true; });
+    works.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') paused = false; });
+    works.addEventListener('focusin', () => { paused = true; });
+    works.addEventListener('focusout', (e) => { if (!works.contains(e.relatedTarget)) paused = false; });
+    watchVisibility(works, () => { visible = true; start(); }, () => { visible = false; stop(); }, { threshold: 0.3 });
+  }
+
+  /* ---------- "Mostrar más" en las fichas de proyecto (móvil) ---------- */
+  $$('[data-more]').forEach((wrap) => {
+    const btn = $('[data-more-toggle]', wrap);
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const open = wrap.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(open));
+      $('span', btn).textContent = open ? 'Mostrar menos' : 'Mostrar más';
+    });
+  });
 
   /* ---------- Figuras laterales animadas con el scroll ---------- */
   const scrollShapes = $$('[data-scroll-shape]');

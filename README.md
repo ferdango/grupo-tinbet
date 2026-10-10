@@ -1,7 +1,7 @@
 # Grupo Tinbet — Sitio web
 
-Página **Home** de Grupo Tinbet maquetada en HTML, CSS y JavaScript sin dependencias,
-a partir del frame *Home* del Figma del proyecto y del **Manual de marca 2026**.
+Sitio de Grupo Tinbet maquetado en HTML, CSS y JavaScript sin dependencias, a partir de los
+frames del Figma del proyecto y del **Manual de marca 2026**.
 
 **Sitio publicado:** https://ferdango.github.io/grupo-tinbet/
 
@@ -9,6 +9,7 @@ a partir del frame *Home* del Figma del proyecto y del **Manual de marca 2026**.
 
 ```
 index.html            Página Home
+obras-por-impuestos.html  Página "Obras por impuestos" (vertical Inversiones, línea amarilla)
 lo-ultimo.html        Página "Lo último" (noticias con destacados, filtros y "Ver más")
 nota.html             Plantilla de nota individual (single blog)
 css/styles.css        Estilos (tokens de color y tipografía del manual de marca)
@@ -17,7 +18,7 @@ assets/logos/         Logotipos y símbolo en SVG (exportados del manual de marc
 assets/img/           Fotografías y fondos optimizados en WebP
 ```
 
-## Secciones
+## Secciones del Home
 
 1. Header transparente sobre el hero, menú desplegable de verticales y barra de progreso
 2. Hero con composición de formas del manual (fotos recortadas dentro de las formas, parallax)
@@ -64,6 +65,28 @@ cambia con el atributo `data-autoplay` (en milisegundos) del contenedor `data-ca
   `impacto`, `deportes`, `digital`) que usan los filtros; se muestran 8 y "Ver más noticias" carga 8 más.
 - `nota.html` es la plantilla de nota: cabecera, imagen o video, contenido (`.prose`), botones para
   compartir y carrusel de noticias relacionadas. Para una nota nueva, duplica el archivo y cambia el contenido.
+
+## Obras por impuestos
+
+`obras-por-impuestos.html` sigue el frame *Obras por impuesto* del Figma (escritorio y móvil) con la
+**línea gráfica amarilla** de la vertical Inversiones: amarillo `#ffb100`, marrón `#532c00` y fondos
+crema (`--c-inv-cream`, `--c-inv-sand`). El `<body class="theme-inv">` cambia a esa línea los acentos
+compartidos (barra de progreso, menú, botones, footer, carrusel de noticias).
+
+- **Cabecera:** cuatro fotos escalonadas que crecen al cargar (en móvil pasan a slider horizontal).
+- **Declaración:** el titular se ilumina palabra por palabra con el scroll (`data-scroll-words`).
+- **Cómo transforma comunidades:** slider de textos "1 de 2" (`data-slider` / `data-slide`).
+- **Nuestras obras:** mapa con pines y banner con la obra destacada. Cada pin es un enlace a la ficha
+  del proyecto (`href="#id"`) y se ubica con `--x` / `--y` (porcentaje sobre el mapa). En escritorio el pin
+  cambia la obra del banner, que avanza sola cada 6 s (`data-autoplay`); en móvil lleva a la ficha.
+- **Fichas de proyecto:** galería de fotos con flechas y, en móvil, texto recortado con "Mostrar más".
+  El título y la región del banner se leen de la ficha (`.oxi-project__title` y `data-region`), así que
+  para sumar una obra basta con agregar su `<article class="oxi-project">` y su pin en el mapa.
+
+Las fotos del banner y de "transforma comunidades" y el mapa venían en verde en el Figma: se recolorearon
+a la línea amarilla (`obras-banner.webp`, `obras-comunidades.webp`, `obras-mapa.webp`). Los pines se
+dibujan en vector con el símbolo de la marca. La primera ficha usa el contenido del Figma; las fichas de
+**Paucartambo** y **Piura** son contenido de ejemplo que debe reemplazarse por la información real.
 
 ## Videos
 
