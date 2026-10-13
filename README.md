@@ -10,6 +10,8 @@ frames del Figma del proyecto y del **Manual de marca 2026**.
 ```
 index.html            Página Home
 obras-por-impuestos.html  Página "Obras por impuestos" (vertical Inversiones, línea amarilla)
+areas-de-negocio.html     Página "Áreas de negocio" (directorio de empresas con filtros)
+personas-y-talento.html   Página "Personas y talento" (cultura, comunidad y vacantes)
 lo-ultimo.html        Página "Lo último" (noticias con destacados, filtros y "Ver más")
 nota.html             Plantilla de nota individual (single blog)
 css/styles.css        Estilos (tokens de color y tipografía del manual de marca)
@@ -87,6 +89,31 @@ Las fotos del banner y de "transforma comunidades" y el mapa venían en verde en
 a la línea amarilla (`obras-banner.webp`, `obras-comunidades.webp`, `obras-mapa.webp`). Los pines se
 dibujan en vector con el símbolo de la marca. La primera ficha usa el contenido del Figma; las fichas de
 **Paucartambo** y **Piura** son contenido de ejemplo que debe reemplazarse por la información real.
+
+## Áreas de negocio
+
+`areas-de-negocio.html` sigue el frame *Areas de negocio* del Figma (escritorio y móvil) con la cabecera
+de páginas internas del sitio. Cada empresa es un `<article class="brand-card">` con `data-category`
+(una o varias categorías separadas por espacios: `igaming`, `construccion`, `inversion`, `servicios`,
+`desarrollo`, `infraestructura`) que usan los filtros. Sus colores salen de la vertical con `--v`, `--v-ink`
+y `--v-dark`. Mientras no estén los logotipos de cada empresa, la tarjeta muestra el símbolo de Grupo Tinbet
+en los colores de su vertical y el nombre; para usar el logo real, reemplaza el contenido de
+`.brand-card__logo` por un `<img>`. Las descripciones y categorías son una propuesta a validar.
+
+## Personas y talento
+
+`personas-y-talento.html` sigue el frame *Personas y talento* del Figma: cabecera con collage, cultura con el
+mapa del Perú hecho con el símbolo, escalera "Conoce lo que nos mueve" (las tarjetas suben al aparecer),
+mosaico del equipo, sección para postular, rotador "El vínculo entre empresa y…" (palabras definidas en
+`data-words`), vacantes y llamado "Manos a la obra".
+
+- **Vacantes:** cada vacante es un `<article class="job" data-job>` con `data-contrato`, `data-modalidad`,
+  `data-ubicacion` y `data-area`, que coinciden con los `value` de los filtros. Los filtros se aplican con
+  "Buscar", aparecen como etiquetas que se pueden quitar y la lista se pagina de a `data-page` vacantes.
+  El botón de compartir usa el menú nativo del sistema o copia el enlace (`#id` de la vacante, que abre la
+  página donde está). Cada vacante abre un correo a contacto@grupotinbet.com con el puesto en el asunto.
+- Las 14 vacantes son **contenido de ejemplo**: deben reemplazarse por las reales o conectarse a la
+  plataforma de reclutamiento.
 
 ## Videos
 

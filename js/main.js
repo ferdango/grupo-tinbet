@@ -535,12 +535,16 @@
   const swap = $('[data-word-swap]');
   const progressBars = $('[data-word-progress]');
   if (swap && progressBars) {
-    const words = [
+    // Las palabras se pueden definir por página con data-words (JSON con text, bg y fg).
+    let words = [
       { text: 'diversas', bg: 'var(--c-ent)', fg: 'var(--c-ent-dark)' },
       { text: 'innovadoras', bg: 'var(--c-inv)', fg: 'var(--c-inv-dark)' },
       { text: 'auténticas', bg: 'var(--c-seg)', fg: 'var(--c-white)' },
       { text: 'que suman', bg: 'var(--c-green)', fg: 'var(--c-forest)' }
     ];
+    try {
+      if (swap.dataset.words) words = JSON.parse(swap.dataset.words);
+    } catch (err) { /* JSON inválido: se mantienen las palabras por defecto */ }
     const bars = $$('span', progressBars);
     const interval = 2800;
     let current = 0;
@@ -962,19 +966,20 @@
     update();
   });
 
-  /* ---------- Lo último: filtros por categoría y "Ver más noticias" ---------- */
-  const newsGrid = $('[data-news-grid]');
+  /* ---------- Lo último y Áreas de negocio: filtros por categoría y "Ver más" ---------- */
+  // Un elemento puede tener varias categorías separadas por espacios (data-category="a b").
+  const newsGrid = $('[data-news-grid], [data-filter-grid]');
   if (newsGrid) {
     const cards = $$('[data-category]', newsGrid);
     const filters = $$('[data-filter]');
     const moreBtn = $('[data-news-more]');
     const empty = $('[data-news-empty]');
-    const PAGE = 8;
+    const PAGE = Number(newsGrid.dataset.page) || 8;
     let limit = PAGE;
     let filter = 'todo';
 
     const render = () => {
-      const matching = cards.filter((card) => filter === 'todo' || card.dataset.category === filter);
+      const matching = cards.filter((card) => filter === 'todo' || card.dataset.category.split(/\s+/).includes(filter));
       cards.forEach((card) => { card.hidden = true; card.classList.remove('is-shown'); });
       matching.slice(0, limit).forEach((card, i) => {
         card.hidden = false;
@@ -1030,6 +1035,135 @@
         }
       });
     }
+  }
+
+  /* ---------- Personas y talento: vacantes ---------- */
+  // Los filtros se aplican al pulsar "Buscar"; cada filtro aplicado aparece como una etiqueta
+  // que se puede quitar. Las vacantes se paginan de a data-page elementos.
+  const jobs = $('[data-jobs]');
+  if (jobs) {
+    const items = $$('[data-job]', jobs);
+    const form = $('[data-job-filters]', jobs);
+    const chips = $('[data-job-chips]', jobs);
+    const count = $('[data-job-count]', jobs);
+    const pager = $('[data-job-pager]', jobs);
+    const empty = $('[data-job-empty]', jobs);
+    const list = $('[data-job-list]', jobs);
+    const PAGE = Number(jobs.dataset.page) || 6;
+    let applied = {};
+    let page = 1;
+
+    const labelOf = (input) => input.parentElement.textContent.trim();
+    const readForm = () => {
+      applied = {};
+      $$('input[type="checkbox"]:checked', form).forEach((input) => {
+        (applied[input.name] = applied[input.name] || []).push(input.value);
+      });
+    };
+    const matches = (item) => Object.keys(applied).every((key) => applied[key].includes(item.dataset[key]));
+
+    function renderChips() {
+      chips.replaceChildren();
+      $$('input[type="checkbox"]:checked', form).forEach((input) => {
+        if (!(applied[input.name] || []).includes(input.value)) return;
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'jchip';
+        chip.setAttribute('aria-label', `Quitar filtro: ${labelOf(input)}`);
+        chip.innerHTML = `<span></span><svg aria-hidden="true"><use href="#i-close"/></svg>`;
+        chip.firstChild.textContent = labelOf(input);
+        chip.addEventListener('click', () => {
+          input.checked = false;
+          readForm();
+          page = 1;
+          render();
+        });
+        chips.appendChild(chip);
+      });
+    }
+
+    function pageButton(content, target, label, current) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.innerHTML = content;
+      btn.setAttribute('aria-label', label);
+      if (current) btn.setAttribute('aria-current', 'page');
+      btn.disabled = target < 1 || target > Math.ceil(lastTotal / PAGE);
+      btn.addEventListener('click', () => {
+        page = target;
+        render();
+        list.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+      });
+      return btn;
+    }
+
+    let lastTotal = items.length;
+    function render() {
+      const matching = items.filter(matches);
+      const pages = Math.max(1, Math.ceil(matching.length / PAGE));
+      lastTotal = matching.length;
+      page = Math.min(page, pages);
+      const from = (page - 1) * PAGE;
+      const shown = matching.slice(from, from + PAGE);
+
+      items.forEach((item) => { item.hidden = true; item.classList.remove('is-shown'); });
+      shown.forEach((item, i) => {
+        item.hidden = false;
+        item.style.setProperty('--i', String(i));
+        requestAnimationFrame(() => requestAnimationFrame(() => item.classList.add('is-shown')));
+      });
+
+      count.textContent = matching.length
+        ? `Mostrando ${from + 1} a ${from + shown.length} de ${matching.length} vacantes`
+        : 'No hay vacantes con esos filtros';
+      empty.hidden = matching.length > 0;
+
+      pager.replaceChildren();
+      if (pages > 1) {
+        pager.appendChild(pageButton('<svg aria-hidden="true"><use href="#i-chevron-left"/></svg>', page - 1, 'Página anterior'));
+        for (let n = 1; n <= pages; n++) pager.appendChild(pageButton(String(n), n, `Página ${n}`, n === page));
+        pager.appendChild(pageButton('<svg aria-hidden="true"><use href="#i-chevron-right"/></svg>', page + 1, 'Página siguiente'));
+      }
+      renderChips();
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      readForm();
+      page = 1;
+      render();
+    });
+    $$('[data-job-clear]', jobs).forEach((btn) => btn.addEventListener('click', () => {
+      form.reset();
+      readForm();
+      page = 1;
+      render();
+    }));
+
+    // Compartir una vacante: menú nativo del sistema o, si no existe, copiar el enlace.
+    $$('[data-job-share]', jobs).forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const job = btn.closest('[data-job]');
+        const url = `${window.location.href.split('#')[0]}#${job.id}`;
+        const title = $('.job__title', job).textContent.trim();
+        try {
+          if (navigator.share) {
+            await navigator.share({ title: `${title} | Grupo Tinbet`, url });
+          } else {
+            await navigator.clipboard.writeText(url);
+            toast('Enlace de la vacante copiado');
+          }
+        } catch (err) {
+          if (err && err.name !== 'AbortError') toast('No se pudo compartir la vacante');
+        }
+      });
+    });
+
+    // Enlace directo a una vacante (#vacante-…): abre la página donde está.
+    const linked = items.find((item) => `#${item.id}` === window.location.hash);
+    if (linked) page = Math.floor(items.indexOf(linked) / PAGE) + 1;
+    render();
+    if (linked) requestAnimationFrame(() => linked.scrollIntoView({ block: 'center' }));
   }
 
   /* ---------- Modal de video ---------- */
