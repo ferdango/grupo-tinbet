@@ -107,6 +107,10 @@ mapa del Perú hecho con el símbolo, escalera "Conoce lo que nos mueve" (las ta
 mosaico del equipo, sección para postular, rotador "El vínculo entre empresa y…" (palabras definidas en
 `data-words`), vacantes y llamado "Manos a la obra".
 
+La imagen de la cabecera (`pyt-hero-marca.webp`) toma como referencia el collage del Figma, pero con la
+marca: el símbolo de Grupo Tinbet sirve de marco para tres fotos (equipo, resultados y manos unidas) sobre
+los verdes corporativos, con las formas del manual y el logotipo.
+
 - **Vacantes:** cada vacante es un `<article class="job" data-job>` con `data-contrato`, `data-modalidad`,
   `data-ubicacion` y `data-area`, que coinciden con los `value` de los filtros. Los filtros se aplican con
   "Buscar", aparecen como etiquetas que se pueden quitar y la lista se pagina de a `data-page` vacantes.

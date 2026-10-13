@@ -1979,8 +1979,8 @@ svg { flex: none; }
 }
 .js .pt-hero__media:not(.is-visible) > img { clip-path: inset(12% 12% 12% 12% round 60px); scale: 1.1; }
 .pt-hero__shape { position: absolute; z-index: 1; transition: opacity .8s var(--ease), transform 1.2s var(--ease-out); }
-.pt-hero__shape--a { top: 6%; left: -9%; width: 12%; fill: var(--c-lime); animation: soft-float 7s ease-in-out infinite; }
-.pt-hero__shape--b { right: -16%; bottom: 12%; width: 30%; fill: var(--c-green); animation: soft-float 9s ease-in-out -3s infinite; transition-delay: .2s; }
+.pt-hero__shape--a { top: 6%; left: -9%; width: 12%; fill: var(--c-white); animation: soft-float 7s ease-in-out infinite; }
+.pt-hero__shape--b { right: -16%; bottom: 12%; width: 30%; fill: var(--c-lime); animation: soft-float 9s ease-in-out -3s infinite; transition-delay: .2s; }
 .pt-hero__shape--c { top: 16%; right: -11%; width: 18%; fill: var(--c-white); animation: soft-float 8s ease-in-out -5s infinite; transition-delay: .35s; }
 .js .pt-hero__media:not(.is-visible) .pt-hero__shape { opacity: 0; transform: translate(-40px, 40px); }
 
