@@ -1549,6 +1549,18 @@ svg { flex: none; }
   font-size: .875rem;
 }
 .site-footer__legal { display: flex; flex-wrap: wrap; gap: 12px 28px; }
+/* Crédito de diseño: discreto, se ilumina al pasar el mouse */
+.site-footer__credit {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .8125rem;
+  color: rgba(255, 255, 255, .45);
+  transition: color .25s var(--ease);
+}
+.site-footer__credit img { width: auto; height: 22px; opacity: .7; transition: opacity .25s var(--ease); }
+.site-footer__credit:hover { color: rgba(255, 255, 255, .85); }
+.site-footer__credit:hover img { opacity: 1; }
 
 /* ---------- Modal de video ---------- */
 .video-modal {
