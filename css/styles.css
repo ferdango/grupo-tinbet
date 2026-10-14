@@ -348,6 +348,7 @@ svg { flex: none; }
   padding-block: 10px;
   font-size: .9375rem;
   font-weight: 600;
+  white-space: nowrap;
 }
 .site-nav__list > li > a::after {
   content: "";
@@ -2792,6 +2793,12 @@ svg { flex: none; }
   .innovation__visual { justify-self: center; max-width: 520px; margin-top: 24px; }
   .cta__box { grid-template-columns: 1fr; }
   .cta__art { width: 100%; max-width: 560px; margin: 0 auto; }
+}
+
+/* Escritorio angosto: el menú completo entra en una línea sin el botón de contacto */
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .site-nav__cta { display: none; }
+  .site-nav__list { gap: 18px; }
 }
 
 @media (max-width: 1024px) {
