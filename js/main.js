@@ -275,7 +275,8 @@
         goToCard(index);
       });
 
-      whenMatches('(max-width: 860px) and (min-height: 720px)', setVSlider);
+      // Cualquier teléfono en vertical (la altura visible baja con las barras del navegador).
+      whenMatches('(max-width: 860px) and (min-height: 540px)', setVSlider);
       onFrame(() => {
         if (!vSlider) return;
         const n = cards.length;

@@ -832,6 +832,17 @@ svg { flex: none; }
 .verticals.is-slider .vcard__shapes { left: -10%; bottom: -24%; width: 70%; }
 .verticals.is-slider .vstack-nav { display: flex; justify-content: center; gap: 8px; margin-top: clamp(14px, 2.4vh, 24px); }
 
+/* Teléfonos con poca altura visible: la tarjeta se compacta para entrar completa en la escena fijada */
+@media (max-height: 760px) {
+  .verticals.is-slider .vcard { grid-template-rows: clamp(84px, 14vh, 150px) auto; }
+  .verticals.is-slider .vcard__text { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+}
+@media (max-height: 640px) {
+  .verticals.is-slider .section-head .eyebrow,
+  .verticals.is-slider .vcard__text { display: none; }
+  .verticals.is-slider .vcard__kicker { font-size: .9375rem; }
+}
+
 /* ---------- Principios (mazo de tarjetas) ---------- */
 .principles { position: relative; overflow-x: clip; background: var(--c-paper); }
 .principles__deco {
