@@ -721,6 +721,45 @@
         strip.style.setProperty('--strip-p', clamp((vh - rect.top) / (vh + rect.height)).toFixed(3));
       });
     }
+
+    // Móvil: la franja es un carrusel deslizable con puntos y avance automático.
+    const dotsWrap = $('[data-strip-dots]');
+    const tiles = $$('.oxi-hero__tile', strip);
+    if (dotsWrap && tiles.length > 1) {
+      const mobile = window.matchMedia('(max-width: 860px)');
+      const step = () => tiles[1].offsetLeft - tiles[0].offsetLeft;
+      const current = () => Math.min(tiles.length - 1, Math.round(strip.scrollLeft / step()));
+      const go = (i) => strip.scrollTo({ left: i * step(), behavior: reducedMotion ? 'auto' : 'smooth' });
+      const dots = tiles.map((tile, i) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Foto ${i + 1} de ${tiles.length}: ${$('.oxi-hero__cap', tile).textContent}`);
+        dot.addEventListener('click', () => { go(i); restart(); });
+        dotsWrap.appendChild(dot);
+        return dot;
+      });
+      const update = () => dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === current())));
+      strip.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+
+      let timer = null;
+      let paused = false;
+      let visible = false;
+      let resumeTimer = null;
+      const tick = () => {
+        if (paused || !visible || !mobile.matches || document.visibilityState !== 'visible') return;
+        go((current() + 1) % tiles.length);
+      };
+      const start = () => { if (!reducedMotion && !timer) timer = window.setInterval(tick, 4500); };
+      const stop = () => { window.clearInterval(timer); timer = null; };
+      const restart = () => { stop(); start(); };
+      strip.addEventListener('touchstart', () => { paused = true; window.clearTimeout(resumeTimer); }, { passive: true });
+      strip.addEventListener('touchend', () => {
+        window.clearTimeout(resumeTimer);
+        resumeTimer = window.setTimeout(() => { paused = false; restart(); }, 4000);
+      }, { passive: true });
+      watchVisibility(strip, () => { visible = true; start(); }, () => { visible = false; stop(); }, { threshold: 0.4 });
+      update();
+    }
   }
 
   /* ---------- Sliders simples (textos y galerías de fotos) ---------- */

@@ -2327,17 +2327,19 @@ svg { flex: none; }
   background: var(--c-inv-cream);
   isolation: isolate;
 }
-.oxi-hero__head { position: relative; z-index: 1; max-width: calc(860px + var(--gutter) * 2); text-align: center; }
+.oxi-hero__head { position: relative; z-index: 1; max-width: calc(1000px + var(--gutter) * 2); text-align: center; }
+.oxi-hero__eyebrow { display: none; }
 .oxi-hero__title {
-  font-size: clamp(2.5rem, 1.6rem + 2.6vw, 3.5rem);
+  font-size: clamp(2.75rem, 1.2rem + 4.4vw, 5.25rem);
   font-weight: 800;
-  line-height: 1.14;
-  letter-spacing: -.04em;
+  line-height: 1.02;
+  letter-spacing: -.045em;
   color: var(--c-ink);
+  text-wrap: balance;
 }
 .oxi-hero__kicker {
-  margin-top: clamp(18px, 2.4vw, 36px);
-  font-size: clamp(1.25rem, 1rem + .8vw, 1.75rem);
+  margin-top: clamp(14px, 1.6vw, 22px);
+  font-size: clamp(1.125rem, .95rem + .7vw, 1.625rem);
   font-weight: 600;
   line-height: 1.3;
   letter-spacing: -.01em;
@@ -2345,9 +2347,9 @@ svg { flex: none; }
   text-wrap: balance;
 }
 .oxi-hero__lead {
-  max-width: 40em;
-  margin: 10px auto 0;
-  font-size: var(--fs-lead);
+  max-width: 34em;
+  margin: 12px auto 0;
+  font-size: clamp(1rem, .95rem + .25vw, 1.125rem);
   font-weight: 500;
   line-height: 1.45;
   color: rgba(17, 23, 20, .64);
@@ -2390,6 +2392,35 @@ svg { flex: none; }
 .oxi-hero__tile:hover img { scale: 1.18; }
 .js .oxi-hero__strip:not(.is-ready) .oxi-hero__tile { clip-path: inset(100% 0 0 0); }
 .js .oxi-hero__strip:not(.is-ready) .oxi-hero__tile img { scale: 1.3; }
+/* Leyenda de cada foto */
+.oxi-hero__cap {
+  position: absolute;
+  left: clamp(12px, 1.2vw, 20px);
+  bottom: clamp(12px, 1.2vw, 20px);
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px 7px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .9);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .12);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--c-inv-dark);
+}
+.oxi-hero__cap::before { content: ""; width: 9px; height: 9px; border-radius: 3px; background: var(--c-inv); transform: rotate(45deg); }
+@media (min-width: 861px) {
+  /* La primera foto empieza fuera de pantalla y la última asoma apenas */
+  .oxi-hero__tile:first-child .oxi-hero__cap { left: calc(6.02vw + 20px); }
+  .oxi-hero__tile:nth-child(4) .oxi-hero__cap { display: none; }
+}
+.oxi-hero__dots { display: none; }
+.theme-inv .slider-dots button[aria-current="true"] { background: var(--c-inv); }
 
 /* ---------- Declaración (fondo marrón, se ilumina con el scroll) ---------- */
 .oxi-statement {
@@ -2717,8 +2748,8 @@ svg { flex: none; }
   .oxi-hero__shape--b { top: 4%; right: -22vw; width: 36vw; }
   .oxi-hero__strip {
     width: auto;
-    gap: 8px;
-    margin: 32px 0 0;
+    gap: 12px;
+    margin: 28px 0 0;
     padding-inline: var(--gutter);
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -2727,8 +2758,9 @@ svg { flex: none; }
     align-items: stretch;
   }
   .oxi-hero__strip::-webkit-scrollbar { display: none; }
-  .oxi-hero__tile { flex: 0 0 86%; height: auto; aspect-ratio: 330 / 375; scroll-snap-align: start; }
+  .oxi-hero__tile { flex: 0 0 84%; height: auto; aspect-ratio: 4 / 4.4; border-radius: var(--radius-md); scroll-snap-align: start; }
   .oxi-hero__tile img { transform: none; }
+  .oxi-hero__dots { display: flex; justify-content: center; padding-block: 18px 30px; }
 
   .oxi-impact { grid-template-columns: 1fr; }
   .oxi-impact__media { order: -1; aspect-ratio: 1 / 1; }
@@ -2761,6 +2793,12 @@ svg { flex: none; }
 
 @media (max-width: 560px) {
   .oxi-hero__shape { display: none; }
+  /* Móvil: menos texto antes de las fotos */
+  .oxi-hero { padding-top: calc(var(--header-h) + 28px); }
+  .oxi-hero__crumbs,
+  .oxi-hero__lead { display: none; }
+  .oxi-hero__eyebrow { display: flex; margin-bottom: 12px; }
+  .oxi-hero__kicker { max-width: 19em; margin-inline: auto; }
   .oxi-statement { min-height: 0; }
   .oxi-statement__shape--a { width: 120px; bottom: -6%; }
   .oxi-statement__shape--b { width: 220px; bottom: -8%; right: -24vw; }
