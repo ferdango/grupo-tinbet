@@ -908,9 +908,10 @@
   /* ---------- Carruseles automáticos en bucle ---------- */
   // Cada carrusel avanza solo y vuelve a empezar sin saltos (al final de la pista hay copias
   // de los elementos). Se pausa mientras el usuario lo usa y fuera de pantalla.
-  $$('[data-carousel-root]').forEach((root) => {
+  // Se exporta como función para iniciar carruseles que se llenan después (Instagram).
+  function initLoopCarousel(root) {
     const track = $('[data-carousel]', root);
-    if (!track) return;
+    if (!track || root.dataset.carouselReady) return;
     const items = $$(':scope > *', track);
     const n = items.length;
     if (n < 2) return;
@@ -1008,8 +1009,106 @@
     });
 
     watchVisibility(root, () => { visible = true; start(); }, () => { visible = false; stop(); }, { threshold: 0.3 });
+    root.dataset.carouselReady = 'true';
     update();
-  });
+  }
+  $$('[data-carousel-root]').forEach(initLoopCarousel);
+
+  /* ---------- Instagram: últimas publicaciones ---------- */
+  // data/instagram.json lo genera la GitHub Action "Instagram" (scripts/instagram-feed.mjs).
+  // Con ?instagram=demo se ve con publicaciones de ejemplo (data/instagram-demo.json).
+  const insta = $('[data-insta]');
+  if (insta && 'fetch' in window) {
+    const demo = new URLSearchParams(window.location.search).get('instagram') === 'demo';
+    const src = demo ? 'data/instagram-demo.json' : insta.dataset.src;
+    const instaTrack = $('[data-insta-track]', insta);
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+    const TYPES = { VIDEO: ['i-play', 'Reel'], CAROUSEL_ALBUM: ['i-ig-carousel', 'Carrusel'] };
+    const dateParts = new Intl.DateTimeFormat('es-PE', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'America/Lima' });
+
+    const el = (tag, className, text) => {
+      const node = document.createElement(tag);
+      if (className) node.className = className;
+      if (text) node.textContent = text;
+      return node;
+    };
+    const icon = (id) => {
+      const svg = document.createElementNS(SVG_NS, 'svg');
+      svg.setAttribute('aria-hidden', 'true');
+      const use = document.createElementNS(SVG_NS, 'use');
+      use.setAttribute('href', `#${id}`);
+      svg.appendChild(use);
+      return svg;
+    };
+    const excerpt = (text, max = 160) => {
+      const clean = String(text || '').replace(/\s+/g, ' ').trim();
+      return clean.length > max ? `${clean.slice(0, max).replace(/\s+\S*$/, '')}…` : clean;
+    };
+    const formatDate = (iso) => {
+      const parts = Object.fromEntries(dateParts.formatToParts(new Date(iso)).map((p) => [p.type, p.value]));
+      return `${parts.day} de ${parts.month} del ${parts.year}`;
+    };
+
+    const card = (post) => {
+      const link = el('a', 'ig-card');
+      link.href = post.url;
+      link.target = '_blank';
+      link.rel = 'noopener';
+
+      const media = el('span', 'ig-card__media');
+      const img = el('img', 'ig-card__img');
+      img.src = post.image;
+      img.alt = '';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      if (post.width && post.height) { img.width = post.width; img.height = post.height; }
+      media.appendChild(img);
+      const type = TYPES[post.type];
+      if (type) {
+        const badge = el('span', 'ig-card__type');
+        badge.appendChild(icon(type[0]));
+        badge.appendChild(el('span', 'sr-only', type[1]));
+        media.appendChild(badge);
+      }
+
+      const body = el('span', 'ig-card__body');
+      if (post.date) {
+        const time = el('time', 'ig-card__date', formatDate(post.date));
+        time.dateTime = post.date;
+        body.appendChild(time);
+      }
+      body.appendChild(el('span', 'ig-card__caption', excerpt(post.caption) || 'Publicación de Instagram'));
+      const more = el('span', 'ig-card__link', 'Ver en Instagram');
+      more.appendChild(icon('i-arrow-up-right'));
+      body.appendChild(more);
+
+      link.append(media, body);
+      return link;
+    };
+
+    const render = (data) => {
+      const posts = (data && Array.isArray(data.posts) ? data.posts : []).filter((p) => p && p.url && p.image).slice(0, 5);
+      if (!posts.length) return;
+
+      instaTrack.replaceChildren(...posts.map(card));
+      if (data.profileUrl) $$('[data-insta-profile], [data-insta-handle]', insta).forEach((a) => { a.href = data.profileUrl; });
+      if (data.username) {
+        $('[data-insta-handle]', insta).textContent = `@${data.username}`;
+        $('[data-insta-handle-wrap]', insta).hidden = false;
+      }
+      if (demo) $('.insta__lead', insta).appendChild(el('span', 'insta__demo', 'Vista previa con publicaciones de ejemplo'));
+      $('[data-carousel-controls]', insta).hidden = posts.length < 2;
+
+      insta.hidden = false;
+      initLoopCarousel(insta);
+      requestFrame();
+    };
+
+    fetch(src, { cache: 'no-cache' })
+      .then((res) => (res.ok ? res.json() : null))
+      .then(render)
+      .catch(() => {});
+  }
 
   /* ---------- Lo último y Áreas de negocio: filtros por categoría y "Ver más" ---------- */
   // Un elemento puede tener varias categorías separadas por espacios (data-category="a b").

@@ -1,0 +1,58 @@
+# Actualiza la sección de Instagram del Home (data/instagram.json y assets/instagram/).
+# Corre cada 6 horas y se puede lanzar a mano desde la pestaña Actions ("Run workflow").
+# Solo publica un commit cuando hay publicaciones nuevas o cambios en las existentes.
+name: Instagram
+
+on:
+  schedule:
+    - cron: "23 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: instagram
+  cancel-in-progress: false
+
+jobs:
+  feed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - name: Instalar sharp (optimiza las fotos)
+        run: npm install --no-save --no-audit --no-fund --prefix "$RUNNER_TEMP/sharp" sharp@0.33.5
+        continue-on-error: true
+
+      - name: Descargar las últimas publicaciones
+        run: node scripts/instagram-feed.mjs
+        env:
+          INSTAGRAM_TOKEN: ${{ secrets.INSTAGRAM_TOKEN }}
+          INSTAGRAM_USER_ID: ${{ vars.INSTAGRAM_USER_ID }}
+          INSTAGRAM_API_VERSION: ${{ vars.INSTAGRAM_API_VERSION }}
+          GH_SECRETS_TOKEN: ${{ secrets.GH_SECRETS_TOKEN }}
+          SHARP_DIR: ${{ runner.temp }}/sharp
+
+      - name: Publicar los cambios
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add -A data/instagram.json assets/instagram
+          if git diff --cached --quiet; then
+            echo "Sin publicaciones nuevas."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898183+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Instagram: últimas publicaciones"
+          git pull --rebase --quiet
+          git push
+          # Pide a GitHub Pages que vuelva a publicar el sitio (los push de la Action no siempre lo disparan).
+          gh api -X POST "repos/${GITHUB_REPOSITORY}/pages/builds" > /dev/null || true

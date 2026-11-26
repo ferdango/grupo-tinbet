@@ -1,0 +1,12 @@
+{
+  "username": "usuario",
+  "profileUrl": "https://www.instagram.com/",
+  "updatedAt": "2026-11-26T15:00:00Z",
+  "posts": [
+    { "id": "demo-1", "type": "IMAGE", "caption": "Publicación de ejemplo: así se verá el texto de cada post, recortado a tres líneas para que todas las tarjetas tengan la misma altura.", "url": "https://www.instagram.com/", "date": "2026-11-24T17:00:00Z", "image": "assets/img/nosotros-equipo.webp" },
+    { "id": "demo-2", "type": "VIDEO", "caption": "Publicación de ejemplo: los reels muestran su portada y un ícono de reproducción.", "url": "https://www.instagram.com/", "date": "2026-11-20T17:00:00Z", "image": "assets/img/blog-podcast.webp" },
+    { "id": "demo-3", "type": "CAROUSEL_ALBUM", "caption": "Publicación de ejemplo: los carruseles muestran su primera foto y un ícono de varias imágenes.", "url": "https://www.instagram.com/", "date": "2026-11-15T17:00:00Z", "image": "assets/img/obras-hero-2.webp" },
+    { "id": "demo-4", "type": "IMAGE", "caption": "Publicación de ejemplo.", "url": "https://www.instagram.com/", "date": "2026-11-10T17:00:00Z", "image": "assets/img/pyt-ingeniero.webp" },
+    { "id": "demo-5", "type": "IMAGE", "caption": "Publicación de ejemplo: cada tarjeta lleva a la publicación en Instagram.", "url": "https://www.instagram.com/", "date": "2026-11-03T17:00:00Z", "image": "assets/img/vertical-entretenimiento.webp" }
+  ]
+}

@@ -18,6 +18,10 @@ css/styles.css        Estilos (tokens de color y tipografía del manual de marca
 js/main.js            Interacciones
 assets/logos/         Logotipos y símbolo en SVG (exportados del manual de marca)
 assets/img/           Fotografías y fondos optimizados en WebP
+assets/instagram/     Fotos de las últimas publicaciones de Instagram (las escribe la Action)
+data/instagram.json   Últimas publicaciones de Instagram (las escribe la Action)
+scripts/              Script que descarga las publicaciones de Instagram
+.github/workflows/    GitHub Action "Instagram" (cada 6 horas)
 ```
 
 ## Secciones del Home
@@ -32,9 +36,10 @@ assets/img/           Fotografías y fondos optimizados en WebP
 8. Valores (tarjetas con efecto 3D)
 9. Talento (+300 profesionales, figuras laterales animadas con el scroll) y mosaico con parallax
 10. Innovación: el titular se pinta de verde palabra por palabra y la lista se abre ítem por ítem con el scroll
-11. Lo último (carrusel de notas y videos)
-12. Preguntas frecuentes
-13. Llamado a la acción y footer
+11. Instagram: slider con las últimas 5 publicaciones (se actualiza sola; ver más abajo)
+12. Lo último (carrusel de notas y videos)
+13. Preguntas frecuentes
+14. Llamado a la acción y footer
 
 ## Marca
 
@@ -118,6 +123,40 @@ los verdes corporativos, con las formas del manual y el logotipo.
   página donde está). Cada vacante abre un correo a contacto@grupotinbet.com con el puesto en el asunto.
 - Las 14 vacantes son **contenido de ejemplo**: deben reemplazarse por las reales o conectarse a la
   plataforma de reclutamiento.
+
+## Instagram (Home)
+
+Antes de "Lo último", el Home muestra un slider con las **últimas 5 publicaciones** de Instagram. Cada tarjeta
+lleva la foto (portada en los reels, primera foto en los carruseles), la fecha, el texto recortado y el enlace a
+la publicación.
+
+- La GitHub Action **Instagram** (`.github/workflows/instagram.yml`) corre cada 6 horas: con
+  `scripts/instagram-feed.mjs` consulta la API de Instagram, guarda las fotos en `assets/instagram/` (en WebP de
+  720 px; los enlaces de imagen de Instagram vencen a los pocos días) y escribe `data/instagram.json`. Solo hace
+  un commit cuando hay publicaciones nuevas y luego pide a GitHub Pages que publique.
+- El token **nunca** va en el código de la página: vive como secreto del repositorio y solo lo usa la Action.
+- Mientras `data/instagram.json` no tenga publicaciones, la sección queda oculta.
+- Para ver el diseño con publicaciones de ejemplo: `index.html?instagram=demo` (lee `data/instagram-demo.json`).
+
+### Activarla (una sola vez)
+
+1. La cuenta de Instagram tiene que ser **profesional** (empresa o creador).
+2. En [Meta for Developers](https://developers.facebook.com/apps) crea una app con el caso de uso de la API de
+   Instagram, agrega la cuenta en la configuración de la *API con inicio de sesión de Instagram* y genera el token
+   de acceso. El token del panel dura 60 días; la Action lo renueva en cada ejecución.
+3. En GitHub: **Settings → Secrets and variables → Actions → New repository secret**, nombre `INSTAGRAM_TOKEN`
+   y como valor el token.
+4. En **Actions → Instagram → Run workflow** lánzala a mano. En un par de minutos la sección aparece en el Home.
+
+Opcional:
+
+- Si al renovarse Instagram entrega un token distinto, la Action avisa en su registro. Para que lo guarde sola,
+  agrega el secreto `GH_SECRETS_TOKEN`: un token de GitHub (fine-grained) de este repositorio con permiso
+  *Secrets: Read and write*.
+- Con Meta Business se puede usar un token de **usuario del sistema** (no vence): guárdalo en `INSTAGRAM_TOKEN` y
+  crea la variable `INSTAGRAM_USER_ID` (Settings → Variables) con el ID de la cuenta de Instagram.
+- GitHub pausa las tareas programadas de los repositorios públicos que pasan 60 días sin actividad. Si la Action
+  se pausa, reactívala en la pestaña Actions antes de que venza el token.
 
 ## Videos
 
