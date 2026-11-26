@@ -91,11 +91,16 @@
   const menuToggle = $('[data-menu-toggle]');
   const menu = $('[data-menu]');
 
+  // Con el menú abierto la barra del navegador también pasa a blanco, como el header.
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+  const pageThemeColor = themeColor ? themeColor.content : '';
+
   function setMenu(open) {
     menuToggle.setAttribute('aria-expanded', String(open));
     menuToggle.querySelector('.sr-only').textContent = open ? 'Cerrar menú' : 'Abrir menú';
     menu.classList.toggle('is-open', open);
     document.body.classList.toggle('menu-open', open);
+    if (themeColor) themeColor.content = open ? '#ffffff' : pageThemeColor;
   }
 
   menuToggle.addEventListener('click', () => setMenu(menuToggle.getAttribute('aria-expanded') !== 'true'));

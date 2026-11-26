@@ -2990,10 +2990,14 @@ svg { flex: none; }
   .site-nav__cta { align-self: flex-start; }
   .is-over-hero .site-nav__cta { background: var(--c-forest); color: var(--c-white); }
   body.menu-open { overflow: hidden; }
-  body.menu-open .site-header {
+  /* Con el menú abierto el header siempre es blanco, aunque esté sobre el banner
+     (transparente) o ya se haya hecho scroll (verde translúcido). */
+  body.menu-open .site-header,
+  body.menu-open .site-header.is-over-hero,
+  body.menu-open .site-header.is-over-hero.is-scrolled {
     background: var(--c-white);
     color: var(--c-ink);
-    box-shadow: 0 1px 0 rgba(0, 0, 0, .06);
+    box-shadow: 0 1px 0 var(--c-line);
   }
   body.menu-open .site-header .logo-on-dark { opacity: 0; }
   body.menu-open .site-header .logo-on-light { opacity: 1; }
