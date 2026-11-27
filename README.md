@@ -3,7 +3,7 @@
 Sitio de Grupo Tinbet maquetado en HTML, CSS y JavaScript sin dependencias, a partir de los
 frames del Figma del proyecto y del **Manual de marca 2026**.
 
-**Sitio publicado:** https://ferdango.github.io/grupo-tinbet/
+**Sitio publicado:** https://grupotinbet.pe/
 
 ## Estructura
 
