@@ -101,6 +101,8 @@
     menu.classList.toggle('is-open', open);
     document.body.classList.toggle('menu-open', open);
     if (themeColor) themeColor.content = open ? '#ffffff' : pageThemeColor;
+    // Al cerrar, el foco no se queda en un enlace oculto del menú.
+    if (!open && menu.contains(document.activeElement)) menuToggle.focus({ preventScroll: true });
   }
 
   menuToggle.addEventListener('click', () => setMenu(menuToggle.getAttribute('aria-expanded') !== 'true'));

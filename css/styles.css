@@ -3066,11 +3066,12 @@ svg { flex: none; }
     background: none;
     box-shadow: none;
     opacity: 1;
-    visibility: visible;
+    /* Hereda la visibilidad del menú: con el menú cerrado los enlaces no se pueden tocar. */
+    visibility: inherit;
     transform: none;
   }
   .has-sub:hover .subnav,
-  .has-sub:focus-within .subnav { transform: none; }
+  .has-sub:focus-within .subnav { visibility: inherit; transform: none; }
   .subnav a { padding: 10px 4px; }
   .site-nav__cta { align-self: flex-start; }
   .is-over-hero .site-nav__cta { background: var(--c-forest); color: var(--c-white); }
