@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/styles.css?v=20">
+  <link rel="stylesheet" href="css/styles.css?v=22">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -244,24 +244,6 @@
         </div>
       </div>
     </section>
-
-    <!-- ============ MARQUEE ============ -->
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee__track">
-        <div class="marquee__group">
-          <span>Entretenimiento</span><svg class="marquee__sym" style="--sym-a: var(--c-ent); --sym-b: var(--c-ent-dark)"><use href="#i-symbol"/></svg>
-          <span class="is-outline">Inversiones</span><svg class="marquee__sym" style="--sym-a: var(--c-inv); --sym-b: var(--c-inv-dark)"><use href="#i-symbol"/></svg>
-          <span>Seguridad</span><svg class="marquee__sym" style="--sym-a: #8a8a8a; --sym-b: var(--c-seg)"><use href="#i-symbol"/></svg>
-          <span class="is-outline">Conectando industrias</span><svg class="marquee__sym" style="--sym-a: var(--c-green); --sym-b: var(--c-forest)"><use href="#i-symbol"/></svg>
-        </div>
-        <div class="marquee__group">
-          <span>Entretenimiento</span><svg class="marquee__sym" style="--sym-a: var(--c-ent); --sym-b: var(--c-ent-dark)"><use href="#i-symbol"/></svg>
-          <span class="is-outline">Inversiones</span><svg class="marquee__sym" style="--sym-a: var(--c-inv); --sym-b: var(--c-inv-dark)"><use href="#i-symbol"/></svg>
-          <span>Seguridad</span><svg class="marquee__sym" style="--sym-a: #8a8a8a; --sym-b: var(--c-seg)"><use href="#i-symbol"/></svg>
-          <span class="is-outline">Conectando industrias</span><svg class="marquee__sym" style="--sym-a: var(--c-green); --sym-b: var(--c-forest)"><use href="#i-symbol"/></svg>
-        </div>
-      </div>
-    </div>
 
     <!-- ============ VERTICALES ============ -->
     <section class="verticals section" id="verticales" aria-labelledby="verticals-title" data-vsection>
@@ -496,20 +478,36 @@
     </section>
 
     <!-- ============ TALENTO ============ -->
-    <section class="talent" id="talento" aria-labelledby="talent-title">
+    <section class="talent talent--home" id="talento" aria-labelledby="talent-title">
       <svg class="side-shape talent__shape talent__shape--l" viewBox="596.7 543.1 356.4 308.6" aria-hidden="true" data-scroll-shape><use href="#x-1"/></svg>
       <svg class="side-shape talent__shape talent__shape--r" viewBox="609.5 85.5 1006.6 828.7" aria-hidden="true" data-scroll-shape><use href="#kite-0"/></svg>
       <div class="container talent__inner">
-        <p class="eyebrow eyebrow--center" data-reveal><svg class="eyebrow__sym" aria-hidden="true"><use href="#i-symbol"/></svg> Personas y talento</p>
-        <h2 class="section-title" id="talent-title" data-split>El talento que impulsa nuestra evolución</h2>
-        <p class="talent__number" data-reveal><span class="talent__plus">+</span><span data-count-to="300">300</span></p>
-        <p class="talent__caption" data-reveal>profesionales comprometidos en crear valor en cada proyecto</p>
-        <p class="talent__rotator" data-reveal>
-          Incluimos perspectivas
-          <span class="word-swap" data-word-swap aria-live="polite">diversas</span>
-        </p>
-        <div class="talent__progress" data-word-progress aria-hidden="true">
-          <span></span><span></span><span></span><span></span>
+        <div class="talent__copy">
+          <p class="eyebrow" data-reveal><svg class="eyebrow__sym" aria-hidden="true"><use href="#i-symbol"/></svg> Personas y talento</p>
+          <h2 class="section-title section-title--left" id="talent-title" data-split>El talento que impulsa nuestra evolución</h2>
+          <p class="talent__lead" data-reveal>Somos un equipo que comparte una misma forma de trabajar: con propósito, respaldo y visión de largo plazo.</p>
+          <p class="talent__rotator" data-reveal>
+            Incluimos perspectivas
+            <span class="word-swap" data-word-swap aria-live="polite">diversas</span>
+          </p>
+          <div class="talent__progress" data-word-progress aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <div class="talent__actions" data-reveal>
+            <a class="btn btn--forest" href="personas-y-talento.html">Conoce nuestra cultura <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn--outline" href="personas-y-talento.html#vacantes">Ver vacantes</a>
+          </div>
+        </div>
+
+        <div class="talent__stat" data-reveal>
+          <svg class="talent__stat-shape" viewBox="873.5 39.8 775.9 605" aria-hidden="true"><use href="#chev-0"/></svg>
+          <p class="talent__number"><span class="talent__plus">+</span><span data-count-to="300">300</span></p>
+          <p class="talent__caption">profesionales comprometidos en crear valor en cada proyecto</p>
+          <ul class="talent__verticals" aria-label="Presentes en nuestras tres verticales">
+            <li style="--v: var(--c-ent)">Entretenimiento</li>
+            <li style="--v: var(--c-inv)">Inversiones</li>
+            <li class="is-seg" style="--v: var(--c-seg)">Seguridad</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -830,6 +828,6 @@
     <div class="video-modal__frame" data-video-frame></div>
   </dialog>
 
-  <script src="js/main.js?v=20" defer></script>
+  <script src="js/main.js?v=22" defer></script>
 </body>
 </html>

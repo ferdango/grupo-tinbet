@@ -30,16 +30,15 @@ scripts/              Script que descarga las publicaciones de Instagram
 2. Hero con composición de formas del manual (fotos recortadas dentro de las formas, parallax)
 3. Accesos rápidos a las 3 verticales
 4. Sobre Grupo Tinbet (contadores y video del equipo)
-5. Cinta animada con las verticales
-6. Verticales de negocio en tarjetas apiladas al hacer scroll
-7. Principios que nos guían: la sección queda fijada y las tarjetas se apilan una por una con el scroll
-8. Valores (tarjetas con efecto 3D)
-9. Talento (+300 profesionales, figuras laterales animadas con el scroll) y mosaico con parallax
-10. Innovación: el titular se pinta de verde palabra por palabra y la lista se abre ítem por ítem con el scroll
-11. Instagram: slider con las últimas 5 publicaciones (se actualiza sola; ver más abajo)
-12. Lo último (carrusel de notas y videos)
-13. Preguntas frecuentes
-14. Llamado a la acción y footer
+5. Verticales de negocio en tarjetas apiladas al hacer scroll
+6. Principios que nos guían: la sección queda fijada y las tarjetas se apilan una por una con el scroll
+7. Valores (tarjetas con efecto 3D)
+8. Talento (+300 profesionales, figuras laterales animadas con el scroll) y mosaico con parallax
+9. Innovación: el titular se pinta de verde palabra por palabra y la lista se abre ítem por ítem con el scroll
+10. Instagram: slider con las últimas 5 publicaciones (se actualiza sola; ver más abajo)
+11. Lo último (carrusel de notas y videos)
+12. Preguntas frecuentes
+13. Llamado a la acción y footer
 
 ## Marca
 
